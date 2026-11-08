@@ -93,9 +93,8 @@ A knowledge base has a root. The root is the folder that contains a folder named
 There are two settings, each with two values:
 
 - **Reading.** Manual: you search and open documents only when the person asks.
-  Automatic: you decide. Before work that others may need later, you search the
-  knowledge base first. At the start of a session, you tell the person what
-  changed (use `git log --since`).
+  Automatic: you decide. Before work where the knowledge base may help, you search it first.
+  At the start of a session, you tell the person what changed (use `git log --since`).
 - **Writing.** Manual: you create, change, or move documents only when the
   person asks. Automatic: you decide what is worth a document, write it, and
   tell the person after each write.
