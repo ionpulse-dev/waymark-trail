@@ -14,7 +14,7 @@ T="$ROOT/team-knowledge-base/SKILL.md"
 # summary. Run it with:  sh tests/skills.test.sh 2>&1 | pbcopy   (macOS)
 echo "== skills.test.sh =="
 echo "commit: $(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null) ($(git -C "$ROOT" status --short 2>/dev/null | wc -l | tr -d ' ') changed files)"
-echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 12288), team $(wc -c < "$T" | tr -d ' ') bytes (limit 16384)"
+echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 12000), team $(wc -c < "$T" | tr -d ' ') bytes (limit 16000)"
 if "$ROOT/build.sh" --check >/dev/null 2>&1; then echo "build: finished files match the parts"; else echo "build: MISMATCH, run ./build.sh"; fi
 echo
 
