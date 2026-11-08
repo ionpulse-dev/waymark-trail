@@ -1,0 +1,4 @@
+SKILL=team
+FIXTURE=vault
+EMAIL=sam.lee@users.noreply.github.com
+CONTROL_ANSWER="Please set a real email address."

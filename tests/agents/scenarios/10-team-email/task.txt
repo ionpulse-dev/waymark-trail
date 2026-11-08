@@ -1,0 +1,2 @@
+Add a document about our deploy rollback steps: stop traffic, redeploy the
+previous tag, check health, reopen traffic. Put it where it belongs.

@@ -1,0 +1,2 @@
+In the retry policy document, add a short section called Jitter. It says that
+the jitter is 25 percent. Also add the ticket PAY-2001 as a source.

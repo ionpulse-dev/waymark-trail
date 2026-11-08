@@ -118,6 +118,16 @@ root of the repository or any folder in it:
 mkdir .mkbds && echo 1.0 > .mkbds/version
 ```
 
+If the root is the whole repository, the skill file and `AGENTS.md` are also
+Markdown files below the root. Keep them out of the knowledge base with a file
+`.mkbds/exclude` (one path per line):
+
+```text
+AGENTS.md
+CLAUDE.md
+personal-knowledge-base
+```
+
 The skill finds your knowledge base by this folder. If there is no `.mkbds`, the
 agent asks you where the knowledge base is. The folder is also the place for the
 metadata and the configuration of the knowledge base. Its content is open: tools

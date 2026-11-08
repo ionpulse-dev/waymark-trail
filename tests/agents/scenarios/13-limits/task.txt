@@ -1,0 +1,5 @@
+Write a document with exactly this title: "How we handle payment provider
+outages when the primary provider is down and the backup provider takes over for
+the whole duration of the incident". Content: switch traffic to the backup
+provider, notify the on-call person, switch back after the primary is healthy
+for 30 minutes.

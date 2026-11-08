@@ -1,0 +1,3 @@
+SKILL=personal
+FIXTURE=vault
+CONTROL_ANSWER="It says FileVault disk encryption must be on."

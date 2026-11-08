@@ -1,0 +1,4 @@
+Three questions. Please answer all of them, one after the other.
+1. How does our payment retry work, and is the documentation current?
+2. What do we know about session length and logins? Is anything outdated?
+3. Is there anything about quantum encryption keys in the knowledge base?

@@ -1,0 +1,2 @@
+Write a document with today's status of the migration: we finished 3 of 5
+services, and auth and billing are left. Put it in platform/.

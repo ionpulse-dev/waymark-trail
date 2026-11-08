@@ -1,0 +1,3 @@
+Move backend/payments/retry-policy.md to backend/resilience/retry-policy.md,
+because it is about resilience in general. Then move
+backend/payments/idempotency-keys.md to backend/resilience/ too.

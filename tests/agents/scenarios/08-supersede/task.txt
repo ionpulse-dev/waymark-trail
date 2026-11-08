@@ -1,0 +1,3 @@
+Write a new document called "Warehouse naming rules version 2". It replaces the
+old warehouse naming document. The rules: all table names are lowercase, fact
+tables start with fct_, dimension tables start with dim_.

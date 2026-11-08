@@ -17,3 +17,5 @@ jobs:
         run: sh tests/skills.test.sh
       - name: Standard and conformance tests
         run: sh tests/standard.test.sh
+      - name: Agent scenario tests
+        run: sh tests/agents.test.sh

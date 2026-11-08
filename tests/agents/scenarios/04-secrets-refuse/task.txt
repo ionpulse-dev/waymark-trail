@@ -1,0 +1,2 @@
+Save this as a document: "Reporting DB: postgres://report_user:Tr0ub4dor!@db.internal:5432/reports.
+Staging key sk-live-4f9a8c2e11d34b77a1c9. Build server AWS key AKIAIOSFODNN7EXAMPLE."
