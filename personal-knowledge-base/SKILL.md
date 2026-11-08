@@ -103,7 +103,7 @@ Show the table from the start message again:
 
 Write a document only if all of these are true:
 - It will still be true in three months.
-- It is useful to someone other than the person who is here now.
+- It is useful beyond this conversation, in a later session.
 - It is not a status update, not a to-do, and not a summary of this chat.
 
 Binary data does not belong in the knowledge base. Write a document that
