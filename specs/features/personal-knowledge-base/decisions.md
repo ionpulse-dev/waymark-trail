@@ -95,7 +95,7 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - The commit message starts with `kb:` followed by the action and the title, for example `kb: add "Payment API v3 uses idempotency keys"`. It has no tag for the agent.
 - The agent compares the last commit of a document with the one it remembered, instead of a hash.
 - When the person asked for Automatic reading, the agent tells the person what changed at the start of a session, using `git log --since`.
-- The skill stays below 12 KB.
+- The skill stays below 14 KB (raised from 12 KB, see the decision on disputed and replaced documents).
 
 **Alternatives considered:**
 - No limits on reading — the agent would load too much context.
@@ -182,3 +182,13 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - No rule — the flag would stay forever, and agents would keep calling a fixed document unreliable.
 
 **Reason:** The maintainer asked for a way to close the dispute process.
+
+## One section for disputed, deprecated, replaced, and deleted documents — 2026-11-08
+
+**Decision:** The rules for these four cases are in one section of the skills, "Wrong, outdated, or replaced documents". The size limit of the personal skill is 14 KB, and of the team skill 16 KB.
+
+**Alternatives considered:**
+- Keep the rules spread over the field table, the reading rules, and the writing section — an agent had to join them, and the end of a dispute was missing.
+- Keep 12 KB — the new section and the earlier rules did not fit.
+
+**Reason:** An agent follows the nearest rule to its task, so each case needs its own place. The size limit is a judgment call.

@@ -14,7 +14,7 @@ T="$ROOT/team-knowledge-base/SKILL.md"
 # summary. Run it with:  sh tests/skills.test.sh 2>&1 | pbcopy   (macOS)
 echo "== skills.test.sh =="
 echo "commit: $(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null) ($(git -C "$ROOT" status --short 2>/dev/null | wc -l | tr -d ' ') changed files)"
-echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 12000), team $(wc -c < "$T" | tr -d ' ') bytes (limit 16000)"
+echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 14000), team $(wc -c < "$T" | tr -d ' ') bytes (limit 16000)"
 if "$ROOT/build.sh" --check >/dev/null 2>&1; then echo "build: finished files match the parts"; else echo "build: MISMATCH, run ./build.sh"; fi
 echo
 
@@ -91,7 +91,7 @@ for f in "$P" "$T"; do
 done
 
 # ---------- sizes ----------
-[ "$(wc -c < "$P")" -le 12000 ] && pass "personal: stays short (12 KB)" || fail "personal: stays short (12 KB)"
+[ "$(wc -c < "$P")" -le 14000 ] && pass "personal: stays short (14 KB)" || fail "personal: stays short (14 KB)"
 [ "$(wc -c < "$T")" -le 16000 ] && pass "team: stays short (16 KB)" || fail "team: stays short (16 KB)"
 
 # ---------- personal ----------
@@ -131,10 +131,30 @@ check "team: delete only when the person says so clearly" "$T" \
   "Deprecate, replace, or delete a document of another" \
   "Prefer deprecate to delete"
 
-check "both: a disputed flag is cleared after a fix" "$P" \
-  "remove both fields" "Ask the person first if someone else set the flag"
-check "team: a disputed flag is cleared after a fix" "$T" \
-  "remove both fields" "Ask the person first if someone else set the flag"
+for f in "$P" "$T"; do
+  s=$(basename "$(dirname "$f")")
+  check "$s: dispute" "$f" \
+    "Wrong, and you do not fix it now: dispute" \
+    "that says what is wrong and how you know" \
+    "kb: dispute"
+  check "$s: a dispute ends" "$f" \
+    "A dispute ends" \
+    "remove \`disputed\` and \`dispute_reason\`" \
+    "If someone else set the flag, ask the person first"
+  check "$s: deprecate" "$f" \
+    "No longer true, and nothing replaces it: deprecate" \
+    "kb: deprecate"
+  check "$s: replace with supersedes in one commit" "$f" \
+    "A new document takes over: replace" \
+    "In the same commit, set" \
+    "The old document stores no link to the new one"
+  check "$s: reading disputed and deprecated documents" "$f" \
+    "a disputed document is not reliable" \
+    "search for" \
+    "whose \`supersedes\` names it" \
+    "If that one is" \
+    "deprecated too, repeat the search"
+done
 
 # ---------- team has all shared rules ----------
 common_lines=$(wc -l < "$ROOT/src/common.md")

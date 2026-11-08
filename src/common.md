@@ -66,8 +66,8 @@ Show the table from the start message again:
    say how old the document is.
 7. A document with `disputed: true` is not reliable. Say so, and give the
    `dispute_reason`.
-8. A document with `status: deprecated` is no longer true. To find its
-   replacement, search for a document whose `supersedes` names it.
+8. A document with `status: deprecated` is no longer true. Say so, and read its
+   replacement (see "Wrong, outdated, or replaced documents").
 9. Remember the last commit of a document when you read it
    (`git log -1 --format=%h -- <path>`). You need it before you change it.
 
@@ -136,9 +136,6 @@ An anchor is `git:<repo>/<path>@<commit>` or `url:<URL>`. Write the name of the
 repository, the path of the file, and a commit that exists. Never invent a
 commit. If you do not know it, leave the anchor out.
 
-When you write `supersedes`, set `status: deprecated` in the older document in
-the same commit, with `updated` and `updated_by`.
-
 ### Writing
 
 Follow these steps for every write. The person must have asked for it, or
@@ -169,16 +166,33 @@ change the description too. Give the document a short description, the
 sources, links to related documents, and the right folder. If you are unsure
 about the folder, ask the person.
 
-If a document is wrong, change it or set `disputed: true` with a
-`dispute_reason`. When a disputed document is fixed, or the person confirms that
-it is right, remove both fields, set `updated` and `updated_by`, and commit with
-`kb: update`. Ask the person first if someone else set the flag. To retire a
-document, set `status: deprecated` and keep the
-file. Delete a document only when the person asks for it, never on your own.
-Before you delete, search for links to it, in bodies and in properties. Fix them
-in the same commit, and set `updated` and `updated_by` in each document that you
-change. Commit with `kb: delete "<title>"`. Tell the person that the file stays
-in the Git history. Never rewrite history.
+### Wrong, outdated, or replaced documents
+
+Choose the lightest tool that fits. Each one is a write, so the steps of
+"Writing" apply, and each one sets `updated` and `updated_by`.
+
+- **Wrong, and you do not fix it now: dispute.** Set `disputed: true` and a
+  `dispute_reason` that says what is wrong and how you know. The document stays
+  `active`. Commit with `kb: dispute "<title>"`. If you can fix the document
+  now, fix it instead, with `kb: update`.
+- **A dispute ends:** when the document is fixed, or the person confirms that it
+  is right, remove `disputed` and `dispute_reason`, and commit with `kb: update`.
+  If someone else set the flag, ask the person first.
+- **No longer true, and nothing replaces it: deprecate.** Set
+  `status: deprecated` and keep the file. Commit with `kb: deprecate "<title>"`.
+- **A new document takes over: replace.** Write the new document with
+  `supersedes` naming the old one as a wikilink. In the same commit, set
+  `status: deprecated` in the old document. Commit with `kb: add "<new title>"`.
+  The old document stores no link to the new one.
+- **Delete** only when the person asks for it, never on your own. Before you
+  delete, search for links to the document, in bodies and in properties. Fix them
+  in the same commit. Commit with `kb: delete "<title>"`. Tell the person that
+  the file stays in the Git history.
+
+When you read: a disputed document is not reliable, so say so and give the
+`dispute_reason`. A deprecated document is no longer true, so say so, search for
+the document whose `supersedes` names it, and read that one. If that one is
+deprecated too, repeat the search.
 
 ### Moving a document
 
