@@ -2,14 +2,14 @@
 
 ```
 📦 Features      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0 / 2 active
-🏗️ Foundation    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0 / 1 done+implemented
+🏗️ Foundation    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  1 / 1 done+implemented
 ```
 
 ## Next Up
 
-1. `skill-build` (draft): requirements and plan to review.
-2. `personal-knowledge-base` (draft): requirements to review.
-3. `team-knowledge-base` (draft): requirements to review.
+1. `skill-build` (implemented): three `[manual]` checks left in `test.md` (T8, T9, T10). They need the public repository, and T9 needs the final skill text.
+2. `personal-knowledge-base` (draft): requirements to review, then `plan.md`.
+3. `team-knowledge-base` (draft): requirements to review, then `plan.md`.
 
 ---
 
@@ -24,7 +24,7 @@
 
 | Item | Status | Updated |
 |:-----|:-------|:--------|
-| skill-build | `draft` | 2026-11-08 |
+| skill-build | `implemented` | 2026-11-08 |
 
 ---
 

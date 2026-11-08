@@ -21,6 +21,8 @@ Plain Markdown parts are joined by a small shell script into two finished skill 
 - `personal-knowledge-base/SKILL.md` — finished skill, generated.
 - `team-knowledge-base/SKILL.md` — finished skill, generated.
 - `README.md` — install prompts, start block examples, how to build.
+- `tests/build.test.sh` — shell tests for the build and the check.
+- `.github/workflows/check.yml` — GitHub Actions workflow that runs `build.sh --check` on every push and pull request.
 
 ## Technical Approach
 
@@ -37,8 +39,8 @@ None.
 ## Risks
 
 - A person edits a finished file by hand, and the next build overwrites it. The check catches this.
-- A change to the shared rules needs two version bumps. A script step can bump both.
+- A change to the shared rules needs two version bumps. The agent that changes `src/common.md` raises both versions in the same commit.
 
 ## Open Questions
 
-- One version per skill, or one version for the repository?
+None.

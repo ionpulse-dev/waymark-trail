@@ -33,6 +33,34 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 **Reason:** This is how people already add skills.
 
+## One version and one tag per skill — 2026-11-08
+
+**Decision:** Each skill has its own version, kept in its frontmatter file. Each skill has its own Git tag, named `<skill-name>-v<version>`, for example `personal-knowledge-base-v1.0.0`. A pinned URL uses that tag. A change to `src/common.md` bumps both versions.
+
+**Alternatives considered:**
+- One version for the whole repository — simpler, but a small change to one skill forces a new version on the other.
+
+**Reason:** It matches the decision that the skills are separate, and a person can pin one skill without the other.
+
+## Versions are raised by the agent, not by the build — 2026-11-08
+
+**Decision:** The build never changes a version. The agent that changes `src/common.md` raises both versions in the same commit. There is no `--bump` command.
+
+**Alternatives considered:**
+- A `build.sh --bump` step — an extra command for the maintainer to learn and run.
+- A bump in every build — the output would change on each run, and `--check` could not compare it.
+
+**Reason:** The maintainer does no version work, and the build stays simple.
+
+## GitHub Actions runs the check — 2026-11-08
+
+**Decision:** A GitHub Actions workflow runs `build.sh --check` on every push and pull request.
+
+**Alternatives considered:**
+- Another CI service — more setup, and the repository is public on GitHub.
+
+**Reason:** It is free, needs one small file, and needs no extra account.
+
 ## Skill names and repository name — 2026-11-08
 
 **Decision:** The repository is `waymark-trail`. The skills are `personal-knowledge-base` and `team-knowledge-base`.
