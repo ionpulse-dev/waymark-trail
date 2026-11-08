@@ -74,13 +74,14 @@ Show the table from the start message again:
 
 ### What is worth a document
 
-Write a document only if all of these are true:
+When the person asks you to store something, store it. Any content is fine, also
+a to-do. The rule on secrets still holds.
+
+When you decide alone what to write (Writing is Automatic), write a document
+only if all of these are true:
 - It will still be true in three months.
 - It is useful beyond this conversation, in a later session.
-- It is not a status update, not a to-do, and not a summary of this chat.
-
-If the person asks for a document that fails one of these, say which one, then
-write what the person asks. The rule on secrets still holds.
+- It is not a status update and not a summary of this chat.
 
 Binary data does not belong in the knowledge base. Write a document that
 describes it and links to it.
@@ -159,7 +160,7 @@ and say so.
    - the text has no secret (see below).
 4. Commit under the name and email of the person. One commit for one write. The
    message is `kb: add "<title>"`, or `kb: update`, `kb: dispute`,
-   `kb: deprecate`, or `kb: move`, followed by the title in quotes. A write that
+   `kb: deprecate`, `kb: delete`, or `kb: move`, followed by the title in quotes. A write that
    also deprecates an older document uses the message of the main change. Add no tag for the agent.
 5. Run `git push`. If the push is rejected, run `git pull --rebase` and check
    again from step 2. Never force a push. Never rewrite history.
@@ -171,7 +172,11 @@ about the folder, ask the person.
 
 If a document is wrong, change it or set `disputed: true` with a
 `dispute_reason`. To retire a document, set `status: deprecated` and keep the
-file. Never delete a document.
+file. Delete a document only when the person asks for it, never on your own.
+Before you delete, search for links to it, in bodies and in properties. Fix them
+in the same commit, and set `updated` and `updated_by` in each document that you
+change. Commit with `kb: delete "<title>"`. Tell the person that the file stays
+in the Git history. Never rewrite history.
 
 ### Moving a document
 

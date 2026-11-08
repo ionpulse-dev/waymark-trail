@@ -77,7 +77,7 @@ authors_ok() {
 messages_ok() {
   for c in $(new_commits); do
     s=$(g log -1 --format=%s "$c")
-    printf '%s\n' "$s" | grep -Eq '^kb: (add|update|dispute|deprecate|move) ("[^"]+"|marker folder)$' || { echo "message: $s"; return 1; }
+    printf '%s\n' "$s" | grep -Eq '^kb: (add|update|dispute|deprecate|delete|move) ("[^"]+"|marker folder)$' || { echo "message: $s"; return 1; }
   done
 }
 no_trailer() {
@@ -85,6 +85,7 @@ no_trailer() {
     if g log -1 --format=%B "$c" | grep -qi 'co-authored-by'; then echo "trailer in $c"; return 1; fi
   done
 }
+# no longer used by a scenario; kept for custom checks
 no_deletions() { [ -z "$(g log --diff-filter=D --name-only --format= "$BASE..HEAD")" ]; }
 
 # the checks that every write scenario has

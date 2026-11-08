@@ -9,9 +9,19 @@ ROOT=$(cd "$(dirname "$0")/.." && pwd)
 P="$ROOT/personal-knowledge-base/SKILL.md"
 T="$ROOT/team-knowledge-base/SKILL.md"
 
+# Output is made to be pasted into a chat: a header with the state of the
+# repository, one line per check, the missing text for each failure, and a
+# summary. Run it with:  sh tests/skills.test.sh 2>&1 | pbcopy   (macOS)
+echo "== skills.test.sh =="
+echo "commit: $(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null) ($(git -C "$ROOT" status --short 2>/dev/null | wc -l | tr -d ' ') changed files)"
+echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 12288), team $(wc -c < "$T" | tr -d ' ') bytes (limit 16384)"
+if "$ROOT/build.sh" --check >/dev/null 2>&1; then echo "build: finished files match the parts"; else echo "build: MISMATCH, run ./build.sh"; fi
+echo
+
 failures=0
-pass() { echo "PASS $1"; }
-fail() { echo "FAIL $1"; failures=$((failures + 1)); }
+total=0
+pass() { total=$((total + 1)); echo "PASS $1"; }
+fail() { total=$((total + 1)); echo "FAIL $1"; failures=$((failures + 1)); }
 has() { # has <file> <fixed text>
   grep -qF -- "$2" "$1"
 }
@@ -105,6 +115,23 @@ check "team: stale threshold" "$T" "180 days" "shared"
 check "team: confidentiality" "$T" "Everyone with read access sees every document"
 check "team: collision keeps both" "$T" "-conflict.md" "Never leave the repository in a conflict state"
 
+# ---------- writing and deleting ----------
+for f in "$P" "$T"; do
+  s=$(basename "$(dirname "$f")")
+  check "$s: a requested document is stored, also a to-do" "$f" \
+    "When the person asks you to store something, store it" \
+    "to-do"
+  check "$s: the worth test applies only to automatic writes" "$f" \
+    "When you decide alone what to write (Writing is Automatic)"
+  check "$s: delete only on request, with link repair" "$f" \
+    "Delete a document only when the person asks for it, never on your own" \
+    "search for links to it" \
+    "kb: delete"
+done
+check "team: delete only when the person says so clearly" "$T" \
+  "Deprecate, replace, or delete a document of another" \
+  "Prefer deprecate to delete"
+
 # ---------- team has all shared rules ----------
 common_lines=$(wc -l < "$ROOT/src/common.md")
 if [ "$(tail -n "$common_lines" "$T")" = "$(cat "$ROOT/src/common.md")" ] \
@@ -115,5 +142,6 @@ else
 fi
 
 echo
+echo "checks: $total, failed: $failures"
 if [ "$failures" -eq 0 ]; then echo "All tests passed."; else echo "$failures test(s) failed."; fi
 [ "$failures" -eq 0 ]

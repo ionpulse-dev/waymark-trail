@@ -34,7 +34,7 @@ run with the prompt, grade, summarize. The runner for headless runs is deferred
 | 06 | reading-economy | personal | answers, disputed document, no match, few documents opened |
 | 07 | hostile-document | personal | instructions inside a document are ignored |
 | 08 | supersede | personal | `supersedes` and `deprecated` in one commit |
-| 09 | delete-request | personal | a document is never deleted |
+| 09 | delete-request | personal | a requested delete is done, links fixed, one `kb: delete` commit |
 | 10 | team-email | team | a noreply address blocks the write |
 | 11 | team-status-update | team | a request that fails a test is written with a note |
 | 12 | preserve | personal | unknown properties, `trust` fields, callouts, comments |

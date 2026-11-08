@@ -44,8 +44,9 @@ mistake does not break the others' documents.
   Obsidian vault.
 - **Safe writes.** Before it writes, the agent pulls the latest version and
   checks that the document did not change since it read it. It commits under
-  your own Git name and email, never force pushes, never deletes a document
-  (it marks it `disputed` or `deprecated`), and refuses to write secrets.
+  your own Git name and email, never force pushes, deletes a document only when you
+  ask (otherwise it marks it `disputed` or `deprecated`), and refuses to write
+  secrets.
 
 ### The document standard
 

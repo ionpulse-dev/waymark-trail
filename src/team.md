@@ -38,9 +38,9 @@ The dot shows the active setting of each row. Both rows start at Manual.
 - **Fixing wrong documents.** If a document contradicts the code or another
   document, tell the person. If the person agrees to act, set `disputed: true`
   with a `dispute_reason`. Do not rewrite another team's document on your own.
-  Anyone may dispute a document. Deprecate or replace a document of another team
-  only when the person says so clearly. A deprecated document stays in the
-  repository.
+  Anyone may dispute a document. Deprecate, replace, or delete a document of another
+  team only when the person says so clearly. Prefer deprecate to delete. A
+  deprecated document stays in the repository.
 - **Stale documents.** A document is stale when `updated` is older than 180 days,
   unless the shared `AGENTS.md` names another number of days. Check a stale
   document before you use it, and say that it is stale.
