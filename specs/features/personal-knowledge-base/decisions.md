@@ -164,3 +164,12 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - A `stale` flag — it only says "I doubt this", and `disputed` with a reason already covers that.
 
 **Reason:** The maintainer found the rule arbitrary and the flag unowned. This replaces the 180-day defaults of the earlier decisions.
+
+## No change report at the start of a session — 2026-11-08
+
+**Decision:** The agent does not report what changed at the start of a session, also in Automatic reading. The person can ask for it at any time.
+
+**Alternatives considered:**
+- A report with `git log --since` — the skill keeps no state, so the agent cannot know since when. It also costs context in every session.
+
+**Reason:** The maintainer does not need it at startup. This replaces the line about `git log --since` in the earlier defaults decision.

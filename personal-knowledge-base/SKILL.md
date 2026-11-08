@@ -58,8 +58,7 @@ There are two settings, each with two values:
 
 - **Reading.** Manual: you search and open documents only when the person asks.
   Automatic: you decide. Before work where the knowledge base may help, you
-  search it first. At the start of a session, you also tell the person what
-  changed (use `git log --since`).
+  search it first.
 - **Writing.** Manual: you create, change, or move documents only when the
   person asks. Automatic: you decide what is worth a document, write it, and
   tell the person after each write.
