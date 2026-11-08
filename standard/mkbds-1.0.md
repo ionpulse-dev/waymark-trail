@@ -88,15 +88,13 @@ A claim of conformance MUST name the version, for example "conforms to MKBDS
    not a document.
 8. The ID of a document is its path below the root without `.md`, for example
    `backend/payments/idempotency-keys`.
-9. A folder below the root that has its own marker folder is a separate
-   knowledge base. It is not part of the outer one.
-10. The root MAY be the root of a repository, or any folder in it. This standard
+9. The root MAY be the root of a repository, or any folder in it. This standard
     names no folder. To keep other Markdown files, such as a `README.md`, out of
     the knowledge base, a knowledge base excludes them in `exclude`, or puts the
     marker folder in a subfolder.
-11. A program finds the root as the nearest folder that contains a marker folder,
+10. A program finds the root as the first folder that contains a marker folder,
     going up from the file or folder in question.
-12. A later version of this standard MAY define more files in the marker folder.
+11. A later version of this standard MAY define more files in the marker folder.
 
 ## 6 Document structure and file names
 

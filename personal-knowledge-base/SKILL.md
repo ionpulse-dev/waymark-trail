@@ -39,8 +39,7 @@ A knowledge base has a root. The root is the folder that contains a folder named
 `.mkbds` (the marker folder). The documents are the `.md` files below the root.
 
 1. Find the root. Look for a folder `.mkbds` in the current folder, then in the
-   folders above it, up to the top of the repository. The nearest one wins. A
-   folder below the root that has its own `.mkbds` is a separate knowledge base.
+   folders above it, up to the top of the repository.
 2. If you find none, do not guess. Ask the person where the knowledge base is.
    Offer to create the marker folder in the folder that the person names:
    `.mkbds/version` with the text `1.0`.

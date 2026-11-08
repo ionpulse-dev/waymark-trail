@@ -49,7 +49,7 @@ A small shell checker and a conformance set make the rules testable.
 
 - The standard's structure follows ISO and RFC style: numbered sections, defined terms, normative and informative parts.
 - The field table text is identical in the standard and in `src/common.md`. `tests/standard.test.sh` extracts both and compares them.
-- The checker finds the root (the nearest folder above the file with a `.mkbds` folder), skips excluded files, reads a document, splits the frontmatter, and checks: file name, size, delimiters, flat properties, required fields, values, dates, author format, word limits, and relative links.
+- The checker finds the root (the first folder above the file with a `.mkbds` folder), skips excluded files, reads a document, splits the frontmatter, and checks: file name, size, delimiters, flat properties, required fields, values, dates, author format, word limits, and relative links.
 - Invalid documents are named `<rule>.md`. The test expects the checker to fail on each and to print the rule name.
 - The stale threshold and the other configurable values are listed in one section, with their defaults.
 - The Obsidian check is manual. No Obsidian version has been tested yet; the standard says so.

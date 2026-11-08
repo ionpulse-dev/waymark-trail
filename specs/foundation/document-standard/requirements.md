@@ -55,7 +55,7 @@ any other tool follow this one text, so the format cannot drift between them.
 - **Given** an invalid document of the conformance set, **When** the checker runs, **Then** it fails and names the broken rule.
 - **Given** the standard and a finished skill, **When** their field tables are compared, **Then** they are identical.
 - **Given** the sample vault, **When** the tests run, **Then** it has at least 15 documents, at least 4 documents over 20 KB, and a deprecated, a disputed, and a superseding document, and every document passes the checker.
-- **Given** a folder with a `.mkbds` folder, **When** a tool looks for the root, **Then** the nearest folder with a marker folder above the document is the root, and files excluded in `.mkbds/exclude`, hidden files, and hidden folders are not documents.
+- **Given** a folder with a `.mkbds` folder, **When** a tool looks for the root, **Then** the first folder with a marker folder above the document is the root, and files excluded in `.mkbds/exclude`, hidden files, and hidden folders are not documents.
 - **Given** the standard, **When** it is read, **Then** it names no folder for the documents.
 - **Given** a wikilink in a property that names a missing document, **When** the checker runs, **Then** it fails.
 - **Given** the sample vault, **When** it is opened in Obsidian, **Then** properties, links, tags, and the graph show without errors.

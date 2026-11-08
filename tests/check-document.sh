@@ -21,7 +21,7 @@ fail() { # fail <file> <rule> <message>
   status=1
 }
 
-# find_root <file>: print the nearest folder above the file that holds a .mkbds folder
+# find_root <file>: print the first folder above the file that holds a .mkbds folder
 find_root() {
   d=$(cd "$(dirname "$1")" 2>/dev/null && pwd) || return 1
   while [ -n "$d" ]; do

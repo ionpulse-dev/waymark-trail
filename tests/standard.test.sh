@@ -129,15 +129,6 @@ out=$("$CHECK" "$WORK/kb3/drafts/Bad_File.md" 2>&1) && case "$out" in SKIP*) pas
 # hidden files and folders are not part of the knowledge base
 echo "no header here" > "$WORK/kb3/.mkbds/Notes.md"
 out=$("$CHECK" "$WORK/kb3/.mkbds/Notes.md" 2>&1) && case "$out" in SKIP*) pass "S7 a file in the marker folder is not a document" ;; *) fail "S7 a file in the marker folder is not a document" ;; esac
-# the root is the nearest marker folder: a nested knowledge base is separate
-mkroot "$WORK/kb4"
-mkroot "$WORK/kb4/inner"
-printf 'inner\n' > "$WORK/kb4/.mkbds/exclude"
-make_doc "$WORK/kb4/inner/note.md" 'related:
-  - "[[outer]]"'
-make_doc "$WORK/kb4/outer.md"
-out=$("$CHECK" "$WORK/kb4/inner/note.md" 2>&1) && fail "S7 the nearest marker defines the root" || {
-  case "$out" in *": broken-wikilink:"*) pass "S7 the nearest marker defines the root" ;; *) fail "S7 the nearest marker defines the root" ;; esac; }
 
 # ---- S4: the standard and the skills agree
 table() { awk '/^\| Field \| Required \| Meaning \|$/ {on=1} on && /^\|/ {print; next} on {exit}' "$1"; }
