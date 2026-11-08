@@ -80,6 +80,15 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 **Reason:** MIT is well known, companies accept it, and it matches the main project. The header keeps the notice when the text is copied.
 
+## No license header in the skill file — 2026-11-08
+
+**Decision:** The skill file has no license line. The `LICENSE` file of the repository covers it. This replaces the one-line license header of the decision above.
+
+**Alternatives considered:**
+- A `license: MIT` field in the frontmatter — not needed, the maintainer chose no replacement.
+
+**Reason:** The line was only half a notice, and it cost the agent a line of context in every session.
+
 ## The skills live in the content repository — 2026-11-08
 
 **Decision:** The skills are part of the knowledge base repository. A session started there is the simplest use, and the only one that works on the web and on iPhone.

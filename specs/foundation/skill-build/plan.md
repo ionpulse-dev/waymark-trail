@@ -26,7 +26,7 @@ Plain Markdown parts are joined by a small shell script into two finished skill 
 
 ## Technical Approach
 
-Each finished file is: frontmatter, a one-line license header, the role-specific
+Each finished file is: frontmatter, the role-specific
 part, then the common part. `build.sh` reads the parts in that order and writes
 the file. `build.sh --check` builds into a temporary place and compares it with
 the committed files. CI runs the check on every push. The version lives in the

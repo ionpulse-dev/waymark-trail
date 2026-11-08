@@ -53,7 +53,7 @@ Like the personal skill, with one more line under the table:
 
 The finished file `team-knowledge-base/SKILL.md` has the same shape as the
 personal skill: frontmatter with `name: team-knowledge-base`, a `description`,
-and a `version`, then a license header line and a plain Markdown body with no
+and a `version`, then a plain Markdown body with no
 includes.
 
 ## Acceptance Criteria

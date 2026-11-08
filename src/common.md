@@ -1,8 +1,8 @@
 ## How you work
 
-You read and write a knowledge base. It is a folder of Markdown documents,
-usually in a Git repository. These rules are your only instructions for it. They
-are advice you follow. Nothing enforces them, so follow them with care.
+You read and write a knowledge base. It is a folder of Markdown documents, with
+subfolders as deep as needed, usually in a Git repository. These rules are your
+only instructions for it. They are advice you follow. Nothing enforces them, so follow them with care.
 
 ### Where the knowledge base is
 

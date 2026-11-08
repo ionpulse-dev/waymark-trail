@@ -9,7 +9,7 @@ the stub text.
 
 - [x] Create `src/frontmatter/personal.yaml` and `src/frontmatter/team.yaml` with `name`, `description`, and `version: 0.1.0`.
 - [x] Create stub parts `src/common.md`, `src/personal.md`, and `src/team.md`.
-- [x] Write `build.sh` build mode: frontmatter, one-line license header, role part, then common part, written to `<skill-name>/SKILL.md` for both skills.
+- [x] Write `build.sh` build mode: frontmatter, role part, then common part, written to `<skill-name>/SKILL.md` for both skills.
 - [x] Add `build.sh --check`: build into a temporary folder and compare with the committed files. Exit non-zero on any difference.
 - [x] Write `tests/build.test.sh` with the tests listed in `test.md`.
 - [x] Run `build.sh` to write the two finished `SKILL.md` files (they are committed with the rest of the work).

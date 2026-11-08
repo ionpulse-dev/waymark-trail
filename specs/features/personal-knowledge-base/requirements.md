@@ -81,7 +81,7 @@ version: <semantic version>
 ---
 ```
 
-followed by a license header line and a plain Markdown body. No includes, no
+followed by a plain Markdown body. No includes, no
 tool-specific syntax. A person installs it by giving the agent the URL of the
 file. The same body can be pasted into an `AGENTS.md`.
 

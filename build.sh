@@ -6,14 +6,13 @@
 #   ./build.sh --check   build into a temporary folder and compare with the
 #                        committed files; exit 1 if any file differs
 #
-# A finished file is: frontmatter, a one-line license header, the role part,
+# A finished file is: frontmatter, the role part,
 # then the common part. Nobody edits a finished file by hand.
 
 set -eu
 
 ROOT=$(cd "$(dirname "$0")" && pwd)
 SKILLS="personal team"
-LICENSE_LINE="<!-- MIT License. Copyright (c) 2026 IonPulse. -->"
 
 skill_name() {
   case "$1" in
@@ -32,8 +31,6 @@ build_one() {
     echo "---"
     cat "$ROOT/src/frontmatter/$role.yaml"
     echo "---"
-    echo
-    echo "$LICENSE_LINE"
     echo
     cat "$ROOT/src/$role.md"
     echo
