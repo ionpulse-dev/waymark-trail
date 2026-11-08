@@ -7,9 +7,9 @@
 
 ## Next Up
 
-1. `skill-build` (implemented): three `[manual]` checks left in `test.md` (T8, T9, T10). They need the public repository, and T9 needs the final skill text.
-2. `personal-knowledge-base` (draft): requirements to review, then `plan.md`.
-3. `team-knowledge-base` (draft): requirements to review, then `plan.md`.
+1. `personal-knowledge-base` (implemented): manual checks M1 to M7 in `test.md` need a real agent session.
+2. `team-knowledge-base` (implemented): manual checks N1 to N6 in `test.md` need a real agent session.
+3. `skill-build` (implemented): manual checks T8 to T10 in `test.md` need the public repository.
 
 ---
 
@@ -17,8 +17,8 @@
 
 | Feature | Status | Updated |
 |:--------|:-------|:--------|
-| personal-knowledge-base | `draft` | 2026-11-08 |
-| team-knowledge-base | `draft` | 2026-11-08 |
+| personal-knowledge-base | `implemented` | 2026-11-08 |
+| team-knowledge-base | `implemented` | 2026-11-08 |
 
 ## Foundation
 

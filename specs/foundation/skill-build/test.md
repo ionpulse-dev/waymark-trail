@@ -18,7 +18,7 @@ _AI checks off `[auto]` items when tests pass. A human checks off `[manual]` ite
 
 - [x] [auto] T1: `build.sh` writes `personal-knowledge-base/SKILL.md` and `team-knowledge-base/SKILL.md` (`tests/build.test.sh`).
 - [x] [auto] T2: Each finished file has `name`, `description`, and `version` in its frontmatter, and contains its role part and the common part. Neither contains an include or tool-specific syntax (`tests/build.test.sh`).
-- [x] [auto] T3: The body of each finished file, with the frontmatter removed, still contains all rules and does not refer to the frontmatter (`tests/build.test.sh`).
+- [x] [auto] T3: The body of each finished file, with the frontmatter removed, still contains all rules and repeats no line of the frontmatter (`tests/build.test.sh`).
 - [x] [auto] T4: `build.sh --check` exits with 0 right after a build (`tests/build.test.sh`).
 - [x] [auto] T5: After a hand edit of a finished file, `build.sh --check` exits non-zero and names the file (`tests/build.test.sh`).
 - [x] [auto] T6: After a change to `src/common.md` and a build, both finished files change (`tests/build.test.sh`).

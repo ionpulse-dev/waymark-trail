@@ -13,7 +13,4 @@ _None._
 
 ## Open Questions
 
-- What description text makes agents load the skill at the right time?
-- Which document frontmatter fields are required (aligned with waymark)?
-- How does waymark pin a version of the skill?
-- Verify that Claude Code reads `AGENTS.md` without a `CLAUDE.md`, before the README says so.
+None.

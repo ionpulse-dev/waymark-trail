@@ -82,7 +82,7 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 ## The skills live in the content repository — 2026-11-08
 
-**Decision:** The skills are part of the knowledge base repository. A session started there is the simplest use, and the only one that works on the web and on iPhone. The waymark CLI covers the case where the repository is elsewhere.
+**Decision:** The skills are part of the knowledge base repository. A session started there is the simplest use, and the only one that works on the web and on iPhone.
 
 **Alternatives considered:**
 - Skills installed at user level with a stored path and settings — needs a personal file that differs per tool and does not exist on web and iPhone.

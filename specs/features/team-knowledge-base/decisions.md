@@ -34,3 +34,18 @@ Manual defaults, and the start block in `AGENTS.md` are the same as in
 - A field for the agent or tool name — the skill cannot detect the calling tool reliably, and a self-reported name can be wrong.
 
 **Reason:** In a team the person is responsible, as in a wiki. Git history shows who changed what.
+
+## Defaults for the team rules — 2026-11-08
+
+**Decision:**
+- The stale threshold is 180 days. A shared `AGENTS.md` may name another number.
+- Anyone may dispute a document. Deprecating or replacing a document of another team needs a clear "yes" from the person.
+- The skill lists address parts that are not reachable and stops when the commit address contains one. A shared `AGENTS.md` may name allowed email domains.
+- In a collision, the remote version stays in the original file. The person's version is saved as `<file-name>-conflict.md`, marked `disputed` with a reason.
+- The skill stays below 16 KB.
+
+**Alternatives considered:**
+- Only the owning team may deprecate its documents — the skill cannot know who is on which team.
+- Numbered file names such as `-2.md` for the second version — they do not say why the file exists. A disputed file with a reason does.
+
+**Reason:** Safe defaults that need no tool and no settings file. A team that wants other values changes its shared `AGENTS.md`.

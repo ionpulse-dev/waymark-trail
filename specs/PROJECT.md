@@ -5,8 +5,7 @@
 waymark-trail is a pair of skills for AI agents. A skill tells the agent how to
 read and write a knowledge base of Markdown documents in a Git repository,
 safely and with little context. It needs no app, no CLI, and no server. A
-person gives the agent the URL of one skill file. The skills are standalone:
-they work with or without the waymark CLI.
+person gives the agent the URL of one skill file. The skills are standalone.
 
 The trail is the line of marks that agents leave for the next agent.
 
@@ -65,8 +64,7 @@ words.
 - **Safe by default** — the agent reads and writes only when asked.
 - **Plain words** — no commands, no jargon. A frontier model understands them.
 - **One source of truth** — shared rules exist once.
-- **Independent** — works without waymark. waymark depends on this project,
-  never the other way around.
+- **Independent** — needs no other tool, no app, and no server.
 - **Honest about limits** — the skills are rules in text. Nothing enforces them.
 
 ## Scope
@@ -77,15 +75,14 @@ words.
 - The examples for the start block in `AGENTS.md`.
 
 **Out of scope:**
-- A CLI, an app, or a server (that is waymark).
+- A CLI, an app, or a server.
 - A settings file or a config store (see Post-MVP).
 - Enforcement of any rule.
 
 **Where the skills work:** the skills live inside the content repository. The
 simplest use is a session started in that repository. This is also the only way
 that works in Claude Code on the web and on iPhone. A session in another
-folder can use them if its `AGENTS.md` points to the repository. The waymark CLI
-covers the case where the content repository is elsewhere.
+folder can use them if its `AGENTS.md` points to the repository.
 
 ## Post-MVP
 

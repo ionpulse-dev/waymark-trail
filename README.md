@@ -12,8 +12,9 @@ There is no app, no command line tool, and no server. A skill is one file.
 
 The trail is the line of marks that agents leave for the next agent.
 
-> **Status: early.** The build is ready. The rules inside the two skills are
-> still placeholders. The specification is in [specs/](specs/).
+> **Status: version 1.0.0, not yet tested with real agents.** Both skills are
+> written and the automatic tests pass. The checks with a real agent session are
+> still open. The specification is in [specs/](specs/).
 
 ## The two skills
 
@@ -34,7 +35,18 @@ mistake does not break the others' documents.
   ask) or *Automatic* (the agent decides). Both start at Manual. You change a
   row in plain words, for example "read automatically".
 - **Little context.** The agent looks at the path, title, and description of a
-  document first. It opens the full text only when that is worth it.
+  document first. It opens the full text only when that is worth it. It opens
+  at most 5 documents for one question.
+- **One fixed document format.** Every document is one topic in a Markdown file,
+  with a short YAML header (title, description, type, status, dates, authors,
+  and optional fields such as tags and links). A document is at most 100 KB.
+  The agent fills in the dates and the authors itself. The format works as an
+  Obsidian vault.
+- **Safe writes.** Before it writes, the agent pulls the latest version and
+  checks that the document did not change since it read it. It commits under
+  your own Git name and email, never force pushes, never deletes a document
+  (it marks it `disputed` or `deprecated`), and refuses to write secrets or
+  personal data.
 
 ### What they cannot do
 
@@ -80,6 +92,9 @@ At the start of every session, read and follow
 For a team, put the same block in the shared `AGENTS.md`, with
 `team-knowledge-base/SKILL.md`.
 
+If your agent reads `CLAUDE.md` instead of `AGENTS.md`, create a `CLAUDE.md`
+with the single line `@AGENTS.md`.
+
 **Step 3. Check.** Start a new session. The agent shows the settings table and
 tells you the skill is active. If it does not, the block in `AGENTS.md` is
 missing or has the wrong path.
@@ -113,7 +128,8 @@ parts:
 ```bash
 ./build.sh           # write both finished files
 ./build.sh --check   # fail if a finished file differs from the build
-sh tests/build.test.sh
+sh tests/build.test.sh     # tests for the build
+sh tests/skills.test.sh    # tests for the text of the skills
 ```
 
 A change to `src/common.md` changes both skills, so raise both versions in the

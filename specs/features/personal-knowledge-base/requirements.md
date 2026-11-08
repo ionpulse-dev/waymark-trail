@@ -1,6 +1,6 @@
 ---
 type: feature
-status: draft
+status: implemented
 created: 2026-11-08
 updated: 2026-11-08
 requires:
@@ -50,8 +50,8 @@ unclear, the agent asks which row the person means.
 Both rules are part of the shared rules (`src/common.md`) and are specified in
 the foundation item `skill-build`. The skill covers:
 
-- Document format: UTF-8 Markdown, flat YAML frontmatter, a required short
-  description, one topic per document, a hard size cap of 100 KB.
+- Document format: the fixed format in "Document format" below. The agent sets the dates and the authors itself, from today's
+  date and the person's Git name and email.
 - Reading: look at the path, title, and description first. Open the body only
   when it is worth it.
 - Writing: pull before writing, never overwrite a newer version, commit under
@@ -59,6 +59,39 @@ the foundation item `skill-build`. The skill covers:
 - Editing and moving: moves keep the history of a document and fix the links.
 - What is worth a document: true in three months, useful to someone else,
   no status updates, no chat summaries.
+
+### Document format
+
+This format is fixed. It is written out here in full, so a knowledge base works
+the same everywhere the format is used. A change to this section changes
+`src/common.md` too, and raises both versions.
+
+- UTF-8 Markdown, LF line ends, `.md` extension. One topic per document.
+- File names use lowercase letters, digits, and `-` only. They never contain `# ^ [ ] | : * " < > ? \ /`. The file name never changes, also when the title changes.
+- The ID of a document is its path under `knowledge/` without `.md`.
+- Frontmatter is flat YAML. Values are text, number, checkbox, date (`YYYY-MM-DD`), or a list of strings. No nested objects.
+- Links in the body are relative Markdown links with `.md`, or wikilinks. The agent writes relative Markdown links. Links in properties are wikilinks with the full path, for example `"[[backend/payments/retry-policy]]"`.
+- No document stores its backlinks, and there is no central index file.
+- Size limits: `title` about 15 words, `description` about 50 words, whole document 100 KB hard cap. If a document would exceed the cap, the agent splits it or moves details into a linked source.
+- Tags are the `tags` property, never inline `#tags` written by the agent.
+- Callouts, embeds, highlights, and comments written by people are allowed.
+
+| Field | Required | Meaning |
+|---|---|---|
+| `title` | yes | One sentence, about 15 words. |
+| `description` | yes | What the document contains and when to read it. About 50 words. |
+| `type` | yes | `fact`, `decision`, `contract`, `howto`, `glossary`, `team`, or `gotcha`. |
+| `status` | yes | `active` or `deprecated`. |
+| `created`, `updated` | yes | Dates. |
+| `created_by`, `updated_by` | yes | Text `"Name <email>"`. |
+| `disputed` | no | Checkbox. `true` when someone found the document wrong. |
+| `dispute_reason` | no | Text. Set together with `disputed: true`. |
+| `sources` | no | List of strings: ticket IDs or URLs. |
+| `tags` | no | List of strings, no `#`, no spaces. |
+| `related` | no | List of full-path wikilinks: read these too. |
+| `supersedes` | no | List of full-path wikilinks: this document replaces an older one. The older one becomes `deprecated`. |
+| `anchors` | no | List of strings `"<type>:<target>"` that point to the code or page the document describes. Types: `git` (`<repo>/<path>@<commit>`) and `url`. |
+| `trust`, `verified_by`, `verified` | no | Only when the knowledge base turns on verification. `trust` is `unverified` or `verified`. |
 
 ## Interfaces & Contracts
 
@@ -85,6 +118,7 @@ file. The same body can be pasted into an `AGENTS.md`.
 - **Given** the context was compacted, **When** the next message arrives, **Then** the agent shows the table again.
 - **Given** a write request, **When** the agent writes, **Then** it pulls first, checks that the document did not change since it read it, commits under the person's name, and writes no secrets.
 - **Given** a document would exceed the size cap, **When** the agent writes it, **Then** it splits the document or moves details into a linked source.
+- **Given** a document the agent wrote, **When** it is checked against the section "Document format", **Then** every rule in "Document format" holds: fields, names, links, and sizes.
 - **Given** the skill file is opened on its own, **When** it is read, **Then** it contains everything needed, with no include and no mention of a settings file.
 
 ## Constraints & Edge Cases
@@ -97,6 +131,4 @@ file. The same body can be pasted into an `AGENTS.md`.
 
 ## Open Questions
 
-- What is the exact description text that makes agents load the skill at the right time?
-- Which frontmatter fields does the skill require, and which are optional? (Aligned with the waymark document format.)
-- How does waymark pin a version of this skill (tag, commit, or version header)?
+None.

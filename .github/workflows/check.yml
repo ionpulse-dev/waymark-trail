@@ -13,3 +13,5 @@ jobs:
         run: ./build.sh --check
       - name: Build tests
         run: sh tests/build.test.sh
+      - name: Skill content tests
+        run: sh tests/skills.test.sh

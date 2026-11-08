@@ -45,7 +45,11 @@ t3() {
   for f in $P $T; do
     body=$(awk 'BEGIN{n=0} /^---$/ && n<2 {n++; next} n>=2 {print}' "$f")
     printf '%s\n' "$body" | grep -qF "$(head -1 src/common.md)" || return 1
-    if printf '%s\n' "$body" | grep -qi 'frontmatter'; then return 1; fi
+    # no line of the body may repeat a line of the skill's own frontmatter
+    fm=$(awk 'BEGIN{n=0} /^---$/ {n++; next} n==1 {print}' "$f")
+    printf '%s\n' "$fm" | while IFS= read -r line; do
+      if printf '%s\n' "$body" | grep -qxF -- "$line"; then exit 1; fi
+    done || return 1
   done
 }
 check "T3 body works without frontmatter" t3

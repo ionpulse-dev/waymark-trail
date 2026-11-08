@@ -1,3 +1,3 @@
 name: team-knowledge-base
-description: Rules for reading and writing a team knowledge base of Markdown documents in a shared Git repository. Load at the start of every session in that repository.
-version: 0.1.0
+description: Rules for reading and writing the shared team knowledge base in this repository. Load at the start of every session.
+version: 1.0.0

@@ -1,3 +1,3 @@
 name: personal-knowledge-base
-description: Rules for reading and writing a personal knowledge base of Markdown documents in a Git repository. Load at the start of every session in that repository.
-version: 0.1.0
+description: Rules for reading and writing the Markdown knowledge base in this repository. Load at the start of every session.
+version: 1.0.0
