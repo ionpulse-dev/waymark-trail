@@ -36,8 +36,8 @@ described in RFC 2119.
 - **Conforming producer.** A person or a program that creates or changes
   documents. A conforming producer MUST produce conforming documents. It MUST set
   `updated` and `updated_by` on every change. It MUST NOT create or change a
-  document outside the root of the knowledge base. It MUST NOT change the file
-  name of an existing document. It MUST keep the parts of a document that it does not
+  document outside the root of the knowledge base. It MUST NOT move or rename
+  an existing document without fixing every link that the change breaks. It MUST keep the parts of a document that it does not
   understand, such as callouts and comments written by people.
 
 A claim of conformance MUST name the version, for example "conforms to MKBDS
@@ -105,8 +105,9 @@ A claim of conformance MUST name the version, for example "conforms to MKBDS
    closing line `---`. The body follows.
 5. A file name MUST use only lowercase letters `a` to `z`, digits, and `-`, then
    `.md`.
-6. A file name is a short form of the title. It MUST NOT change when the title
-   changes.
+6. A file name is a short form of the title. A producer SHOULD NOT change it
+   when the title changes. A rename changes the ID of the document, like a move
+   (section 5), and the producer MUST fix the links that it breaks.
 7. The ID of a document is defined in section 5.
 8. A knowledge base MUST NOT hold binary data. A document describes it and links
    to it.

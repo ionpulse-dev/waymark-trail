@@ -101,3 +101,12 @@
 - A `stale` flag — it only says "I doubt this", and `disputed` with a reason already covers that.
 
 **Reason:** The maintainer found the rule arbitrary and the flag unowned. This replaces the 180-day defaults of the earlier decisions.
+
+## A rename is a move — 2026-11-08
+
+**Decision:** The file name is not fixed for ever. A producer should not rename a document only because its title changed. A rename changes the ID like a move does, and the producer must fix the links that it breaks. The skills handle a rename as a move, on request. This replaces the rule that a file name never changes.
+
+**Alternatives considered:**
+- A fixed file name, with a new document and `supersedes` for a wrong name — too heavy for a typo.
+
+**Reason:** For Git and for links, a rename and a move are the same operation. The maintainer pointed this out.

@@ -152,8 +152,8 @@ This format is fixed. It is the Markdown Knowledge Base Document Standard
 - A document is at most 100 KB. If it would be larger, split it or move the
   details into a linked source. Parts link to each other.
 - File names use lowercase letters, digits, and `-` only, and never one of
-  `# ^ [ ] | : * " < > ? \ /`. A file name is a short form of the title. The
-  file name never changes, also when the title changes.
+  `# ^ [ ] | : * " < > ? \ /`. A file name is a short form of the title. Do not
+  rename a document only because its title changed. A rename is a move.
 - The ID of a document is its path below the root without `.md`, for example
   `backend/payments/idempotency-keys`.
 - Links in the body are relative Markdown links with `.md`, or wikilinks. Write
@@ -252,9 +252,10 @@ When you read: a disputed document is not reliable, so say so and give the
 the document whose `supersedes` names it, and read that one. If that one is
 deprecated too, repeat the search.
 
-### Moving a document
+### Moving or renaming a document
 
-A move changes the ID of the document, because the ID is the path.
+A move or a rename changes the ID of the document, because the ID is the path.
+Do it only when the person asks. A rename is a move: follow these steps.
 
 1. Use `git mv`. Never delete and create again.
 2. Commit the move alone, with no change to the text: `kb: move "<title>"`.
