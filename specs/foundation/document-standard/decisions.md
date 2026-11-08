@@ -91,3 +91,13 @@
 - An empty marker folder — Git does not store empty folders, so a file is required.
 
 **Reason:** One place for everything that describes the knowledge base, without a standard that fixes its content. Local state of a tool, such as a lock, is not part of the knowledge base and stays outside the committed folder.
+
+## No stale threshold — 2026-11-08
+
+**Decision:** There is no stale rule, no stale field, and no stale threshold. If `updated` is old, the agent checks the facts that matter and says how old the document is.
+
+**Alternatives considered:**
+- A fixed number of days — age is a weak signal, and `updated` also changes for small edits.
+- A `stale` flag — it only says "I doubt this", and `disputed` with a reason already covers that.
+
+**Reason:** The maintainer found the rule arbitrary and the flag unowned. This replaces the 180-day defaults of the earlier decisions.

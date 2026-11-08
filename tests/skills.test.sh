@@ -111,7 +111,6 @@ check "team: author and email" "$T" \
   "committed under the person's own" "The email must be reachable" "There is no separate author for the agent"
 check "team: dispute and deprecate" "$T" \
   "set \`disputed: true\`" "Do not rewrite another team's document on your own" "A deprecated document stays in the"
-check "team: stale threshold" "$T" "180 days" "shared"
 check "team: confidentiality" "$T" "Everyone with read access sees every document"
 check "team: collision keeps both" "$T" "-conflict.md" "Never leave the repository in a conflict state"
 

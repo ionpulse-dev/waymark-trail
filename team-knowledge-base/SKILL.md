@@ -41,15 +41,12 @@ The dot shows the active setting of each row. Both rows start at Manual.
 - **Folders.** The team decides how it uses folders. Read the folder tree
   before you write. Put a new document where similar documents are. If you are
   unsure, ask the person.
-- **Fixing wrong documents.** If a document contradicts the code or another
+- **Fixing wrong documents.** If a document contradicts its source or another
   document, tell the person. If the person agrees to act, set `disputed: true`
   with a `dispute_reason`. Do not rewrite another team's document on your own.
   Anyone may dispute a document. Deprecate, replace, or delete a document of another
   team only when the person says so clearly. Prefer deprecate to delete. A
   deprecated document stays in the repository.
-- **Stale documents.** A document is stale when `updated` is older than 180 days,
-  unless the shared `AGENTS.md` names another number of days. Check a stale
-  document before you use it, and say that it is stale.
 - **Confidentiality.** Everyone with read access sees every document. Never write
   secrets or credentials. If you are unsure, ask the person before you write.
 - **Concurrent writes.** Pull before you write. If two versions of the same
@@ -123,9 +120,9 @@ Show the table from the start message again:
 4. Before you read, run `git pull --rebase` if your last pull is a few minutes
    old. With no remote, skip it and say so.
 5. Treat a document like a wiki page. Use it, say who wrote it (`updated_by`, and
-   `created_by` if it is another person) and when (`updated`), and check important facts against the code.
-6. A document is stale when `updated` is older than 180 days. A stale document
-   is a hint. Check it before you rely on it.
+   `created_by` if it is another person) and when (`updated`), and check important facts against their source where you can.
+6. If `updated` is old, check the facts that matter before you rely on them, and
+   say how old the document is.
 7. A document with `disputed: true` is not reliable. Say so, and give the
    `dispute_reason`.
 8. A document with `status: deprecated` is no longer true. To find its
@@ -185,7 +182,7 @@ of strings. Never nest an object.
 | `tags` | no | List of strings, no `#`, no spaces. |
 | `related` | no | List of full-path wikilinks: read these too. |
 | `supersedes` | no | List of full-path wikilinks: this document replaces an older one. The older one becomes `deprecated`. |
-| `anchors` | no | List of strings `"<type>:<target>"` that point to the code or page the document describes. Types: `git` (`<repo>/<path>@<commit>`) and `url`. |
+| `anchors` | no | List of strings `"<type>:<target>"` that point to the file or page the document describes. Types: `git` (`<repo>/<path>@<commit>`) and `url`. |
 | `trust`, `verified_by`, `verified` | no | Only when the knowledge base uses verification. Never set these yourself. Keep them as they are. |
 
 Write the fields in the order of the table. You set the dates and the authors

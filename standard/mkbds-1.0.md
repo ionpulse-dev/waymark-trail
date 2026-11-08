@@ -130,7 +130,7 @@ be an object.
 | `tags` | no | List of strings, no `#`, no spaces. |
 | `related` | no | List of full-path wikilinks: read these too. |
 | `supersedes` | no | List of full-path wikilinks: this document replaces an older one. The older one becomes `deprecated`. |
-| `anchors` | no | List of strings `"<type>:<target>"` that point to the code or page the document describes. Types: `git` (`<repo>/<path>@<commit>`) and `url`. |
+| `anchors` | no | List of strings `"<type>:<target>"` that point to the file or page the document describes. Types: `git` (`<repo>/<path>@<commit>`) and `url`. |
 | `trust`, `verified_by`, `verified` | no | Only when the knowledge base uses verification. Never set these yourself. Keep them as they are. |
 
 Rules for the fields:
@@ -183,7 +183,6 @@ default applies. How a knowledge base names its values is not defined here.
 | Document limit | 102400 bytes | |
 | Title limit | 15 words | |
 | Description limit | 50 words | |
-| Stale threshold | 180 days | A consumer SHOULD treat a document as stale when `updated` is older than the threshold. |
 
 Everything else in this standard is fixed. A knowledge base MUST NOT change the
 field names, the field types, the file name rules, or the link forms.

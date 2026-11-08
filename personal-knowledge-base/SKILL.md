@@ -89,9 +89,9 @@ Show the table from the start message again:
 4. Before you read, run `git pull --rebase` if your last pull is a few minutes
    old. With no remote, skip it and say so.
 5. Treat a document like a wiki page. Use it, say who wrote it (`updated_by`, and
-   `created_by` if it is another person) and when (`updated`), and check important facts against the code.
-6. A document is stale when `updated` is older than 180 days. A stale document
-   is a hint. Check it before you rely on it.
+   `created_by` if it is another person) and when (`updated`), and check important facts against their source where you can.
+6. If `updated` is old, check the facts that matter before you rely on them, and
+   say how old the document is.
 7. A document with `disputed: true` is not reliable. Say so, and give the
    `dispute_reason`.
 8. A document with `status: deprecated` is no longer true. To find its
@@ -151,7 +151,7 @@ of strings. Never nest an object.
 | `tags` | no | List of strings, no `#`, no spaces. |
 | `related` | no | List of full-path wikilinks: read these too. |
 | `supersedes` | no | List of full-path wikilinks: this document replaces an older one. The older one becomes `deprecated`. |
-| `anchors` | no | List of strings `"<type>:<target>"` that point to the code or page the document describes. Types: `git` (`<repo>/<path>@<commit>`) and `url`. |
+| `anchors` | no | List of strings `"<type>:<target>"` that point to the file or page the document describes. Types: `git` (`<repo>/<path>@<commit>`) and `url`. |
 | `trust`, `verified_by`, `verified` | no | Only when the knowledge base uses verification. Never set these yourself. Keep them as they are. |
 
 Write the fields in the order of the table. You set the dates and the authors

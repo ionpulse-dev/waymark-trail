@@ -39,7 +39,7 @@ run with the prompt, grade, summarize. The runner for headless runs is deferred
 | 11 | team-status-update | team | a request that fails a test is written with a note |
 | 12 | preserve | personal | unknown properties, `trust` fields, callouts, comments |
 | 13 | limits | personal | a title over 15 words is shortened |
-| 14 | stale-team | team | an old document is called stale |
+| 14 | stale-team | team | the answer says an old document is old and gives the rule |
 | 15 | manual-no-write | personal | no write without a request |
 | 16 | automatic-write | personal | writing after "you may write on your own" |
 
