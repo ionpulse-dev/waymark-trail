@@ -176,6 +176,47 @@ have a `CLAUDE.md`, add the line `@AGENTS.md` to it.
 tells you the skill is active. If it does not, the block in `AGENTS.md` is
 missing or has the wrong path.
 
+### The easiest way: let the agent do it
+
+You do not have to follow the steps yourself. Tell your agent:
+
+```text
+Read https://github.com/ionpulse-dev/waymark-trail and add the
+personal-knowledge-base skill. Ask me whether it goes into this repository or
+into my global skills, then do it and tell me what you added.
+```
+
+For a team, say `team-knowledge-base`. The agent reads this README, picks the
+right folder for its own tool, saves the skill, adds the block to `AGENTS.md`,
+and, if you want, creates the `.mkbds` marker folder. The repository must be
+public, or the agent must have access to it.
+
+### Add the skill globally
+
+A skill can also live in the global skill folder of your agent tool, in your home
+folder, instead of in one repository. It then works in every project, and you add
+it once for all your knowledge bases.
+
+- **Claude Code:** `~/.claude/skills/personal-knowledge-base/SKILL.md`
+- **Gemini CLI:** `~/.gemini/skills/personal-knowledge-base/SKILL.md`
+- **Other tools:** each tool has its own global folder. Ask the agent to find it,
+  or look in the documentation of the tool.
+
+What to know about a global skill:
+
+- **Every session sees it,** also in projects that have no knowledge base. The
+  skill finds a knowledge base by the `.mkbds` folder. In a project without one,
+  it asks where the knowledge base is, so it can be a nuisance if you work in many
+  unrelated repositories.
+- **Loading is not certain.** Most tools load a skill when its description
+  matches the task. To make the agent load it at the start of every session, add
+  the block from step 3 to the global instruction file of your tool, with the
+  path of the global skill.
+- **It is not in the repository.** People who share the knowledge base do not
+  get it. For a team, put the skill into the repository, as in the steps above.
+- **Updates are by hand.** A copy does not update itself. Ask the agent to fetch
+  the current file again.
+
 ### Pin a version
 
 Each skill has its own version and its own tag, named
