@@ -94,8 +94,9 @@ A knowledge base has a root. The root is the folder that contains a folder named
 There are two settings, each with two values:
 
 - **Reading.** Manual: you search and open documents only when the person asks.
-  Automatic: you decide. Before work where the knowledge base may help, you search it first.
-  At the start of a session, you tell the person what changed (use `git log --since`).
+  Automatic: you decide. Before work where the knowledge base may help, you
+  search it first. At the start of a session, you also tell the person what
+  changed (use `git log --since`).
 - **Writing.** Manual: you create, change, or move documents only when the
   person asks. Automatic: you decide what is worth a document, write it, and
   tell the person after each write.
@@ -121,17 +122,17 @@ Show the table from the start message again:
    example `grep` for `title:` and `description:` over many files, or reading
    only the first 20 lines of one file.
 3. Open at most 5 documents for one question, and keep the text you load short
-   (about 800 tokens). If nothing matches, say so. Silence is better than noise.
+   (about 800 tokens of body text for each document). If nothing matches, say so. Silence is better than noise.
 4. Before you read, run `git pull --rebase` if your last pull is a few minutes
-   old.
-5. Treat a document like a wiki page. Use it, say who wrote it and when, and
-   check important facts against the code.
+   old. If the repository has no remote, skip this and the push, and say so.
+5. Treat a document like a wiki page. Use it, say who wrote it (`updated_by`, and
+   `created_by` if it is another person) and when (`updated`), and check important facts against the code.
 6. A document is stale when `updated` is older than 180 days. A stale document
    is a hint. Check it before you rely on it.
 7. A document with `disputed: true` is not reliable. Say so, and give the
    `dispute_reason`.
-8. A document with `status: deprecated` is no longer true. Follow `supersedes`
-   links to its replacement.
+8. A document with `status: deprecated` is no longer true. To find its
+   replacement, search for a document whose `supersedes` names it.
 9. Remember the last commit of a document when you read it
    (`git log -1 --format=%h -- <path>`). You need it before you change it.
 
@@ -141,6 +142,9 @@ Write a document only if all of these are true:
 - It will still be true in three months.
 - It is useful beyond this conversation, in a later session.
 - It is not a status update, not a to-do, and not a summary of this chat.
+
+If the person asks for a document that fails one of these, say which one, then
+write what the person asks. The rules on secrets and personal data still hold.
 
 Binary data does not belong in the knowledge base. Write a document that
 describes it and links to it.
@@ -218,11 +222,12 @@ Writing must be Automatic.
    - the text has no secret and no personal data (see below).
 4. Commit under the name and email of the person. One commit for one write. The
    message is `kb: add "<title>"`, or `kb: update`, `kb: dispute`,
-   `kb: deprecate`, or `kb: move`, with the title. Add no tag for the agent.
+   `kb: deprecate`, or `kb: move`, followed by the title in quotes. Add no tag for the agent.
 5. Run `git push`. If the push is rejected, run `git pull --rebase` and check
    again from step 2. Never force a push. Never rewrite history.
 
-Write the shortest complete text. Give the document a short description, the
+Write the shortest complete text. If a change makes the description wrong,
+change the description too. Give the document a short description, the
 sources, links to related documents, and the right folder. If you are unsure
 about the folder, ask the person.
 
@@ -232,11 +237,15 @@ file. Never delete a document.
 
 ### Moving a document
 
+A move changes the ID of the document, because the ID is the path.
+
 1. Use `git mv`. Never delete and create again.
-2. Do not change the text of a moved document in the move. Only fix relative
-   body links that the move breaks. Full-path wikilinks need no change.
-3. Fix the links to the document in other documents. Commit the move and the
-   link fixes together.
+2. Commit the move alone, with no change to the text: `kb: move "<title>"`.
+3. In a second commit, fix every link that the move breaks. Fix the relative
+   links in the body of the moved document. Fix the links to the document in
+   other documents: relative links in the body and wikilinks in properties.
+   Set `updated` and `updated_by` in each document that you change. The message
+   is `kb: update "<title>"`.
 4. Never move a document and change its content in the same commit.
 5. Check that `git log --follow <new path>` shows the old history.
 
