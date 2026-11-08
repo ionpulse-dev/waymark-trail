@@ -22,7 +22,7 @@ any other tool follow this one text, so the format cannot drift between them.
 ## Deliverables
 
 - `standard/mkbds-1.0.md`: the standard, with numbered sections, conformance classes, and annexes.
-- `standard/conformance/`: a sample vault of valid documents and a set of invalid documents, each named for the rule it breaks.
+- `standard/conformance/`: a sample vault of valid documents (19 documents, from small to about 50 KB, covering different kinds of content, deprecated and disputed documents, links, callouts, and non-ASCII text) and a set of invalid documents, each named for the rule it breaks.
 - `tests/check-document.sh`: a reference checker for the machine-checkable rules.
 - `tests/standard.test.sh`: tests for the standard, the conformance set, and the match between the standard and the skills.
 
@@ -53,6 +53,8 @@ any other tool follow this one text, so the format cannot drift between them.
 - **Given** a valid document of the conformance set, **When** the checker runs, **Then** it passes.
 - **Given** an invalid document of the conformance set, **When** the checker runs, **Then** it fails and names the broken rule.
 - **Given** the standard and a finished skill, **When** their field tables are compared, **Then** they are identical.
+- **Given** the sample vault, **When** the tests run, **Then** it has at least 15 documents, at least 4 documents over 20 KB, and a deprecated, a disputed, and a superseding document, and every document passes the checker.
+- **Given** a wikilink in a property that names a missing document, **When** the checker runs, **Then** it fails.
 - **Given** the sample vault, **When** it is opened in Obsidian, **Then** properties, links, tags, and the graph show without errors.
 
 ## Open Questions

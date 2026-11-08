@@ -119,7 +119,6 @@ of strings. Never nest an object.
 |---|---|---|
 | `title` | yes | One sentence, at most 15 words. |
 | `description` | yes | What the document contains and when to read it. At most 50 words. |
-| `type` | yes | `fact`, `decision`, `contract`, `howto`, `glossary`, `team`, or `gotcha`. |
 | `status` | yes | `active` or `deprecated`. |
 | `created`, `updated` | yes | Dates. |
 | `created_by`, `updated_by` | yes | Text `"Name <email>"`. |

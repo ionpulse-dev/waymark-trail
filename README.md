@@ -38,7 +38,7 @@ mistake does not break the others' documents.
   document first. It opens the full text only when that is worth it. It opens
   at most 5 documents for one question.
 - **One fixed document format.** Every document is one topic in a Markdown file,
-  with a short YAML header (title, description, type, status, dates, authors,
+  with a short YAML header (title, description, status, dates, authors,
   and optional fields such as tags and links). A document is at most 100 KB.
   The agent fills in the dates and the authors itself. The format works as an
   Obsidian vault.
@@ -73,8 +73,7 @@ body are allowed and kept. The format does not use every Obsidian feature. It
 keeps the headers flat, because Obsidian cannot edit nested properties, and
 it fixes the file names and the link forms. The sample vault in
 [standard/conformance/vault](standard/conformance/vault) is set up for this
-(Markdown links with relative paths). The check in a real Obsidian version is
-still open, so the standard says "not yet tested".
+(Markdown links with relative paths).
 
 **Editing in Obsidian.** You can read, search, and edit documents in Obsidian.
 For changes, we recommend that you let the agent do it. The agent follows the

@@ -24,7 +24,7 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 - [x] [auto] A4: The skill lists when to show the table again: after a change, after a question, after compaction (`tests/skills.test.sh`).
 - [x] [auto] A5: The skill lists the write steps: pull with rebase, compare the last commit, commit under the person's name, no force push (`tests/skills.test.sh`).
 - [x] [auto] A6: The skill states the 100 KB cap and the split rule (`tests/skills.test.sh`).
-- [x] [auto] A7: The skill lists every document field, the types, the file name rules, the link rules, and the title and description limits (`tests/skills.test.sh`).
+- [x] [auto] A7: The skill lists every document field, the file name rules, the link rules, and the title and description limits (`tests/skills.test.sh`).
 - [x] [auto] A8: The skill has no include, and no line of the body repeats a line of the frontmatter (`tests/build.test.sh`).
 - [x] [auto] A9: The skill has a rule against secrets and a rule to ask when unsure (`tests/skills.test.sh`).
 - [x] [auto] A10: The skill does not mention other tools, a settings file, or a config file, and stays below 12 KB (`tests/skills.test.sh`).

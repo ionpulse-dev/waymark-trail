@@ -48,6 +48,8 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 ## Document fields, set by the agent — 2026-11-08
 
+**Superseded by:** No `type` field (see `document-standard`) for the field `type` only.
+
 **Decision:** Every document has the required fields `title`, `description`, `type`, `status`, `created`, `updated`, `created_by`, and `updated_by`. The optional fields are `disputed`, `dispute_reason`, `sources`, `tags`, `related`, `supersedes`, and `anchors`. The agent sets the dates and the authors itself, from today's date and the person's Git name and email.
 
 **Alternatives considered:**
@@ -117,3 +119,9 @@ _Records why technical choices were made. Never delete entries — add new ones 
 **Decision:** The document format is defined in the Markdown Knowledge Base Document Standard (`standard/mkbds-1.0.md`). The requirements no longer repeat the rules. The skill carries them in short form, and a test compares the field tables.
 
 **Reason:** One source of truth for the format (see `document-standard`).
+
+## No `type` field — 2026-11-08
+
+**Decision:** The skill has no `type` field. The standard removed it (see `document-standard`). The earlier list of required fields no longer contains `type`.
+
+**Reason:** The list of types was never reviewed, and agents had no rule for choosing one.

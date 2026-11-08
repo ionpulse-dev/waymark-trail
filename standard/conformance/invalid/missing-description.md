@@ -1,6 +1,5 @@
 ---
 title: A valid title for the test document
-type: fact
 status: active
 created: 2026-11-08
 updated: 2026-11-08

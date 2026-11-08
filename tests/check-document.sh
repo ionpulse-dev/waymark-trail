@@ -13,7 +13,6 @@ set -u
 MAX_BYTES=102400
 MAX_TITLE_WORDS=15
 MAX_DESCRIPTION_WORDS=50
-TYPES="fact decision contract howto glossary team gotcha"
 STATUSES="active deprecated"
 
 status=0
@@ -54,14 +53,10 @@ check_file() {
     printf '%s\n' "$fm" | sed -n "s/^$1:[[:space:]]*//p" | head -n 1
   }
 
-  for key in title description type status created updated created_by updated_by; do
+  for key in title description status created updated created_by updated_by; do
     [ -n "$(get "$key")" ] || fail "$file" "missing-$key" "required field $key is missing or empty"
   done
 
-  t=$(get type)
-  if [ -n "$t" ]; then
-    case " $TYPES " in *" $t "*) ;; *) fail "$file" bad-type "type '$t' is not in the list" ;; esac
-  fi
   s=$(get status)
   if [ -n "$s" ]; then
     case " $STATUSES " in *" $s "*) ;; *) fail "$file" bad-status "status '$s' is not active or deprecated" ;; esac
@@ -110,6 +105,21 @@ check_file() {
     fail "$file" broken-link "no file for the link $target"
   done < "${TMPDIR:-/tmp}/mkbds-links.$$"
   rm -f "${TMPDIR:-/tmp}/mkbds-links.$$"
+
+  # Wikilinks in properties name a document by its ID. Check them when the file
+  # is inside a knowledge/ folder.
+  root=""
+  case "$file" in
+    */knowledge/*) root="${file%%/knowledge/*}/knowledge" ;;
+    knowledge/*) root="knowledge" ;;
+  esac
+  if [ -n "$root" ]; then
+    printf '%s\n' "$fm" | grep -Eo '\[\[[^]]+\]\]' | sed 's/^\[\[//; s/\]\]$//' > "${TMPDIR:-/tmp}/mkbds-wiki.$$"
+    while IFS= read -r id; do
+      [ -f "$root/$id.md" ] || fail "$file" broken-wikilink "no document for the ID $id"
+    done < "${TMPDIR:-/tmp}/mkbds-wiki.$$"
+    rm -f "${TMPDIR:-/tmp}/mkbds-wiki.$$"
+  fi
 }
 
 for f in "$@"; do

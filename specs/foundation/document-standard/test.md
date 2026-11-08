@@ -8,14 +8,17 @@
 | **Given** a valid document of the conformance set, **When** the checker runs, **Then** it passes. | S2 |
 | **Given** an invalid document of the conformance set, **When** the checker runs, **Then** it fails and names the broken rule. | S3 |
 | **Given** the standard and a finished skill, **When** their field tables are compared, **Then** they are identical. | S4 |
+| **Given** the sample vault, **When** the tests run, **Then** it has the required size and variety, and every document passes the checker. | S2, S6 |
+| **Given** a wikilink in a property that names a missing document, **When** the checker runs, **Then** it fails. | S3 |
 | **Given** the sample vault, **When** it is opened in Obsidian, **Then** properties, links, tags, and the graph show without errors. | S5 |
 
 ## Test Cases
 
 - [x] [auto] S1: The standard has sections 1 to 10 and Annex A and Annex B, and uses the words MUST, SHOULD, and MAY (`tests/standard.test.sh`).
 - [x] [auto] S2: The checker passes every document in the sample vault (`tests/standard.test.sh`).
-- [x] [auto] S3: The checker fails every document in `invalid/` and prints the rule named by the file (`tests/standard.test.sh`).
+- [x] [auto] S3: The checker fails every document in `invalid/` and prints the rule named by the file. It also fails a property wikilink to a missing document (`broken-wikilink`) (`tests/standard.test.sh`).
 - [x] [auto] S4: The field table of the standard equals the field table of both finished skills, and the default limits match (`tests/standard.test.sh`).
+- [x] [auto] S6: The vault has at least 15 documents, at least 4 over 20 KB, at least 2 over 40 KB, a deprecated, a disputed, and a superseding document, anchors, a `trust` field, non-ASCII text, and a callout (`tests/standard.test.sh`).
 - [ ] [manual] S5: Obsidian opens the sample vault.
   1. Open Obsidian, choose "Open folder as vault", and select `standard/conformance/vault`.
   2. Open each document. Open the Properties view and the graph view.

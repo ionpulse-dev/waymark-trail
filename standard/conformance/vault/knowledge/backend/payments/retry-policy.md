@@ -1,7 +1,6 @@
 ---
 title: Clients retry failed payment writes with the same idempotency key
 description: Describes when a client may retry a payment write, how long it waits, and why it must reuse the key. Read it when you build a payment client.
-type: decision
 status: active
 created: 2026-11-08
 updated: 2026-11-08

@@ -49,12 +49,10 @@ for f in "$P" "$T"; do
     "A document is at most 100 KB" \
     "split it or move the"
   check "$s: document fields" "$f" \
-    '`title`' '`description`' '`type`' '`status`' '`created`, `updated`' \
+    '`title`' '`description`' '`status`' '`created`, `updated`' \
     '`created_by`, `updated_by`' '`disputed`' '`dispute_reason`' '`sources`' \
     '`tags`' '`related`' '`supersedes`' '`anchors`' \
     '`trust`, `verified_by`, `verified`'
-  check "$s: document types" "$f" \
-    '`fact`, `decision`, `contract`, `howto`, `glossary`, `team`, or `gotcha`'
   check "$s: file name and link rules" "$f" \
     'lowercase letters, digits, and `-` only' \
     'also when the title changes' \

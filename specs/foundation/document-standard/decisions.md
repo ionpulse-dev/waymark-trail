@@ -43,3 +43,26 @@
 **Decision:** The defaults are "at most 15 words" for the title and "at most 50 words" for the description. They were "about" before.
 
 **Reason:** A checker needs an exact number. A knowledge base may change the number (see the configurable parameters).
+
+## Six document types, no `team` type — 2026-11-08
+
+**Superseded by:** No `type` field
+
+**Decision:** The default list of `type` has six values: `fact`, `decision`, `contract`, `howto`, `glossary`, and `gotcha`. The value `team` was removed. It belonged to the `_team.md` convention, which was rejected during the design phase. The folder structure may mirror the team structure, and the standard does not care. The versions stay as they are, because the project is in the pre-release stage.
+
+**Alternatives considered:**
+- Keep `team` as an unused value — it invites a convention that nobody wants.
+
+**Reason:** The standard should hold only what is used.
+
+## No `type` field — 2026-11-08
+
+**Supersedes:** Six document types, no `team` type
+
+**Decision:** The standard has no `type` field and no list of document types. The list came from an unreviewed draft, and agents had no rule for choosing a type. The field was removed from the standard, the skills, the checker, the tests, and the sample documents. The versions stay as they are, because the project is in the pre-release stage.
+
+**Alternatives considered:**
+- Make `type` optional — it keeps an unreviewed list in the standard.
+- Keep it required and define the six values — it makes the unreviewed list official.
+
+**Reason:** The standard should hold only what the project decided. A field can be added later in a new version.

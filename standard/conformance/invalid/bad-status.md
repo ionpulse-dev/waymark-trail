@@ -1,7 +1,6 @@
 ---
 title: A valid title for the test document
 description: A short valid description that says what the document contains and when to read it.
-type: fact
 status: draft
 created: 2026-11-08
 updated: 2026-11-08

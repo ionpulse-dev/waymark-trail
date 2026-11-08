@@ -87,7 +87,6 @@ be an object.
 |---|---|---|
 | `title` | yes | One sentence, at most 15 words. |
 | `description` | yes | What the document contains and when to read it. At most 50 words. |
-| `type` | yes | `fact`, `decision`, `contract`, `howto`, `glossary`, `team`, or `gotcha`. |
 | `status` | yes | `active` or `deprecated`. |
 | `created`, `updated` | yes | Dates. |
 | `created_by`, `updated_by` | yes | Text `"Name <email>"`. |
@@ -103,7 +102,7 @@ be an object.
 Rules for the fields:
 
 1. A field marked "yes" MUST be present and MUST NOT be empty.
-2. `title`, `description`, `type`, `status`, `created`, `updated`, `created_by`,
+2. `title`, `description`, `status`, `created`, `updated`, `created_by`,
    and `updated_by` MUST appear in every document.
 3. `created` and `updated` MUST be dates. `updated` MUST NOT be earlier than
    `created`.
@@ -147,7 +146,6 @@ default applies. How a knowledge base names its values is not defined here.
 
 | Parameter | Default | Note |
 |---|---|---|
-| Document types | the seven values of `type` | A knowledge base MAY use another list. |
 | Document limit | 102400 bytes | |
 | Title limit | 15 words | |
 | Description limit | 50 words | |
@@ -182,7 +180,6 @@ A valid document:
 ---
 title: The payment API uses idempotency keys on every write
 description: Explains how clients must send an idempotency key with each payment request and what happens on a retry. Read it before you call the payment API.
-type: fact
 status: active
 created: 2026-11-08
 updated: 2026-11-08
@@ -208,13 +205,16 @@ is named for the rule that it breaks.
 
 The folder `standard/conformance/` holds:
 
-- `vault/`: a sample vault. Every document in it is a conforming document. The
-  vault opens in Obsidian and is used for the compatibility check of section 10.
+- `vault/`: a sample vault with 19 documents, from a few lines to about 50 KB.
+  It has documents of different kinds, a deprecated, a disputed, and a
+  superseding document, links between folders, callouts, and non-ASCII text.
+  Every document in it is a conforming document. The vault opens in Obsidian and
+  is used for the compatibility check of section 10.
 - `invalid/`: documents that are not conforming. Each file name names the broken
   rule.
 - A reference checker, `tests/check-document.sh`, checks the rules that a shell
-  can check. It passes every document of `vault/` and fails every document of
-  `invalid/`.
+  can check, including that wikilinks in properties name existing documents. It
+  passes every document of `vault/` and fails every document of `invalid/`.
 
 The checker is a tool for this test set. A document is conforming when it follows
 this standard, whatever a tool says.

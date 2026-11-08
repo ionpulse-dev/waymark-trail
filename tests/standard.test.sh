@@ -62,6 +62,52 @@ out=$("$CHECK" "$WORK/Bad-Name.md" 2>&1) && fail "S3 file-name passes but must f
 out=$("$CHECK" "$WORK/too-large.md" 2>&1) && fail "S3 too-large passes but must fail" || {
   case "$out" in *": too-large:"*) pass "S3 too-large fails" ;; *) fail "S3 too-large fails with another rule" ;; esac; }
 
+# a wikilink in a property must name an existing document
+mkdir -p "$WORK/kb/knowledge"
+make_doc() { # make_doc <file> [extra frontmatter line]
+  {
+    echo "---"
+    echo "title: A valid title for the wikilink test document"
+    echo "description: A short valid description that says what the document contains and when to read it."
+    echo "status: active"
+    echo "created: 2026-11-08"
+    echo "updated: 2026-11-08"
+    echo 'created_by: "Jane Doe <jane@corp.example.org>"'
+    echo 'updated_by: "Jane Doe <jane@corp.example.org>"'
+    [ -n "${2:-}" ] && printf '%s\n' "$2"
+    echo "---"
+    echo
+    echo "Body."
+  } > "$1"
+}
+make_doc "$WORK/kb/knowledge/ok.md"
+make_doc "$WORK/kb/knowledge/target.md"
+make_doc "$WORK/kb/knowledge/good-wikilink.md" 'related:
+  - "[[target]]"'
+make_doc "$WORK/kb/knowledge/bad-wikilink.md" 'related:
+  - "[[does/not-exist]]"'
+if "$CHECK" "$WORK/kb/knowledge/good-wikilink.md" >/dev/null 2>&1; then pass "S3 wikilink to an existing document passes"; else fail "S3 wikilink to an existing document passes"; fi
+if "$CHECK" "$WORK/kb/knowledge/ok.md" >/dev/null 2>&1; then pass "S3 control document passes"; else fail "S3 control document passes"; fi
+out=$("$CHECK" "$WORK/kb/knowledge/bad-wikilink.md" 2>&1) && fail "S3 broken-wikilink passes but must fail" || {
+  case "$out" in *": broken-wikilink:"*) pass "S3 broken-wikilink fails" ;; *) fail "S3 broken-wikilink fails with another rule: $out" ;; esac; }
+
+# ---- S6: the sample vault is rich enough to be a useful test
+V="$ROOT/standard/conformance/vault/knowledge"
+count=$(find "$V" -name '*.md' | wc -l | tr -d ' ')
+[ "$count" -ge 15 ] && pass "S6 vault has at least 15 documents ($count)" || fail "S6 vault has at least 15 documents ($count)"
+big=$(find "$V" -name '*.md' -size +20000c | wc -l | tr -d ' ')
+[ "$big" -ge 4 ] && pass "S6 vault has at least 4 documents over 20 KB ($big)" || fail "S6 vault has at least 4 documents over 20 KB ($big)"
+huge=$(find "$V" -name '*.md' -size +40000c | wc -l | tr -d ' ')
+[ "$huge" -ge 2 ] && pass "S6 vault has at least 2 documents over 40 KB ($huge)" || fail "S6 vault has at least 2 documents over 40 KB ($huge)"
+grep -rqx "status: deprecated" "$V" && pass "S6 vault has a deprecated document" || fail "S6 vault has a deprecated document"
+grep -rqx "disputed: true" "$V" && pass "S6 vault has a disputed document" || fail "S6 vault has a disputed document"
+grep -rq "^supersedes:" "$V" && pass "S6 vault has a supersedes link" || fail "S6 vault has a supersedes link"
+grep -rq "^anchors:" "$V" && pass "S6 vault has anchors" || fail "S6 vault has anchors"
+grep -rq "^trust:" "$V" && pass "S6 vault has a trust field" || fail "S6 vault has a trust field"
+grep -rqP '[^\x00-\x7F]' "$V" 2>/dev/null || grep -rq 'Größe' "$V"
+[ $? -eq 0 ] && pass "S6 vault has non-ASCII text" || fail "S6 vault has non-ASCII text"
+grep -rq '\[!' "$V" && pass "S6 vault has a callout" || fail "S6 vault has a callout"
+
 # ---- S4: the standard and the skills agree
 table() { awk '/^\| Field \| Required \| Meaning \|$/ {on=1} on && /^\|/ {print; next} on {exit}' "$1"; }
 table "$STD" > "$WORK/std.table"

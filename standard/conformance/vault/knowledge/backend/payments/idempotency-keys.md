@@ -1,7 +1,6 @@
 ---
 title: The payment API uses idempotency keys on every write
 description: Explains how clients must send an idempotency key with each payment request and what happens on a retry. Read it before you call the payment API.
-type: fact
 status: active
 created: 2026-11-08
 updated: 2026-11-08
