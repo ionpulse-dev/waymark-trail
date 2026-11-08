@@ -57,6 +57,8 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 ## The document format is fixed and complete — 2026-11-08
 
+**Superseded by:** The format follows MKBDS
+
 **Decision:** The skill carries the complete document format: all fields, file names, IDs, links, and size limits. The section "Document format" in `requirements.md` is the specification. A change to it needs the same change in `src/common.md` and a version bump.
 
 **Alternatives considered:**
@@ -107,3 +109,11 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - Claim that every tool reads `AGENTS.md` — not verified for every tool.
 
 **Reason:** The import line works without a claim about each tool.
+
+## The format follows MKBDS — 2026-11-08
+
+**Supersedes:** The document format is fixed and complete
+
+**Decision:** The document format is defined in the Markdown Knowledge Base Document Standard (`standard/mkbds-1.0.md`). The requirements no longer repeat the rules. The skill carries them in short form, and a test compares the field tables.
+
+**Reason:** One source of truth for the format (see `document-standard`).

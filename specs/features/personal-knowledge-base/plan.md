@@ -24,13 +24,14 @@ build from `skill-build` joins them into `personal-knowledge-base/SKILL.md`.
 - The autonomy table is a Markdown table in the role part. The shared rules say when to show it again.
 - Reading rules follow the steps path, file name, title, description, body, with a budget of 5 documents and about 800 tokens.
 - Writing is a fixed list of steps: pull with rebase, compare the last commit of the document, check the work, commit under the person's name, push. Never force a push.
-- The document format section is the format in `requirements.md`, written as rules for the agent.
+- The document format section follows MKBDS 1.0 (`standard/mkbds-1.0.md`), written as rules for the agent. Its field table is identical to the standard's.
 - Defaults: the stale threshold is 180 days. The commit message starts with `kb:`.
 - Size: the finished personal skill stays below 12 KB, because it loads into every session.
 
 ## Cross-feature Dependencies
 
 - `skill-build` (implemented): provides the build and the check.
+- `document-standard` (implemented): defines the document format.
 - `team-knowledge-base` reuses `src/common.md`. A change to it changes both skills.
 
 ## Risks

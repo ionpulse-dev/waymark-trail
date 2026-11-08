@@ -13,7 +13,7 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 | **Given** the context was compacted, **When** the next message arrives, **Then** the agent shows the table again. | A4, M5 |
 | **Given** a write request, **When** the agent writes, **Then** it pulls first, checks that the document did not change since it read it, commits under the person's name, and writes no secrets. | A5, A9, M6 |
 | **Given** a document would exceed the size cap, **When** the agent writes it, **Then** it splits the document or moves details into a linked source. | A6, M7 |
-| **Given** a document the agent wrote, **When** it is checked against the section "Document format", **Then** every rule in "Document format" holds. | A7, M6 |
+| **Given** a document the agent wrote, **When** it is checked against MKBDS 1.0, **Then** it conforms. | A7, M6 |
 | **Given** the skill file is opened on its own, **When** it is read, **Then** it contains everything needed, with no include and no mention of a settings file. | A8, A10 |
 
 ## Test Cases

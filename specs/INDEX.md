@@ -2,14 +2,15 @@
 
 ```
 📦 Features      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0 / 2 active
-🏗️ Foundation    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  1 / 1 done+implemented
+🏗️ Foundation    ████████████████████████████████████████  2 / 2 done+implemented
 ```
 
 ## Next Up
 
 1. `personal-knowledge-base` (implemented): manual checks M1 to M7 in `test.md` need a real agent session.
 2. `team-knowledge-base` (implemented): manual checks N1 to N6 in `test.md` need a real agent session.
-3. `skill-build` (implemented): manual checks T8 to T10 in `test.md` need the public repository.
+3. `document-standard` (implemented): manual check S5 in `test.md` needs Obsidian. It also fills in the tested Obsidian version.
+4. `skill-build` (implemented): manual checks T8 to T10 in `test.md` need the public repository.
 
 ---
 
@@ -24,6 +25,7 @@
 
 | Item | Status | Updated |
 |:-----|:-------|:--------|
+| document-standard | `implemented` | 2026-11-08 |
 | skill-build | `implemented` | 2026-11-08 |
 
 ---

@@ -39,6 +39,12 @@ frontmatter, and a plain Markdown body. The body also works when it is pasted
 into an `AGENTS.md`. A finished skill is complete on its own and has no
 includes, so one URL is enough to install it.
 
+### Document standard
+
+The format of one document is defined once, in the Markdown Knowledge Base
+Document Standard (MKBDS), `standard/mkbds-1.0.md`. The skills follow it. A
+conformance set and a reference checker make the rules testable.
+
 ### Parts and build
 
 The rules that both skills share live once, in `src/common.md`. Each skill has
@@ -71,6 +77,7 @@ words.
 
 **In scope:**
 - The two skills and their shared rules.
+- The document standard (MKBDS), its conformance set, and its checker.
 - The build script and the install-by-URL instructions.
 - The examples for the start block in `AGENTS.md`.
 

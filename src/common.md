@@ -61,7 +61,8 @@ describes it and links to it.
 
 ### Document format
 
-This format is fixed. Follow it exactly.
+This format is fixed. It is the Markdown Knowledge Base Document Standard
+(MKBDS) 1.0. Follow it exactly.
 
 - UTF-8 Markdown, LF line ends, the `.md` extension. One topic per document.
 - A document is at most 100 KB. If it would be larger, split it or move the
@@ -87,8 +88,8 @@ of strings. Never nest an object.
 
 | Field | Required | Meaning |
 |---|---|---|
-| `title` | yes | One sentence, about 15 words. |
-| `description` | yes | What the document contains and when to read it. About 50 words. |
+| `title` | yes | One sentence, at most 15 words. |
+| `description` | yes | What the document contains and when to read it. At most 50 words. |
 | `type` | yes | `fact`, `decision`, `contract`, `howto`, `glossary`, `team`, or `gotcha`. |
 | `status` | yes | `active` or `deprecated`. |
 | `created`, `updated` | yes | Dates. |

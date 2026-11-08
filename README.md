@@ -48,6 +48,53 @@ mistake does not break the others' documents.
   (it marks it `disputed` or `deprecated`), and refuses to write secrets or
   personal data.
 
+### The document standard
+
+The format of a document is written down in the
+[Markdown Knowledge Base Document Standard](standard/mkbds-1.0.md) (MKBDS), in
+its own versioned file, with numbered sections, conformance rules, and a set of
+valid and invalid example documents in [standard/conformance/](standard/conformance/).
+The skills follow it. Any other tool can follow it too.
+
+### Works with Obsidian
+
+A knowledge base is also a valid [Obsidian](https://obsidian.md) vault. Open the
+repository folder in Obsidian, and you get its tools for free:
+
+- the Properties view for the header fields (dates show as dates, lists as lists),
+- links between documents, backlinks, and the graph view,
+- tags and the tag pane,
+- search, and the file explorer with the folder tree,
+- callouts, embeds, highlights, and comments in the body.
+
+The format is a stricter subset of what Obsidian accepts: every valid document
+works in Obsidian, and the extra Obsidian features that people write in the
+body are allowed and kept. The format does not use every Obsidian feature. It
+keeps the headers flat, because Obsidian cannot edit nested properties, and
+it fixes the file names and the link forms. The sample vault in
+[standard/conformance/vault](standard/conformance/vault) is set up for this
+(Markdown links with relative paths). The check in a real Obsidian version is
+still open, so the standard says "not yet tested".
+
+**Editing in Obsidian.** You can read, search, and edit documents in Obsidian.
+For changes, we recommend that you let the agent do it. The agent follows the
+rules every time. Editing by hand can break these things:
+
+- a required header field is missing or empty, or a date has the wrong form;
+- the title or description is too long, or the document is over 100 KB;
+- a file is renamed, with uppercase letters or forbidden characters, and the ID
+  and the history of the document change;
+- a link breaks, or Obsidian writes a link in another form (its default is
+  `[[wikilinks]]` with short paths, not relative Markdown links);
+- `updated` and `updated_by` are not changed;
+- a move or rename shows in Git as delete and create, so the history is lost;
+- a secret or personal data is written, with no one to ask "are you sure?";
+- the change is not committed or pushed, or it collides with a change of
+  someone else.
+
+If you edit by hand, ask the agent afterwards to check the document against the
+standard.
+
 ### What they cannot do
 
 The skills are rules in text. Nothing enforces them. A skill makes a good agent
@@ -124,16 +171,19 @@ parts:
 | `src/common.md` | Rules both skills share. |
 | `src/personal.md`, `src/team.md` | What only one skill needs. |
 | `src/frontmatter/*.yaml` | Name, description, and version of each skill. |
+| `standard/` | The document standard and its conformance set. |
 
 ```bash
 ./build.sh           # write both finished files
 ./build.sh --check   # fail if a finished file differs from the build
 sh tests/build.test.sh     # tests for the build
 sh tests/skills.test.sh    # tests for the text of the skills
+sh tests/standard.test.sh  # tests for the standard and its conformance set
 ```
 
 A change to `src/common.md` changes both skills, so raise both versions in the
-same commit. A GitHub Actions workflow runs the check on every push.
+same commit. A change to the standard also changes `src/common.md`, because the
+field table must be identical. A GitHub Actions workflow runs the check on every push.
 
 The project follows a light spec-driven process. Read
 [AGENTS.md](AGENTS.md) and [specs/WORKFLOW.md](specs/WORKFLOW.md) before you

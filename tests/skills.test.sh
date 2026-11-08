@@ -61,7 +61,8 @@ for f in "$P" "$T"; do
     'relative Markdown links with `.md`' \
     '"[[backend/payments/retry-policy]]"'
   check "$s: title and description limits" "$f" \
-    "about 15 words" "About 50 words"
+    "at most 15 words" "At most 50 words"
+  check "$s: names the standard" "$f" "MKBDS) 1.0"
   check "$s: move rules" "$f" \
     "Use \`git mv\`" "git log --follow"
   check "$s: secrets" "$f" \

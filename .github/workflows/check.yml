@@ -15,3 +15,5 @@ jobs:
         run: sh tests/build.test.sh
       - name: Skill content tests
         run: sh tests/skills.test.sh
+      - name: Standard and conformance tests
+        run: sh tests/standard.test.sh
