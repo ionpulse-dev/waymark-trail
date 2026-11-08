@@ -131,6 +131,11 @@ check "team: delete only when the person says so clearly" "$T" \
   "Deprecate, replace, or delete a document of another" \
   "Prefer deprecate to delete"
 
+check "both: a disputed flag is cleared after a fix" "$P" \
+  "remove both fields" "Ask the person first if someone else set the flag"
+check "team: a disputed flag is cleared after a fix" "$T" \
+  "remove both fields" "Ask the person first if someone else set the flag"
+
 # ---------- team has all shared rules ----------
 common_lines=$(wc -l < "$ROOT/src/common.md")
 if [ "$(tail -n "$common_lines" "$T")" = "$(cat "$ROOT/src/common.md")" ] \

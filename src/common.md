@@ -170,7 +170,10 @@ sources, links to related documents, and the right folder. If you are unsure
 about the folder, ask the person.
 
 If a document is wrong, change it or set `disputed: true` with a
-`dispute_reason`. To retire a document, set `status: deprecated` and keep the
+`dispute_reason`. When a disputed document is fixed, or the person confirms that
+it is right, remove both fields, set `updated` and `updated_by`, and commit with
+`kb: update`. Ask the person first if someone else set the flag. To retire a
+document, set `status: deprecated` and keep the
 file. Delete a document only when the person asks for it, never on your own.
 Before you delete, search for links to it, in bodies and in properties. Fix them
 in the same commit, and set `updated` and `updated_by` in each document that you

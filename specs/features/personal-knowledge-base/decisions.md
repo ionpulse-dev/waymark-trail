@@ -173,3 +173,12 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - A report with `git log --since` — the skill keeps no state, so the agent cannot know since when. It also costs context in every session.
 
 **Reason:** The maintainer does not need it at startup. This replaces the line about `git log --since` in the earlier defaults decision.
+
+## Clearing a disputed flag — 2026-11-08
+
+**Decision:** When a disputed document is fixed or confirmed, the agent removes `disputed` and `dispute_reason`, sets `updated` and `updated_by`, and commits with `kb: update`. It asks first if someone else set the flag.
+
+**Alternatives considered:**
+- No rule — the flag would stay forever, and agents would keep calling a fixed document unreliable.
+
+**Reason:** The maintainer asked for a way to close the dispute process.
