@@ -45,8 +45,7 @@ The dot shows the active setting of each row. Both rows start at Manual.
   unless the shared `AGENTS.md` names another number of days. Check a stale
   document before you use it, and say that it is stale.
 - **Confidentiality.** Everyone with read access sees every document. Never write
-  secrets, credentials, customer data, or personal data. If you are unsure, ask
-  the person before you write.
+  secrets or credentials. If you are unsure, ask the person before you write.
 - **Concurrent writes.** Pull before you write. If two versions of the same
   document collide, keep both. After you abort the rebase, restore the
   remote version of the original file (`git checkout origin/<branch> -- <path>`).

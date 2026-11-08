@@ -10,7 +10,7 @@ _`[auto]` items are verified by running `sh tests/skills.test.sh` and `sh tests/
 | **Given** the behaviour shared with the personal skill, **When** the same situation occurs, **Then** the team skill behaves the same way. | B2, N2 |
 | **Given** the agent writes a document, **When** it commits, **Then** the commit author is the person's own name and a reachable email. | B3, N3 |
 | **Given** the agent finds a document that contradicts the code, **When** the person agrees to act, **Then** the agent sets `disputed` with a reason and does not delete the document. | B4, N4 |
-| **Given** a document contains something that looks like a secret or personal data, **When** the agent is about to write it, **Then** it stops and asks the person. | B5, N5 |
+| **Given** a document contains something that looks like a secret, **When** the agent is about to write it, **Then** it stops and asks the person. | B5, N5 |
 | **Given** two versions of one document collide, **When** the agent syncs, **Then** it keeps both versions as two files and reports it. | B6, N6 |
 
 ## Test Cases

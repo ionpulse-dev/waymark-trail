@@ -46,7 +46,7 @@ Like the personal skill, with one more line under the table:
 - **Folders.** The team decides how it uses folders. The agent reads the folder tree before it writes and puts a new document where similar documents are. The shared `AGENTS.md` does not list folders.
 - **Fixing wrong documents.** An agent that finds a document that contradicts the code or another document marks it `disputed` with a reason, or deprecates it when it is no longer true. It does not silently rewrite another team's document. Anyone may dispute a document. Deprecating or replacing a document of another team needs a clear "yes" from the person. A deprecated document stays in the repository.
 - **Stale documents.** A document is stale when `updated` is older than 180 days, unless the shared `AGENTS.md` names another number of days. A stale document is a hint and is checked before it is used.
-- **Confidentiality.** Everyone with read access sees every document. The agent never writes secrets, credentials, customer data, or personal data. If it is unsure, it asks the person.
+- **Confidentiality.** Everyone with read access sees every document. The agent never writes secrets or credentials. If it is unsure, it asks the person.
 - **Concurrent writes.** Pull before writing. If two versions of the same document collide, keep both: the remote version stays in the original file, and the person's version is saved as `<file-name>-conflict.md`, marked `disputed` with a reason. Tell the person. Never leave the repository in a conflict state.
 
 ## Interfaces & Contracts
@@ -62,7 +62,7 @@ includes.
 - **Given** the behaviour shared with the personal skill, **When** the same situation occurs, **Then** the team skill behaves the same way.
 - **Given** the agent writes a document, **When** it commits, **Then** the commit author is the person's own name and a reachable email.
 - **Given** the agent finds a document that contradicts the code, **When** the person agrees to act, **Then** the agent sets `disputed` with a reason and does not delete the document.
-- **Given** a document contains something that looks like a secret or personal data, **When** the agent is about to write it, **Then** it stops and asks the person.
+- **Given** a document contains something that looks like a secret, **When** the agent is about to write it, **Then** it stops and asks the person.
 - **Given** two versions of one document collide, **When** the agent syncs, **Then** it keeps both versions as two files and reports it.
 
 ## Constraints & Edge Cases

@@ -45,8 +45,7 @@ mistake does not break the others' documents.
 - **Safe writes.** Before it writes, the agent pulls the latest version and
   checks that the document did not change since it read it. It commits under
   your own Git name and email, never force pushes, never deletes a document
-  (it marks it `disputed` or `deprecated`), and refuses to write secrets or
-  personal data.
+  (it marks it `disputed` or `deprecated`), and refuses to write secrets.
 
 ### The document standard
 
@@ -92,7 +91,7 @@ rules every time. Editing by hand can break these things:
   `[[wikilinks]]` with short paths, not relative Markdown links);
 - `updated` and `updated_by` are not changed;
 - a move or rename shows in Git as delete and create, so the history is lost;
-- a secret or personal data is written, with no one to ask "are you sure?";
+- a secret is written, with no one to ask "are you sure?";
 - the change is not committed or pushed, or it collides with a change of
   someone else.
 

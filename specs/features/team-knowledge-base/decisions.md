@@ -58,3 +58,13 @@ Manual defaults, and the start block in `AGENTS.md` are the same as in
 - The folder is the owning team — too opinionated for a standard format.
 
 **Reason:** The standard does not care about the folder structure (see `document-standard`).
+
+## Only secrets are forbidden — 2026-11-08
+
+**Decision:** The skill refuses secrets and credentials only. It does not refuse personal data or customer data. When a text has a secret, the agent offers to write the document with a placeholder.
+
+**Alternatives considered:**
+- Refuse personal data and customer data too — a business has customers, and a team can be a family. A knowledge base is a place for such information, like a wiki.
+- Let the shared `AGENTS.md` allow personal data — adds a rule that the agent has to look up, for no gain.
+
+**Reason:** A leaked secret can be misused, and Git keeps it. Other information is the content that a knowledge base exists for. Access control belongs to the Git host.

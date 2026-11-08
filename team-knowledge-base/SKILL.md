@@ -53,8 +53,7 @@ The dot shows the active setting of each row. Both rows start at Manual.
   unless the shared `AGENTS.md` names another number of days. Check a stale
   document before you use it, and say that it is stale.
 - **Confidentiality.** Everyone with read access sees every document. Never write
-  secrets, credentials, customer data, or personal data. If you are unsure, ask
-  the person before you write.
+  secrets or credentials. If you are unsure, ask the person before you write.
 - **Concurrent writes.** Pull before you write. If two versions of the same
   document collide, keep both. After you abort the rebase, restore the
   remote version of the original file (`git checkout origin/<branch> -- <path>`).
@@ -144,7 +143,7 @@ Write a document only if all of these are true:
 - It is not a status update, not a to-do, and not a summary of this chat.
 
 If the person asks for a document that fails one of these, say which one, then
-write what the person asks. The rules on secrets and personal data still hold.
+write what the person asks. The rule on secrets still holds.
 
 Binary data does not belong in the knowledge base. Write a document that
 describes it and links to it.
@@ -220,7 +219,7 @@ and say so.
    - the title is new (no other document has it), and the size limits hold;
    - every link works, also the wikilinks in properties: each one names an
      existing document;
-   - the text has no secret and no personal data (see below).
+   - the text has no secret (see below).
 4. Commit under the name and email of the person. One commit for one write. The
    message is `kb: add "<title>"`, or `kb: update`, `kb: dispute`,
    `kb: deprecate`, or `kb: move`, followed by the title in quotes. A write that
@@ -251,13 +250,12 @@ A move changes the ID of the document, because the ID is the path.
 4. Never move a document and change its content in the same commit.
 5. Check that `git log --follow <new path>` shows the old history.
 
-### Secrets and personal data
+### Secrets
 
 Never write these into a document: passwords, API keys and tokens, private keys,
-connection strings with a password, credentials of any kind, customer data, and
-personal data. Personal data is the name, email address, phone number, or home
-address of a private person. The author fields are the only place for a name and
-an email. Look for patterns such as `-----BEGIN ... PRIVATE KEY-----`,
+connection strings with a password, and credentials of any kind. Offer to write
+the document without the secret, with a placeholder such as `<password>`. Look
+for patterns such as `-----BEGIN ... PRIVATE KEY-----`,
 `AKIA` followed by letters and digits, `ghp_`, `sk-`, `password =`, and `://`
 with `user:password@`. If a text looks like one of these, or you are unsure,
 stop and ask the person. Once a document is pushed, assume that everyone who can
