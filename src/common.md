@@ -13,7 +13,8 @@ A knowledge base has a root. The root is the folder that contains a folder named
    folders above it, up to the top of the repository.
 2. If you find none, do not guess. Ask the person where the knowledge base is.
    Offer to create the marker folder in the folder that the person names:
-   `.mkbds/version` with the text `1.0`.
+   `.mkbds/version` with the text `1.0` and a final line end. Commit it alone
+   with the message `kb: add marker folder`.
 3. The marker folder holds the metadata and the configuration of the knowledge
    base. Its content is open. Other tools keep files there. Leave files that you
    do not know as they are.
@@ -121,10 +122,18 @@ of strings. Never nest an object.
 | `anchors` | no | List of strings `"<type>:<target>"` that point to the code or page the document describes. Types: `git` (`<repo>/<path>@<commit>`) and `url`. |
 | `trust`, `verified_by`, `verified` | no | Only when the knowledge base uses verification. Never set these yourself. Keep them as they are. |
 
-You set the dates and the authors yourself. Use today's date. For the author,
-use the Git name and email of the person: `git config user.name` and
-`git config user.email`. If one is missing, ask the person. A new document gets
-all four fields. A change sets `updated` and `updated_by`.
+Write the fields in the order of the table. You set the dates and the authors
+yourself. Use today's date. For the author, use the Git name and email of the
+person: `git config user.name` and `git config user.email`. If one is missing,
+ask the person. A new document gets all four fields. Every change sets `updated`
+and `updated_by`, also a change that only sets `status` or `disputed`.
+
+An anchor is `git:<repo>/<path>@<commit>` or `url:<URL>`. Write the name of the
+repository, the path of the file, and a commit that exists. Never invent a
+commit. If you do not know it, leave the anchor out.
+
+When you write `supersedes`, set `status: deprecated` in the older document in
+the same commit, with `updated` and `updated_by`.
 
 ### Writing
 
@@ -140,7 +149,8 @@ Writing must be Automatic.
 3. Check your work before you commit:
    - all required fields are there, and the format above holds;
    - the title is new (no other document has it), and the size limits hold;
-   - every link works;
+   - every link works, also the wikilinks in properties: each one names an
+     existing document;
    - the text has no secret and no personal data (see below).
 4. Commit under the name and email of the person. One commit for one write. The
    message is `kb: add "<title>"`, or `kb: update`, `kb: dispute`,
@@ -170,7 +180,9 @@ file. Never delete a document.
 
 Never write these into a document: passwords, API keys and tokens, private keys,
 connection strings with a password, credentials of any kind, customer data, and
-personal data. Look for patterns such as `-----BEGIN ... PRIVATE KEY-----`,
+personal data. Personal data is the name, email address, phone number, or home
+address of a private person. The author fields are the only place for a name and
+an email. Look for patterns such as `-----BEGIN ... PRIVATE KEY-----`,
 `AKIA` followed by letters and digits, `ghp_`, `sk-`, `password =`, and `://`
 with `user:password@`. If a text looks like one of these, or you are unsure,
 stop and ask the person. Once a document is pushed, assume that everyone who can
