@@ -115,7 +115,10 @@ Show the table from the start message again:
 
 1. Find documents with the folder tree and a text search over the files.
 2. Look at the path, then the file name, the title, and the description. Open
-   the body only when it is worth it.
+   the body only when it is worth it. Hint: the title and the description are in
+   the first lines of a file. Choose the way that loads the least text, for
+   example a search for `title:` and `description:` over many files, or reading
+   only the first 20 lines of one file.
 3. Open at most 5 documents for one question, and keep the text you load short
    (about 800 tokens). If nothing matches, say so. Silence is better than noise.
 4. Before you read, run `git pull --rebase` if your last pull is a few minutes
