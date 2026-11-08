@@ -37,7 +37,7 @@ a skill made agents better or worse.
 
 - A scenario never relies on what an agent says about itself. The grader reads the repository, the remote, and the saved final reply.
 - A scenario starts from a fresh repository with a bare `origin`, so pull, push, concurrent changes, and force pushes are real.
-- The skill is installed like in real use: the skill file, an `AGENTS.md` with the loader block, and a `CLAUDE.md` with `@AGENTS.md`.
+- The skill is installed like in real use: the skill file in `.agents/skills/`, and an `AGENTS.md` with the loader block. There is no `CLAUDE.md`, because Claude Code reads `AGENTS.md` then.
 - Agent runs are not part of CI. They cost money and are not deterministic.
 - A run that does nothing must fail the grader. A scenario that allows "do nothing" (for example a refusal) must still need a final reply.
 

@@ -192,3 +192,13 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - Keep 12 KB — the new section and the earlier rules did not fit.
 
 **Reason:** An agent follows the nearest rule to its task, so each case needs its own place. The size limit is a judgment call.
+
+## The skill is installed in `.agents/skills/` — 2026-11-08
+
+**Decision:** The README tells people to install the skill as `.agents/skills/<skill-name>/SKILL.md` and to point the `AGENTS.md` block to it. No `CLAUDE.md` is needed, because Claude Code reads `AGENTS.md` when there is no `CLAUDE.md`. If a `CLAUDE.md` exists, it gets the line `@AGENTS.md`. This replaces the earlier decision about `CLAUDE.md`.
+
+**Alternatives considered:**
+- A visible folder `<skill-name>/` in the root — it is part of the knowledge base unless excluded.
+- `.claude/skills/` — only Claude Code reads it.
+
+**Reason:** Copilot, Codex, and Gemini CLI read `.agents/skills/` according to their documentation. A folder that starts with `.` is not part of the knowledge base, so it needs no `exclude` entry.

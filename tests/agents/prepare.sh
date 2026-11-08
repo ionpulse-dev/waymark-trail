@@ -20,12 +20,11 @@ mkdir -p "$KB"
 
 # the repository: documents, loader block, and the skill, as in a real install
 if [ "$FIXTURE" = vault ]; then cp -R "$REPO/standard/conformance/vault/." "$KB/"; fi
-mkdir -p "$KB/$SKILL-knowledge-base"
-cp "$REPO/$SKILL-knowledge-base/SKILL.md" "$KB/$SKILL-knowledge-base/SKILL.md"
-printf '# AGENTS.md\n\n## Knowledge base\n\nAt the start of every session, read and follow\n`%s-knowledge-base/SKILL.md`.\n' "$SKILL" > "$KB/AGENTS.md"
-printf '@AGENTS.md\n' > "$KB/CLAUDE.md"
+mkdir -p "$KB/.agents/skills/$SKILL-knowledge-base"
+cp "$REPO/$SKILL-knowledge-base/SKILL.md" "$KB/.agents/skills/$SKILL-knowledge-base/SKILL.md"
+printf '# AGENTS.md\n\n## Knowledge base\n\nAt the start of every session, read and follow\n`.agents/skills/%s-knowledge-base/SKILL.md`.\n' "$SKILL" > "$KB/AGENTS.md"
 if [ "$FIXTURE" = vault ]; then
-  printf 'AGENTS.md\nCLAUDE.md\npersonal-knowledge-base\nteam-knowledge-base\n' >> "$KB/.mkbds/exclude"
+  printf 'AGENTS.md\n' >> "$KB/.mkbds/exclude"
 fi
 
 git init -q -b main "$KB"

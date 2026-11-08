@@ -119,15 +119,16 @@ root of the repository or any folder in it:
 mkdir .mkbds && echo 1.0 > .mkbds/version
 ```
 
-If the root is the whole repository, the skill file and `AGENTS.md` are also
-Markdown files below the root. Keep them out of the knowledge base with a file
-`.mkbds/exclude` (one path per line):
+If the root is the whole repository, `AGENTS.md` is also a Markdown file below
+the root. Keep it out of the knowledge base with a file `.mkbds/exclude` (one
+path per line):
 
 ```text
 AGENTS.md
-CLAUDE.md
-personal-knowledge-base
 ```
+
+The skill goes into the folder `.agents/skills/`. A folder whose name starts with
+`.` is not part of the knowledge base, so it needs no entry.
 
 The skill finds your knowledge base by this folder. If there is no `.mkbds`, the
 agent asks you where the knowledge base is. The folder is also the place for the
@@ -138,14 +139,16 @@ keep their own files there.
 base repository:
 
 ```text
-Add the skill from this URL to this repository, then tell me what you added:
+Add the skill from this URL to this repository as
+.agents/skills/personal-knowledge-base/SKILL.md, then tell me what you added:
 https://raw.githubusercontent.com/ionpulse-dev/waymark-trail/main/personal-knowledge-base/SKILL.md
 ```
 
 For a team knowledge base, use the team skill:
 
 ```text
-Add the skill from this URL to this repository, then tell me what you added:
+Add the skill from this URL to this repository as
+.agents/skills/team-knowledge-base/SKILL.md, then tell me what you added:
 https://raw.githubusercontent.com/ionpulse-dev/waymark-trail/main/team-knowledge-base/SKILL.md
 ```
 
@@ -154,20 +157,20 @@ The URL works for an agent only when the agent can read the repository, so the
 repository must be public or the agent must have access.
 
 **Step 3. Load it in every session.** Add this block to the `AGENTS.md` in your
-knowledge base repository, with the path where the agent saved the skill:
+knowledge base repository:
 
 ```markdown
 ## Knowledge base
 
 At the start of every session, read and follow
-`personal-knowledge-base/SKILL.md`.
+`.agents/skills/personal-knowledge-base/SKILL.md`.
 ```
 
 For a team, put the same block in the shared `AGENTS.md`, with
-`team-knowledge-base/SKILL.md`.
+`.agents/skills/team-knowledge-base/SKILL.md`.
 
-If your agent reads `CLAUDE.md` instead of `AGENTS.md`, create a `CLAUDE.md`
-with the single line `@AGENTS.md`.
+Claude Code reads `AGENTS.md` when the repository has no `CLAUDE.md`. If you
+have a `CLAUDE.md`, add the line `@AGENTS.md` to it.
 
 **Step 4. Check.** Start a new session. The agent shows the settings table and
 tells you the skill is active. If it does not, the block in `AGENTS.md` is
