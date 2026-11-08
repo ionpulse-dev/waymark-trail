@@ -103,7 +103,7 @@ standard.
 
 The skills are rules in text. Nothing enforces them. A skill makes a good agent
 careful. It does not stop a bad one. Keep backups, and use the access controls
-of your Git host for real protection.
+of your Git host for real protection. See also the [warning](#warning) at the end.
 
 ## Install
 
@@ -219,3 +219,21 @@ change anything.
 ## License
 
 [MIT](LICENSE).
+
+## Warning
+
+An AI agent is not fully reliable, and these skills are only rules in text.
+Nothing enforces them. An agent can ignore a rule, misread one, or make a
+mistake. Know the main risks before you use them:
+
+- **Data loss.** A wrong write or a bad move can damage or lose a document. Git
+  history helps only if you push and keep backups.
+- **Leaks.** Once a document is pushed, everyone with access to the repository
+  can read it. A team knowledge base shows every document to the whole team.
+  Do not store secrets.
+- **Wrong content.** The agent can write a document that is wrong, or rely on
+  one that is wrong.
+
+Keep backups, check what the agent commits, and use the access controls of your
+Git host for real protection. You use the skills at your own risk, as the
+[license](LICENSE) says.
