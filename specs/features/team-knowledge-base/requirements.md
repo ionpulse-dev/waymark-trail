@@ -43,7 +43,7 @@ Like the personal skill, with one more line under the table:
 ### Added team rules
 
 - **The person is responsible.** Every write is committed under the person's own Git name and email. A reachable email is required. The skill lists address parts that are not reachable (for example `noreply`, `localhost`, `example.com`, `test@`) and stops and asks when the address contains one. If the shared `AGENTS.md` names allowed email domains, the address must use one of them. There is no separate agent author.
-- **Folders are owners.** The folder of a document is the team that owns it. The agent lists the folder tree when it needs it. The shared `AGENTS.md` does not list folders.
+- **Folders.** The team decides how it uses folders. The agent reads the folder tree before it writes and puts a new document where similar documents are. The shared `AGENTS.md` does not list folders.
 - **Fixing wrong documents.** An agent that finds a document that contradicts the code or another document marks it `disputed` with a reason, or deprecates it when it is no longer true. It does not silently rewrite another team's document. Anyone may dispute a document. Deprecating or replacing a document of another team needs a clear "yes" from the person. A deprecated document stays in the repository.
 - **Stale documents.** A document is stale when `updated` is older than 180 days, unless the shared `AGENTS.md` names another number of days. A stale document is a hint and is checked before it is used.
 - **Confidentiality.** Everyone with read access sees every document. The agent never writes secrets, credentials, customer data, or personal data. If it is unsure, it asks the person.

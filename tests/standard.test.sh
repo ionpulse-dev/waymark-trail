@@ -17,9 +17,10 @@ fail() { echo "FAIL $1"; failures=$((failures + 1)); }
 # ---- S1: structure of the standard
 s1_ok=1
 for h in "## 1 Scope" "## 2 Conformance" "## 3 Normative references" \
-         "## 4 Terms and definitions" "## 5 Document structure and file names" \
-         "## 6 Frontmatter fields" "## 7 Links" "## 8 Size limits" \
-         "## 9 Configurable parameters" "## 10 Obsidian compatibility" \
+         "## 4 Terms and definitions" "## 5 Knowledge base root and marker folder" \
+         "## 6 Document structure and file names" \
+         "## 7 Frontmatter fields" "## 8 Links" "## 9 Size limits" \
+         "## 10 Configurable parameters" "## 11 Obsidian compatibility" \
          "## Annex A (informative)" "## Annex B (informative)"; do
   grep -qF -- "$h" "$STD" || { fail "S1 missing heading: $h"; s1_ok=0; }
 done
@@ -40,7 +41,7 @@ fi
 # the example of Annex A is a valid document
 mkdir -p "$WORK/annex"
 awk '/^```markdown$/ && !done {on=1; next} /^```$/ && on {on=0; done=1} on {print}' "$STD" > "$WORK/annex/idempotency-keys.md"
-cp "$ROOT/standard/conformance/vault/knowledge/backend/payments/retry-policy.md" "$WORK/annex/"
+cp "$ROOT/standard/conformance/vault/backend/payments/retry-policy.md" "$WORK/annex/"
 if "$CHECK" "$WORK/annex/idempotency-keys.md" >/dev/null 2>&1; then
   pass "S2 the example in Annex A is valid"
 else
@@ -54,16 +55,17 @@ for f in "$ROOT"/standard/conformance/invalid/*.md; do
   case "$out" in *": $rule:"*) pass "S3 $rule fails" ;; *) fail "S3 $rule fails with another rule: $out" ;; esac
 done
 # cases that are built here, because the file itself is the problem
-cp "$ROOT/standard/conformance/vault/knowledge/glossary-terms.md" "$WORK/Bad-Name.md"
+cp "$ROOT/standard/conformance/vault/glossary-terms.md" "$WORK/Bad-Name.md"
 out=$("$CHECK" "$WORK/Bad-Name.md" 2>&1) && fail "S3 file-name passes but must fail" || {
   case "$out" in *": file-name:"*) pass "S3 file-name fails" ;; *) fail "S3 file-name fails with another rule" ;; esac; }
-{ cat "$ROOT/standard/conformance/vault/knowledge/glossary-terms.md"
+{ cat "$ROOT/standard/conformance/vault/glossary-terms.md"
   awk 'BEGIN{for(i=0;i<3000;i++) print "A long line of text that fills the document up to the size limit of the standard."}'; } > "$WORK/too-large.md"
 out=$("$CHECK" "$WORK/too-large.md" 2>&1) && fail "S3 too-large passes but must fail" || {
   case "$out" in *": too-large:"*) pass "S3 too-large fails" ;; *) fail "S3 too-large fails with another rule" ;; esac; }
 
 # a wikilink in a property must name an existing document
-mkdir -p "$WORK/kb/knowledge"
+mkdir -p "$WORK/kb"
+mkdir -p "$WORK/kb/.mkbds"; printf '1.0\n' > "$WORK/kb/.mkbds/version"
 make_doc() { # make_doc <file> [extra frontmatter line]
   {
     echo "---"
@@ -80,19 +82,19 @@ make_doc() { # make_doc <file> [extra frontmatter line]
     echo "Body."
   } > "$1"
 }
-make_doc "$WORK/kb/knowledge/ok.md"
-make_doc "$WORK/kb/knowledge/target.md"
-make_doc "$WORK/kb/knowledge/good-wikilink.md" 'related:
+make_doc "$WORK/kb/ok.md"
+make_doc "$WORK/kb/target.md"
+make_doc "$WORK/kb/good-wikilink.md" 'related:
   - "[[target]]"'
-make_doc "$WORK/kb/knowledge/bad-wikilink.md" 'related:
+make_doc "$WORK/kb/bad-wikilink.md" 'related:
   - "[[does/not-exist]]"'
-if "$CHECK" "$WORK/kb/knowledge/good-wikilink.md" >/dev/null 2>&1; then pass "S3 wikilink to an existing document passes"; else fail "S3 wikilink to an existing document passes"; fi
-if "$CHECK" "$WORK/kb/knowledge/ok.md" >/dev/null 2>&1; then pass "S3 control document passes"; else fail "S3 control document passes"; fi
-out=$("$CHECK" "$WORK/kb/knowledge/bad-wikilink.md" 2>&1) && fail "S3 broken-wikilink passes but must fail" || {
+if "$CHECK" "$WORK/kb/good-wikilink.md" >/dev/null 2>&1; then pass "S3 wikilink to an existing document passes"; else fail "S3 wikilink to an existing document passes"; fi
+if "$CHECK" "$WORK/kb/ok.md" >/dev/null 2>&1; then pass "S3 control document passes"; else fail "S3 control document passes"; fi
+out=$("$CHECK" "$WORK/kb/bad-wikilink.md" 2>&1) && fail "S3 broken-wikilink passes but must fail" || {
   case "$out" in *": broken-wikilink:"*) pass "S3 broken-wikilink fails" ;; *) fail "S3 broken-wikilink fails with another rule: $out" ;; esac; }
 
 # ---- S6: the sample vault is rich enough to be a useful test
-V="$ROOT/standard/conformance/vault/knowledge"
+V="$ROOT/standard/conformance/vault"
 count=$(find "$V" -name '*.md' | wc -l | tr -d ' ')
 [ "$count" -ge 15 ] && pass "S6 vault has at least 15 documents ($count)" || fail "S6 vault has at least 15 documents ($count)"
 big=$(find "$V" -name '*.md' -size +20000c | wc -l | tr -d ' ')
@@ -107,6 +109,35 @@ grep -rq "^trust:" "$V" && pass "S6 vault has a trust field" || fail "S6 vault h
 grep -rqP '[^\x00-\x7F]' "$V" 2>/dev/null || grep -rq 'Größe' "$V"
 [ $? -eq 0 ] && pass "S6 vault has non-ASCII text" || fail "S6 vault has non-ASCII text"
 grep -rq '\[!' "$V" && pass "S6 vault has a callout" || fail "S6 vault has a callout"
+
+# ---- S7: the marker folder defines the root
+[ -f "$V/.mkbds/version" ] && [ "$(cat "$V/.mkbds/version")" = "1.0" ] && pass "S7 the sample vault has a marker folder with a version file" || fail "S7 the sample vault has a marker folder with a version file"
+[ -f "$V/.mkbds/exclude" ] && [ -f "$V/.mkbds/example-tool/settings.toml" ] && pass "S7 the marker folder holds an exclude file and a file of a tool" || fail "S7 the marker folder holds an exclude file and a file of a tool"
+out=$("$CHECK" "$V/README.md" 2>&1) && case "$out" in SKIP*) pass "S7 an excluded file is skipped" ;; *) fail "S7 an excluded file is skipped" ;; esac
+mkroot() { mkdir -p "$1/.mkbds"; printf '1.0\n' > "$1/.mkbds/version"; }
+# the same file in a root without the exclusion is not a document
+mkroot "$WORK/kb2"
+cp "$V/README.md" "$WORK/kb2/README.md"
+out=$("$CHECK" "$WORK/kb2/README.md" 2>&1) && fail "S7 a README that is not excluded fails" || {
+  case "$out" in *": file-name:"*|*": no-frontmatter:"*) pass "S7 a README that is not excluded fails" ;; *) fail "S7 a README that is not excluded fails" ;; esac; }
+# a folder can be excluded as a whole
+mkroot "$WORK/kb3"
+mkdir -p "$WORK/kb3/drafts"
+printf '# comment\ndrafts\n' > "$WORK/kb3/.mkbds/exclude"
+echo "no header here" > "$WORK/kb3/drafts/Bad_File.md"
+out=$("$CHECK" "$WORK/kb3/drafts/Bad_File.md" 2>&1) && case "$out" in SKIP*) pass "S7 an excluded folder is skipped" ;; *) fail "S7 an excluded folder is skipped" ;; esac
+# hidden files and folders are not part of the knowledge base
+echo "no header here" > "$WORK/kb3/.mkbds/Notes.md"
+out=$("$CHECK" "$WORK/kb3/.mkbds/Notes.md" 2>&1) && case "$out" in SKIP*) pass "S7 a file in the marker folder is not a document" ;; *) fail "S7 a file in the marker folder is not a document" ;; esac
+# the root is the nearest marker folder: a nested knowledge base is separate
+mkroot "$WORK/kb4"
+mkroot "$WORK/kb4/inner"
+printf 'inner\n' > "$WORK/kb4/.mkbds/exclude"
+make_doc "$WORK/kb4/inner/note.md" 'related:
+  - "[[outer]]"'
+make_doc "$WORK/kb4/outer.md"
+out=$("$CHECK" "$WORK/kb4/inner/note.md" 2>&1) && fail "S7 the nearest marker defines the root" || {
+  case "$out" in *": broken-wikilink:"*) pass "S7 the nearest marker defines the root" ;; *) fail "S7 the nearest marker defines the root" ;; esac; }
 
 # ---- S4: the standard and the skills agree
 table() { awk '/^\| Field \| Required \| Meaning \|$/ {on=1} on && /^\|/ {print; next} on {exit}' "$1"; }

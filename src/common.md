@@ -1,9 +1,29 @@
 ## How you work
 
-You read and write a knowledge base. It is a Git repository of Markdown
-documents. The documents are in the folder `knowledge/`. These rules are your
-only instructions for it. They are advice you follow. Nothing enforces them, so
-follow them with care.
+You read and write a knowledge base. It is a folder of Markdown documents,
+usually in a Git repository. These rules are your only instructions for it. They
+are advice you follow. Nothing enforces them, so follow them with care.
+
+### Where the knowledge base is
+
+A knowledge base has a root. The root is the folder that contains a folder named
+`.mkbds` (the marker folder). The documents are the `.md` files below the root.
+
+1. Find the root. Look for a folder `.mkbds` in the current folder, then in the
+   folders above it, up to the top of the repository. The nearest one wins. A
+   folder below the root that has its own `.mkbds` is a separate knowledge base.
+2. If you find none, do not guess. Ask the person where the knowledge base is.
+   Offer to create the marker folder in the folder that the person names:
+   `.mkbds/version` with the text `1.0`.
+3. The marker folder holds the metadata and the configuration of the knowledge
+   base. Its content is open. Other tools keep files there. Leave files that you
+   do not know as they are.
+4. Read `.mkbds/exclude` if it exists. Each line that is not empty and does not
+   start with `#` names a file or a folder, as a path below the root. It is not
+   part of the knowledge base. Do not treat it as a document, and do not change
+   it.
+5. A file or a folder whose name starts with `.` is not part of the knowledge
+   base.
 
 ### Reading and writing levels
 
@@ -70,10 +90,8 @@ This format is fixed. It is the Markdown Knowledge Base Document Standard
 - File names use lowercase letters, digits, and `-` only, and never one of
   `# ^ [ ] | : * " < > ? \ /`. A file name is a short form of the title. The
   file name never changes, also when the title changes.
-- The ID of a document is its path under `knowledge/` without `.md`, for example
+- The ID of a document is its path below the root without `.md`, for example
   `backend/payments/idempotency-keys`.
-- The folder is the owner. A document in `backend/payments/` belongs to the team
-  of that folder. Do not add an owner field.
 - Links in the body are relative Markdown links with `.md`, or wikilinks. Write
   relative Markdown links. Links in properties are wikilinks with the full path,
   for example `"[[backend/payments/retry-policy]]"`.
@@ -161,7 +179,7 @@ read the repository has it.
 
 - Use Git for the steps above and for read-only commands such as `git log`,
   `git status`, and `git diff`. Never reset, force push, or rewrite history.
-- Do not write outside `knowledge/`.
+- Do not write documents outside the root of the knowledge base.
 - Do not carry content from one knowledge base into another.
 - Do not claim that something is checked when you did not check it. Say what you
   did and what you did not do.

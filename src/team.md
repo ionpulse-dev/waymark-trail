@@ -32,9 +32,9 @@ The dot shows the active setting of each row. Both rows start at Manual.
   one of these, stop and ask the person to set a real address. If the shared
   `AGENTS.md` names allowed email domains, the address must use one of them.
   There is no separate author for the agent.
-- **Folders are owners.** The folder of a document is the team that owns it.
-  List the folder tree when you need it. Write a new document into the folder of
-  the team it is about. If you are unsure, ask the person.
+- **Folders.** The team decides how it uses folders. Read the folder tree
+  before you write. Put a new document where similar documents are. If you are
+  unsure, ask the person.
 - **Fixing wrong documents.** If a document contradicts the code or another
   document, tell the person. If the person agrees to act, set `disputed: true`
   with a `dispute_reason`. Do not rewrite another team's document on your own.

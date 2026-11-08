@@ -125,3 +125,22 @@ _Records why technical choices were made. Never delete entries — add new ones 
 **Decision:** The skill has no `type` field. The standard removed it (see `document-standard`). The earlier list of required fields no longer contains `type`.
 
 **Reason:** The list of types was never reviewed, and agents had no rule for choosing one.
+
+## The skill finds the root with the marker file — 2026-11-08
+
+**Superseded by:** The skill looks for the marker folder
+
+**Decision:** The skill looks for the file `.mkbds` to find the root of the knowledge base. If it finds none, it asks the person where the knowledge base is and offers to create an empty marker file. It does not assume a folder name.
+
+**Alternatives considered:**
+- Assume a folder `knowledge/` — too opinionated.
+
+**Reason:** See `document-standard`. The skill follows the standard.
+
+## The skill looks for the marker folder — 2026-11-08
+
+**Supersedes:** The skill finds the root with the marker file
+
+**Decision:** The marker is the folder `.mkbds`. The skill looks for it, reads `.mkbds/exclude`, leaves unknown files in the folder alone, and offers to create `.mkbds/version` (with `1.0`) when it finds none.
+
+**Reason:** See `document-standard`.

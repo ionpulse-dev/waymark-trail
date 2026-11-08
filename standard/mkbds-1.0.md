@@ -3,7 +3,7 @@
 **Version:** 1.0 (draft)
 **Date:** 2026-11-08
 **Short name:** MKBDS 1.0
-**Status:** Draft. Compatibility with Obsidian is not yet tested (see section 10).
+**Status:** Draft. Compatibility with Obsidian is not yet tested (see section 11).
 
 ---
 
@@ -15,8 +15,8 @@ and the size limits. It defines which values are fixed and which a knowledge
 base may change.
 
 This standard does not define how a person or a program reads or writes
-documents, how a repository is laid out beyond the `knowledge/` folder, or how a
-document is shown.
+documents, how a repository is laid out outside the root folder of a knowledge base, or
+how a document is shown.
 
 ## 2 Conformance
 
@@ -28,15 +28,16 @@ described in RFC 2119.
 ### 2.2 Conformance classes
 
 - **Conforming document.** A document that follows every MUST and MUST NOT of
-  sections 5 to 8.
-- **Conforming knowledge base.** A folder `knowledge/` in a Git repository, or in
-  a folder of files, in which every document with the extension `.md` is a
-  conforming document. A conforming knowledge base MUST NOT need a central index
-  file that writers edit. Generated index files MAY exist.
+  sections 6 to 9.
+- **Conforming knowledge base.** A root folder with a marker folder (section 5) in
+  which every document is a conforming document. A conforming knowledge base
+  MUST NOT need a central index file that writers edit. Generated index files MAY
+  exist.
 - **Conforming producer.** A person or a program that creates or changes
   documents. A conforming producer MUST produce conforming documents. It MUST set
-  `updated` and `updated_by` on every change. It MUST NOT change the file name of
-  an existing document. It MUST keep the parts of a document that it does not
+  `updated` and `updated_by` on every change. It MUST NOT create or change a
+  document outside the root of the knowledge base. It MUST NOT change the file
+  name of an existing document. It MUST keep the parts of a document that it does not
   understand, such as callouts and comments written by people.
 
 A claim of conformance MUST name the version, for example "conforms to MKBDS
@@ -52,32 +53,67 @@ A claim of conformance MUST name the version, for example "conforms to MKBDS
 ## 4 Terms and definitions
 
 - **document.** One Markdown file of a knowledge base. It holds one topic.
-- **knowledge base.** The set of documents under one `knowledge/` folder.
+- **knowledge base.** The set of documents below one root.
+- **root.** The folder that contains the marker folder `.mkbds`.
+- **marker folder.** The folder `.mkbds` in the root. It defines the root and holds the metadata and the configuration of the knowledge base.
 - **frontmatter.** The YAML header at the start of a document.
 - **property.** One key and its value in the frontmatter.
-- **ID.** The path of a document under `knowledge/`, without `.md`.
+- **ID.** The path of a document below the root, without `.md`.
 - **producer.** A person or a program that writes documents.
 - **consumer.** A person or a program that reads documents.
 
-## 5 Document structure and file names
+## 5 Knowledge base root and marker folder
+
+1. A knowledge base has a root: a folder that contains a folder named `.mkbds`.
+   This folder is the marker folder.
+2. The marker folder holds the metadata and the configuration of the knowledge
+   base. Its content is open. This version of the standard defines only the
+   files in rule 3 and rule 4.
+3. The marker folder MUST contain a file `version`. It holds the version of this
+   standard that the knowledge base follows, for example `1.0`, in UTF-8 text.
+   (A file is needed because Git does not store an empty folder.)
+4. The marker folder MAY contain a file `exclude`. It is UTF-8 text. A line that
+   is empty or starts with `#` is ignored. Every other line names a file or a
+   folder, as a path relative to the root and without a leading `/`. A named file
+   or folder, and everything below a named folder, is not part of the knowledge
+   base.
+5. A tool SHOULD keep its own files in the marker folder in a subfolder or with
+   a name that carries the name of the tool, for example
+   `.mkbds/example-tool/settings.toml`. A consumer MUST ignore files in the
+   marker folder that it does not know. A producer MUST keep them.
+6. A file or a folder whose name starts with `.` is not part of the knowledge
+   base. This includes the marker folder.
+7. Every file with the extension `.md` below the root is a document, except the
+   files that are excluded by rule 4 or rule 6. A file with another extension is
+   not a document.
+8. The ID of a document is its path below the root without `.md`, for example
+   `backend/payments/idempotency-keys`.
+9. A folder below the root that has its own marker folder is a separate
+   knowledge base. It is not part of the outer one.
+10. The root MAY be the root of a repository, or any folder in it. This standard
+    names no folder. To keep other Markdown files, such as a `README.md`, out of
+    the knowledge base, a knowledge base excludes them in `exclude`, or puts the
+    marker folder in a subfolder.
+11. A program finds the root as the nearest folder that contains a marker folder,
+    going up from the file or folder in question.
+12. A later version of this standard MAY define more files in the marker folder.
+
+## 6 Document structure and file names
 
 1. A document MUST be UTF-8 text with LF line ends and the extension `.md`.
 2. A document MUST hold one topic.
-3. A document MUST NOT be larger than the document limit (section 8).
+3. A document MUST NOT be larger than the document limit (section 9).
 4. A document MUST start with frontmatter: a line `---`, the properties, and a
    closing line `---`. The body follows.
 5. A file name MUST use only lowercase letters `a` to `z`, digits, and `-`, then
    `.md`.
 6. A file name is a short form of the title. It MUST NOT change when the title
    changes.
-7. The ID of a document is its path under `knowledge/` without `.md`, for
-   example `backend/payments/idempotency-keys`.
-8. The folder of a document is its owner. A document MUST NOT have an owner
-   property. A parent folder includes its subfolders.
-9. A knowledge base MUST NOT hold binary data. A document describes it and links
+7. The ID of a document is defined in section 5.
+8. A knowledge base MUST NOT hold binary data. A document describes it and links
    to it.
 
-## 6 Frontmatter fields
+## 7 Frontmatter fields
 
 Properties MUST be flat. A value MUST be text, a number, a checkbox (`true` or
 `false`), a date in the form `YYYY-MM-DD`, or a list of strings. A value MUST NOT
@@ -118,7 +154,7 @@ Rules for the fields:
 9. A consumer MUST ignore properties that it does not know. A producer MUST keep
    them.
 
-## 7 Links
+## 8 Links
 
 1. A link in the body MUST be a relative Markdown link with the extension `.md`,
    or a wikilink. A producer SHOULD write relative Markdown links.
@@ -127,7 +163,7 @@ Rules for the fields:
 3. A link SHOULD point to an existing document.
 4. A document MUST NOT store its backlinks. A consumer computes them.
 
-## 8 Size limits
+## 9 Size limits
 
 | Part | Default |
 |---|---|
@@ -138,7 +174,7 @@ Rules for the fields:
 There is no limit on the words in the body. A producer that would exceed the
 document limit MUST split the document or move details into a linked source.
 
-## 9 Configurable parameters
+## 10 Configurable parameters
 
 A knowledge base MAY change the values below. A producer MUST use the values of
 the knowledge base it writes to. If the knowledge base names no value, the
@@ -154,10 +190,11 @@ default applies. How a knowledge base names its values is not defined here.
 Everything else in this standard is fixed. A knowledge base MUST NOT change the
 field names, the field types, the file name rules, or the link forms.
 
-## 10 Obsidian compatibility
+## 11 Obsidian compatibility
 
 Obsidian is a product. It has no formal specification, and it can change. This
-standard does not use it as a normative reference.
+standard does not use it as a normative reference. Obsidian finds a vault by
+its `.obsidian` folder. MKBDS finds a knowledge base by its `.mkbds` folder.
 
 1. A conforming document SHOULD open in Obsidian without errors. Its properties,
    links, tags, and graph SHOULD work.
@@ -205,11 +242,13 @@ is named for the rule that it breaks.
 
 The folder `standard/conformance/` holds:
 
-- `vault/`: a sample vault with 19 documents, from a few lines to about 50 KB.
-  It has documents of different kinds, a deprecated, a disputed, and a
-  superseding document, links between folders, callouts, and non-ASCII text.
+- `vault/`: a sample vault with 18 documents, from a few lines to about 50 KB.
+  The marker folder is `vault/.mkbds`. It holds `version`, an `exclude` file
+  that excludes `README.md`, and a file of an example tool. The vault has
+  a deprecated, a disputed, and a superseding document, links between folders,
+  callouts, and non-ASCII text.
   Every document in it is a conforming document. The vault opens in Obsidian and
-  is used for the compatibility check of section 10.
+  is used for the compatibility check of section 11.
 - `invalid/`: documents that are not conforming. Each file name names the broken
   rule.
 - A reference checker, `tests/check-document.sh`, checks the rules that a shell

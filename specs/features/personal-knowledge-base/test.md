@@ -29,7 +29,7 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 - [x] [auto] A9: The skill has a rule against secrets and a rule to ask when unsure (`tests/skills.test.sh`).
 - [x] [auto] A10: The skill does not mention other tools, a settings file, or a config file, and stays below 12 KB (`tests/skills.test.sh`).
 - [ ] [manual] M1: The start message.
-  1. Create a test repository with a `knowledge/` folder and one valid document. Add the start block from the README to its `AGENTS.md`, with the path of `personal-knowledge-base/SKILL.md`, and copy the skill file there.
+  1. Create a test repository with a `.mkbds` folder (with the file `version` that says `1.0`) and one valid document. Add the start block from the README to its `AGENTS.md`, with the path of `personal-knowledge-base/SKILL.md`, and copy the skill file there.
   2. Start a new agent session in the repository and send "hello".
   3. Expected: the agent shows the start message with the repository name and the table, with the dot in the Manual cell of both rows, and nothing more.
   4. Cleanup: delete the test repository.
@@ -47,7 +47,7 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
   2. Expected: the agent shows the table again before it answers.
 - [ ] [manual] M6: A valid write.
   1. Say "write a document about why we chose Postgres. Reason: it supports our JSON queries."
-  2. Expected: one new file in `knowledge/` with a lowercase file name and all required fields, correct dates, and your Git name and email in `created_by` and `updated_by`. One commit under your name with a message that starts with `kb:`. The agent pulled before it wrote and pushed after.
+  2. Expected: one new file below the folder that holds the `.mkbds` folder with a lowercase file name and all required fields, correct dates, and your Git name and email in `created_by` and `updated_by`. One commit under your name with a message that starts with `kb:`. The agent pulled before it wrote and pushed after.
   3. Cleanup: delete the test repository and its remote.
 - [ ] [manual] M7: Size cap.
   1. Ask the agent to write one document from a text of more than 100 KB.

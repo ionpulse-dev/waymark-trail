@@ -21,9 +21,39 @@ fail() { # fail <file> <rule> <message>
   status=1
 }
 
+# find_root <file>: print the nearest folder above the file that holds a .mkbds folder
+find_root() {
+  d=$(cd "$(dirname "$1")" 2>/dev/null && pwd) || return 1
+  while [ -n "$d" ]; do
+    if [ -d "$d/.mkbds" ]; then echo "$d"; return 0; fi
+    [ "$d" = "/" ] && return 1
+    d=$(dirname "$d")
+  done
+  return 1
+}
+
+# is_excluded <file> <root>: true if the file is hidden (a path part starts with
+# a dot) or if .mkbds/exclude of the root names it or a folder above it
+is_excluded() {
+  rel=$(cd "$(dirname "$1")" && pwd)/$(basename "$1")
+  rel=${rel#"$2"/}
+  case "/$rel" in */.*) return 0 ;; esac
+  [ -f "$2/.mkbds/exclude" ] || return 1
+  grep -v '^[[:space:]]*#' "$2/.mkbds/exclude" | grep -v '^[[:space:]]*$' | while IFS= read -r line; do
+    line=${line%/}
+    case "$rel" in "$line"|"$line"/*) echo yes; break ;; esac
+  done | grep -q yes
+}
+
 check_file() {
   file=$1
   name=$(basename "$file")
+
+  root=$(find_root "$file" || true)
+  if [ -n "$root" ] && is_excluded "$file" "$root"; then
+    echo "SKIP $file: not part of the knowledge base"
+    return
+  fi
 
   printf '%s\n' "$name" | grep -Eq '^[a-z0-9-]+\.md$' ||
     fail "$file" file-name "use lowercase letters, digits, and - only"
@@ -106,13 +136,7 @@ check_file() {
   done < "${TMPDIR:-/tmp}/mkbds-links.$$"
   rm -f "${TMPDIR:-/tmp}/mkbds-links.$$"
 
-  # Wikilinks in properties name a document by its ID. Check them when the file
-  # is inside a knowledge/ folder.
-  root=""
-  case "$file" in
-    */knowledge/*) root="${file%%/knowledge/*}/knowledge" ;;
-    knowledge/*) root="knowledge" ;;
-  esac
+  # Wikilinks in properties name a document by its ID, a path below the root.
   if [ -n "$root" ]; then
     printf '%s\n' "$fm" | grep -Eo '\[\[[^]]+\]\]' | sed 's/^\[\[//; s/\]\]$//' > "${TMPDIR:-/tmp}/mkbds-wiki.$$"
     while IFS= read -r id; do

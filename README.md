@@ -56,6 +56,11 @@ its own versioned file, with numbered sections, conformance rules, and a set of
 valid and invalid example documents in [standard/conformance/](standard/conformance/).
 The skills follow it. Any other tool can follow it too.
 
+The standard names no folder for the documents. A knowledge base is the folder
+that holds a marker folder named `.mkbds`, like Obsidian's `.obsidian` folder marks
+a vault. The marker folder also holds the metadata and the configuration of the
+knowledge base, and its content is open. The root can be a whole repository or any folder in it.
+
 ### Works with Obsidian
 
 A knowledge base is also a valid [Obsidian](https://obsidian.md) vault. Open the
@@ -106,7 +111,20 @@ You need a Git repository for your knowledge base and an agent that can read an
 `AGENTS.md` file. The skills work in a session started in that repository. This
 is also the only way that works in Claude Code on the web and on iPhone.
 
-**Step 1. Add the skill.** Tell your agent, in a session in your knowledge
+**Step 1. Mark the knowledge base.** Create a folder named `.mkbds` in the folder
+that holds your documents, with a file `version` that says `1.0`. It can be the
+root of the repository or any folder in it:
+
+```bash
+mkdir .mkbds && echo 1.0 > .mkbds/version
+```
+
+The skill finds your knowledge base by this folder. If there is no `.mkbds`, the
+agent asks you where the knowledge base is. The folder is also the place for the
+metadata and the configuration of the knowledge base. Its content is open: tools
+keep their own files there.
+
+**Step 2. Add the skill.** Tell your agent, in a session in your knowledge
 base repository:
 
 ```text
@@ -125,7 +143,7 @@ The agent gets the whole skill from this one URL. It needs no second file.
 The URL works for an agent only when the agent can read the repository, so the
 repository must be public or the agent must have access.
 
-**Step 2. Load it in every session.** Add this block to the `AGENTS.md` in your
+**Step 3. Load it in every session.** Add this block to the `AGENTS.md` in your
 knowledge base repository, with the path where the agent saved the skill:
 
 ```markdown
@@ -141,7 +159,7 @@ For a team, put the same block in the shared `AGENTS.md`, with
 If your agent reads `CLAUDE.md` instead of `AGENTS.md`, create a `CLAUDE.md`
 with the single line `@AGENTS.md`.
 
-**Step 3. Check.** Start a new session. The agent shows the settings table and
+**Step 4. Check.** Start a new session. The agent shows the settings table and
 tells you the skill is active. If it does not, the block in `AGENTS.md` is
 missing or has the wrong path.
 

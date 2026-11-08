@@ -49,3 +49,12 @@ Manual defaults, and the start block in `AGENTS.md` are the same as in
 - Numbered file names such as `-2.md` for the second version — they do not say why the file exists. A disputed file with a reason does.
 
 **Reason:** Safe defaults that need no tool and no settings file. A team that wants other values changes its shared `AGENTS.md`.
+
+## No folder ownership — 2026-11-08
+
+**Decision:** The skill does not say that the folder of a document is its owner. The team decides how it uses folders. The agent reads the folder tree and puts a new document where similar documents are.
+
+**Alternatives considered:**
+- The folder is the owning team — too opinionated for a standard format.
+
+**Reason:** The standard does not care about the folder structure (see `document-standard`).

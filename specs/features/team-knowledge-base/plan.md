@@ -20,7 +20,7 @@ None. The files above exist already and are filled by this spec.
 ## Technical Approach
 
 - The team rules add to the shared rules. They never repeat them. Behaviour that both skills share exists once, in `src/common.md`.
-- Added rules: the person is responsible (author name and a reachable email, with a list of unusable address parts); folders are owners; fixing wrong documents with `disputed`; stale documents (default 180 days, a shared `AGENTS.md` may name another number); confidentiality; concurrent writes.
+- Added rules: the person is responsible (author name and a reachable email, with a list of unusable address parts); folders are the team's own choice; fixing wrong documents with `disputed`; stale documents (default 180 days, a shared `AGENTS.md` may name another number); confidentiality; concurrent writes.
 - Concurrent writes: after a rebase conflict the agent aborts the rebase, restores the remote version of the file, saves the person's version as `<file-name>-conflict.md`, marks it `disputed` with a reason, and tells the person. The repository never stays in a conflict state.
 - Rule for deprecating a document of another team: only when the person says so clearly. Anyone may dispute.
 - Size: the finished team skill stays below 16 KB.

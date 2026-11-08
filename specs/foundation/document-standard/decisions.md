@@ -66,3 +66,28 @@
 - Keep it required and define the six values — it makes the unreviewed list official.
 
 **Reason:** The standard should hold only what the project decided. A field can be added later in a new version.
+
+## The root is defined by a marker file, not by a folder name — 2026-11-08
+
+**Superseded by:** The marker is a folder
+
+**Decision:** A knowledge base has a root: the folder that contains a file named `.mkbds`. The ID of a document is its path below the root. The marker file may be empty. It may list files and folders that are not documents. The standard names no folder, so the earlier requirement for a `knowledge/` folder is gone. The idea of "the folder is the owner" is also gone, because the team decides how it uses folders.
+
+**Alternatives considered:**
+- A fixed folder `knowledge/` — too opinionated.
+- A setting that names the folder — needs a place for settings, and it is not discoverable.
+- A path in `AGENTS.md` — the standard would depend on a file that it does not define.
+
+**Reason:** The same idea as Obsidian's `.obsidian` folder: one small file marks the root. It works for a whole repository and for a subfolder. The name is open and not tied to any tool.
+
+## The marker is a folder that holds the metadata and the configuration — 2026-11-08
+
+**Supersedes:** The root is defined by a marker file, not by a folder name
+
+**Decision:** The marker is a folder `.mkbds`, not a file. The folder holds every kind of metadata and configuration of the knowledge base, and its content is open. This version defines two files: `version` (required) with the version of the standard, and `exclude` (optional) with the paths that are not documents. A tool keeps its own files in the folder, preferably in a subfolder with its name, and other tools ignore them. Files and folders whose names start with `.` are not part of the knowledge base. The earlier idea of a TOML marker file with settings is dropped.
+
+**Alternatives considered:**
+- A marker file in TOML with a fixed set of keys — the standard would have to define the settings of every tool.
+- An empty marker folder — Git does not store empty folders, so a file is required.
+
+**Reason:** One place for everything that describes the knowledge base, without a standard that fixes its content. Local state of a tool, such as a lock, is not part of the knowledge base and stays outside the committed folder.

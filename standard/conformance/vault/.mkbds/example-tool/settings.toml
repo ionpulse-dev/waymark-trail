@@ -1,0 +1,4 @@
+# A file of an imaginary tool. The standard does not define it.
+# Tools keep their own files in the marker folder; other tools ignore them.
+name = "Sample knowledge base"
+stale_after_days = 90

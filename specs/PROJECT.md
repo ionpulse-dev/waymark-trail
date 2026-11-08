@@ -43,7 +43,7 @@ includes, so one URL is enough to install it.
 
 The format of one document is defined once, in the Markdown Knowledge Base
 Document Standard (MKBDS), `standard/mkbds-1.0.md`. The skills follow it. A
-conformance set and a reference checker make the rules testable.
+conformance set and a reference checker make the rules testable. A knowledge base is the folder that holds a marker folder `.mkbds`. The marker folder holds the metadata and the configuration, and its content is open. The standard names no folder for the documents.
 
 ### Parts and build
 
