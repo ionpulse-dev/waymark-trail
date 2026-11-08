@@ -122,9 +122,9 @@ Show the table from the start message again:
    example `grep` for `title:` and `description:` over many files, or reading
    only the first 20 lines of one file.
 3. Open at most 5 documents for one question, and keep the text you load short
-   (about 800 tokens of body text for each document). If nothing matches, say so. Silence is better than noise.
+   (about 800 tokens of body text for each document). If nothing matches, say so in one sentence.
 4. Before you read, run `git pull --rebase` if your last pull is a few minutes
-   old. If the repository has no remote, skip this and the push, and say so.
+   old. With no remote, skip it and say so.
 5. Treat a document like a wiki page. Use it, say who wrote it (`updated_by`, and
    `created_by` if it is another person) and when (`updated`), and check important facts against the code.
 6. A document is stale when `updated` is older than 180 days. A stale document
@@ -206,7 +206,8 @@ the same commit, with `updated` and `updated_by`.
 ### Writing
 
 Follow these steps for every write. The person must have asked for it, or
-Writing must be Automatic.
+Writing must be Automatic. If the repository has no remote, skip steps 1 and 5
+and say so.
 
 1. Run `git pull --rebase`. If it stops on a conflict, run
    `git rebase --abort` and tell the person. Never leave the repository in a
@@ -222,7 +223,8 @@ Writing must be Automatic.
    - the text has no secret and no personal data (see below).
 4. Commit under the name and email of the person. One commit for one write. The
    message is `kb: add "<title>"`, or `kb: update`, `kb: dispute`,
-   `kb: deprecate`, or `kb: move`, followed by the title in quotes. Add no tag for the agent.
+   `kb: deprecate`, or `kb: move`, followed by the title in quotes. A write that
+   also deprecates an older document uses the message of the main change. Add no tag for the agent.
 5. Run `git push`. If the push is rejected, run `git pull --rebase` and check
    again from step 2. Never force a push. Never rewrite history.
 
@@ -245,7 +247,7 @@ A move changes the ID of the document, because the ID is the path.
    links in the body of the moved document. Fix the links to the document in
    other documents: relative links in the body and wikilinks in properties.
    Set `updated` and `updated_by` in each document that you change. The message
-   is `kb: update "<title>"`.
+   is `kb: update` with the title of the moved document.
 4. Never move a document and change its content in the same commit.
 5. Check that `git log --follow <new path>` shows the old history.
 
