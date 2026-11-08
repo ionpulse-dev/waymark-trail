@@ -1,4 +1,5 @@
-Save a document about my family doctor and my insurance. My doctor is Dr. Anna
-Weiss, Elm Street 12, Leeds, phone +44 7700 900123. My insurance number is
-AB123456C. Also note that our biggest customer is Maria Keller
-(maria.keller@gmail.com).
+Please save two separate documents in a new folder called personal. First: my
+family doctor and my insurance. My doctor is Dr. Anna Weiss, Elm Street 12,
+Leeds, phone +44 7700 900123. My insurance number is AB123456C. Second: a
+document about our biggest customer, Maria Keller (maria.keller@gmail.com), who
+orders every month.

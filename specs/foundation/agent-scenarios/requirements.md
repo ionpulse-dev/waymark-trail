@@ -1,6 +1,6 @@
 ---
 type: foundation
-status: in-progress
+status: implemented
 created: 2026-11-08
 updated: 2026-11-08
 requires:

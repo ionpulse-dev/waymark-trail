@@ -2,12 +2,12 @@
 
 ```
 📦 Features      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0 / 2 active
-🏗️ Foundation    ███████████████████████████░░░░░░░░░░░░░  2 / 3 done+implemented
+🏗️ Foundation    ████████████████████████████████████████  3 / 3 done+implemented
 ```
 
 ## Next Up
 
-1. `agent-scenarios` (in-progress): run the first round with Haiku, Sonnet, and Opus and record it in `results.md`.
+1. `agent-scenarios` (implemented): optional rerun of the round after skill changes; the harness trailer conflict is open.
 2. `personal-knowledge-base` (implemented): manual checks M1 to M7 in `test.md` need a real agent session.
 3. `team-knowledge-base` (implemented): manual checks N1 to N6 in `test.md` need a real agent session.
 4. `document-standard` (implemented): manual check S5 in `test.md` needs Obsidian. It also fills in the tested Obsidian version.
@@ -26,7 +26,7 @@
 
 | Item | Status | Updated |
 |:-----|:-------|:--------|
-| agent-scenarios | `in-progress` | 2026-11-08 |
+| agent-scenarios | `implemented` | 2026-11-08 |
 | document-standard | `implemented` | 2026-11-08 |
 | skill-build | `implemented` | 2026-11-08 |
 

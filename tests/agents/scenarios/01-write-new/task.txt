@@ -3,3 +3,9 @@ marker folder as your rules say. Then write two documents in a folder called
 operations. First: how we rotate our TLS certificates every 90 days. Second: the
 alert that fires 14 days before a certificate expires, linked to the first
 document. Both come from ticket OPS-210 and get the tags tls and security.
+Facts for the first document: the platform team runs the job "cert-rotate" on
+the first Monday of the month; it requests new certificates from the internal
+CA, deploys them to the load balancers one at a time, and checks the expiry date
+after each deploy. Facts for the second document: the alert "CertExpirySoon"
+fires when a certificate has fewer than 14 days left, and it pages the platform
+team. Write only these facts.

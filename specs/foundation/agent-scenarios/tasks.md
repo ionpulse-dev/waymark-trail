@@ -7,4 +7,4 @@
 - [x] Write `tests/agents.test.sh` with the scripted good and bad runs.
 - [x] Add the test to the GitHub Actions workflow.
 - [x] Write `tests/agents/README.md`.
-- [ ] Run a round with Haiku, Sonnet, and Opus and record it in `results.md`.
+- [x] Run a round with Haiku, Sonnet, and Opus and record it in `results.md`.
