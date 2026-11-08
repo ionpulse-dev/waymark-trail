@@ -202,7 +202,13 @@ its `.obsidian` folder. MKBDS finds a knowledge base by its `.mkbds` folder.
 3. A consumer and a producer MUST accept callouts, embeds, highlights, and
    comments that people wrote in the body. They are not errors. A word count
    ignores their markup.
-4. Each release of this standard names the Obsidian version in which the sample
+4. A knowledge base that is used with Obsidian SHOULD set the options
+   `"useMarkdownLinks": true` and `"newLinkFormat": "relative"` in
+   `.obsidian/app.json`. Then Obsidian writes the link form that section 8
+   requires. Without them, Obsidian writes wikilinks with short paths in the body.
+   Other files of the `.obsidian` folder are personal settings. This standard does
+   not say whether to keep them in Git.
+5. Each release of this standard names the Obsidian version in which the sample
    vault of Annex B was checked.
 
 **Tested version for MKBDS 1.0:** not yet tested.

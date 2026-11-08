@@ -80,6 +80,30 @@ it fixes the file names and the link forms. The sample vault in
 [standard/conformance/vault](standard/conformance/vault) is set up for this
 (Markdown links with relative paths).
 
+**Obsidian settings.** By default Obsidian writes `[[wikilinks]]` with short
+paths. To make it write relative Markdown links, put this in
+`.obsidian/app.json` (Settings, Files and links: *Use Markdown links* on, *New
+link format* set to relative path):
+
+```json
+{
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative"
+}
+```
+
+The other files in `.obsidian/` are your personal settings. A suggestion for
+your `.gitignore`: keep only `app.json` in Git, so the link rule travels with the
+repository and the rest stays yours.
+
+```text
+.obsidian/*
+!.obsidian/app.json
+```
+
+If you use the agent to set up your knowledge base, tell it that you use
+Obsidian, and it can create the file.
+
 **Editing in Obsidian.** You can read, search, and edit documents in Obsidian.
 For changes, we recommend that you let the agent do it. The agent follows the
 rules every time. Editing by hand can break these things:
