@@ -1,6 +1,6 @@
 # Markdown Knowledge Base Document Standard (MKBDS)
 
-**Version:** 1.0 (draft)
+**Version:** 1.0
 **Date:** 2026-11-08
 **Short name:** MKBDS 1.0
 
