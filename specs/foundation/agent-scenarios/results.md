@@ -19,9 +19,9 @@ grade the end state.
   was a defect of the scenario, not of the skill. The task now contains the
   facts. The rerun passed after a second fix: the grader now accepts inline tag lists.
 - **11-team-status-update (Haiku, 1 run).** The commit carried a
-  `Co-Authored-By` trailer. The harness that runs the agents adds it, against
-  the rule "Add no tag for the agent". This is a conflict of the test harness
-  with the skill. It is not fixed. The grader still reports it.
+  `Co-Authored-By` trailer, which the harness that runs the agents adds. The rule
+  now allows a trailer that the tool adds on its own, and the grader no longer
+  checks for it.
 
 ## Earlier fixes in this round
 

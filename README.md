@@ -123,7 +123,7 @@ At the start of every session, read and follow
 
 The URL above uses `main`, so it gives the newest version. To pin a version,
 replace `main` with the tag `<skill-name>-v<version>`, for example
-`personal-knowledge-base-v1.1.1`. Tags exist only after a release is
+`personal-knowledge-base-v1.1.2`. Tags exist only after a release is
 tagged; until then, use `main`.
 
 ### Install globally

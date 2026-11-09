@@ -162,7 +162,7 @@ and say so.
 4. Commit under the name and email of the person. One commit for one write. The
    message is `kb: add "<title>"`, or `kb: update`, `kb: dispute`,
    `kb: deprecate`, `kb: delete`, or `kb: move`, followed by the title in quotes. A write that
-   also deprecates an older document uses the message of the main change. Add no tag for the agent.
+   also deprecates an older document uses the message of the main change. Add no tag of your own. A trailer that your tool adds on its own, such as `Co-Authored-By`, is fine.
 5. Run `git push`. If the push is rejected, run `git pull --rebase` and check
    again from step 2. Never force a push. Never rewrite history.
 

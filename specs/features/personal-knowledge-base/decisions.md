@@ -92,7 +92,7 @@ _Records why technical choices were made. Never delete entries — add new ones 
 **Decision:**
 - A document is stale after 180 days.
 - Reading is limited to 5 documents and about 800 tokens per question.
-- The commit message starts with `kb:` followed by the action and the title, for example `kb: add "Payment API v3 uses idempotency keys"`. It has no tag for the agent.
+- The commit message starts with `kb:` followed by the action and the title, for example `kb: add "Payment API v3 uses idempotency keys"`. The agent adds no tag of its own. A trailer that the tool adds on its own, such as `Co-Authored-By`, is allowed.
 - The agent compares the last commit of a document with the one it remembered, instead of a hash.
 - When the person asked for Automatic reading, the agent tells the person what changed at the start of a session, using `git log --since`.
 - The skill stays below 14 KB (raised from 12 KB, see the decision on disputed and replaced documents).

@@ -80,11 +80,6 @@ messages_ok() {
     printf '%s\n' "$s" | grep -Eq '^kb: (add|update|dispute|deprecate|delete|move) ("[^"]+"|marker folder)$' || { echo "message: $s"; return 1; }
   done
 }
-no_trailer() {
-  for c in $(new_commits); do
-    if g log -1 --format=%B "$c" | grep -qi 'co-authored-by'; then echo "trailer in $c"; return 1; fi
-  done
-}
 # no longer used by a scenario; kept for custom checks
 no_deletions() { [ -z "$(g log --diff-filter=D --name-only --format= "$BASE..HEAD")" ]; }
 
@@ -95,7 +90,6 @@ common_write() {
   check "all documents conform to the standard" docs_pass
   check "commits are by the person" authors_ok
   check "commit messages follow the format" messages_ok
-  check "no agent trailer in commits" no_trailer
   check "work is pushed" pushed
   check "origin kept its earlier history" origin_keeps_base
   check "final answer saved" answer_nonempty
