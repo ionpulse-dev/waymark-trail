@@ -78,8 +78,17 @@ In a session of your agent tool, tell your agent:
 Read https://github.com/ionpulse-dev/waymark-trail and install the
 personal-knowledge-base skill in my global skill folder. Ask me for the local
 path of my knowledge base clone. Then add the start block to my global
-instructions file and tell me what you added.
+instructions file (for example `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md` or
+`~/.gemini/GEMINI.md`), so that the skill starts in every session, in every
+project. Tell me which files you changed.
 ```
+
+The agent does two things:
+
+1. It copies the skill into the global skill folder of your agent tool.
+2. It adds the start block to the global instructions file of your agent tool.
+   This file is read at the start of every session, in every project. Without
+   this step, the skill does not start by itself.
 
 For a team, say `team-knowledge-base`. The agent must have access to the
 knowledge base repository.
