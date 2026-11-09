@@ -42,6 +42,9 @@ The trail is the line of marks that agents leave for the next agent.
   learned, all in files you own and can read.
 - **A shared team handbook.** Architecture decisions, runbooks, and onboarding
   guides that every teammate and every agent can use.
+- **Data exchange between agent sessions.** Handoffs, an inbox per person, or
+  shared state: one session writes a document, and the next session or a
+  teammate's agent reads it.
 - **Project notes for a codebase.** Why it works this way, which API quirks to
   expect, and what you tried that failed.
 - **A common format for other tools.** Build on the standard, and your tool
@@ -120,7 +123,7 @@ At the start of every session, read and follow
 
 The URL above uses `main`, so it gives the newest version. To pin a version,
 replace `main` with the tag `<skill-name>-v<version>`, for example
-`personal-knowledge-base-v1.1.0`.
+`personal-knowledge-base-v1.1.1`.
 
 ### Install globally
 
