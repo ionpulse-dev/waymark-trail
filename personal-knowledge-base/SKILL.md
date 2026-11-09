@@ -214,7 +214,9 @@ and say so.
    - every link works, also the wikilinks in properties: each one names an
      existing document;
    - the text has no secret (see below).
-4. Commit under the name and email of the person. One commit for one write. The
+4. Stage only the files of this write, by path. Never use `git add -A` or
+   `git add .`: other files in the folder may be untracked on purpose. Commit
+   under the name and email of the person. One commit for one write. The
    message is `kb: add "<title>"`, or `kb: update`, `kb: dispute`,
    `kb: deprecate`, `kb: delete`, or `kb: move`, followed by the title in quotes. A write that
    also deprecates an older document uses the message of the main change. Add no tag of your own. A trailer that your tool adds on its own, such as `Co-Authored-By`, is fine.

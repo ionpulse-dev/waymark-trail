@@ -251,3 +251,13 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - Pull on a timer — the skill has no background process.
 
 **Reason:** In a team, other people write all the time. The agent must start with the newest state.
+
+## The skill stages by path, and Obsidian has its own prompt — 2026-11-09
+
+**Decision:** The write steps say: stage only the files of this write, by path, and never use `git add -A` or `git add .`. The README has one Obsidian prompt in the Obsidian section, the same for personal and team use. It creates `.obsidian/app.json` and a `.gitignore` for `.obsidian/`, `.trash/` and `.DS_Store`. The quick start prompts no longer have an Obsidian step. The personal size limit goes up to 15.5 KB.
+
+**Alternatives considered:**
+- Let the skill create the `.gitignore` — the skill stays free of tool-specific files.
+- Keep the Obsidian step inside both quick start prompts — it is the same text twice.
+
+**Reason:** Obsidian writes personal files such as `workspace.json` into the folder. A blanket `git add` would commit them.

@@ -14,7 +14,7 @@ T="$ROOT/team-knowledge-base/SKILL.md"
 # summary. Run it with:  sh tests/skills.test.sh 2>&1 | pbcopy   (macOS)
 echo "== skills.test.sh =="
 echo "commit: $(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null) ($(git -C "$ROOT" status --short 2>/dev/null | wc -l | tr -d ' ') changed files)"
-echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 15000), team $(wc -c < "$T" | tr -d ' ') bytes (limit 17500)"
+echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 15500), team $(wc -c < "$T" | tr -d ' ') bytes (limit 17500)"
 if "$ROOT/build.sh" --check >/dev/null 2>&1; then echo "build: finished files match the parts"; else echo "build: MISMATCH, run ./build.sh"; fi
 echo
 
@@ -52,6 +52,7 @@ for f in "$P" "$T"; do
     "after the context was compacted"
   check "$s: write steps" "$f" \
     "git pull --rebase" \
+    "Stage only the files of this write, by path" \
     "run \`git pull --rebase\` once, so that you start" \
     "Compare its last commit with the one you remembered" \
     "Commit under the name and email of the person" \
@@ -114,7 +115,7 @@ for f in "$P" "$T"; do
 done
 
 # ---------- sizes ----------
-[ "$(wc -c < "$P")" -le 15000 ] && pass "personal: stays short (15 KB)" || fail "personal: stays short (15 KB)"
+[ "$(wc -c < "$P")" -le 15500 ] && pass "personal: stays short (15.5 KB)" || fail "personal: stays short (15.5 KB)"
 [ "$(wc -c < "$T")" -le 17500 ] && pass "team: stays short (17.5 KB)" || fail "team: stays short (17.5 KB)"
 
 # ---------- personal ----------

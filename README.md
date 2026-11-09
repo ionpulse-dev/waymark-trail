@@ -83,9 +83,6 @@ path of my knowledge base clone. Then add the start block to my global
 instructions file (for example `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md` or
 `~/.gemini/GEMINI.md`), so that the skill starts in every session, in every
 project. Tell me which files you changed.
-Optional, only if I use Obsidian: create `.obsidian/app.json` in the knowledge
-base with `"useMarkdownLinks": true` and `"newLinkFormat": "relative"`. Do not
-commit it.
 ```
 
 **Team use**
@@ -97,9 +94,6 @@ path of our shared knowledge base clone. Then add the start block to my global
 instructions file (for example `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md` or
 `~/.gemini/GEMINI.md`), so that the skill starts in every session, in every
 project. Tell me which files you changed.
-Optional, only if I use Obsidian: create `.obsidian/app.json` in the knowledge
-base with `"useMarkdownLinks": true` and `"newLinkFormat": "relative"`. Do not
-commit it.
 ```
 
 The agent does two things:
@@ -109,8 +103,8 @@ The agent does two things:
    This file is read at the start of every session, in every project. Without
    this step, the skill does not start by itself.
 
-The Obsidian step is optional. See [Obsidian](#obsidian). The agent must have
-access to the knowledge base repository. Each team member
+Use Obsidian? Then run the [Obsidian prompt](#obsidian) once as well. The agent
+must have access to the knowledge base repository. Each team member
 runs the team prompt once on their own machine.
 
 Prefer to do it yourself? See [Install](#install).
@@ -221,6 +215,25 @@ this in `.obsidian/app.json`:
   "useMarkdownLinks": true,
   "newLinkFormat": "relative"
 }
+```
+
+Obsidian also writes personal files into `.obsidian`, such as `workspace.json`,
+and a `.trash` folder. Keep them out of Git with this `.gitignore` in the
+knowledge base:
+
+```text
+.obsidian/
+.trash/
+.DS_Store
+```
+
+To set this up, tell your agent. It is the same for personal and team use:
+
+```text
+Set up Obsidian for my knowledge base. Create `.obsidian/app.json` with
+`"useMarkdownLinks": true` and `"newLinkFormat": "relative"`. Add `.obsidian/`,
+`.trash/` and `.DS_Store` to the `.gitignore` of the knowledge base, and commit
+only the `.gitignore`.
 ```
 
 You can read and search documents in Obsidian. For changes, let the agent do it,
