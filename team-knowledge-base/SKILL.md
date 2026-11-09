@@ -1,7 +1,7 @@
 ---
 name: team-knowledge-base
 description: Rules for reading and writing a shared team knowledge base. Load at the start of every session.
-version: 1.3.0
+version: 1.4.0
 ---
 
 # Team knowledge base
