@@ -83,6 +83,9 @@ path of my knowledge base clone. Then add the start block to my global
 instructions file (for example `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md` or
 `~/.gemini/GEMINI.md`), so that the skill starts in every session, in every
 project. Tell me which files you changed.
+Optional, only if I use Obsidian: create `.obsidian/app.json` in the knowledge
+base with `"useMarkdownLinks": true` and `"newLinkFormat": "relative"`. Do not
+commit it.
 ```
 
 **Team use**
@@ -94,6 +97,9 @@ path of our shared knowledge base clone. Then add the start block to my global
 instructions file (for example `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md` or
 `~/.gemini/GEMINI.md`), so that the skill starts in every session, in every
 project. Tell me which files you changed.
+Optional, only if I use Obsidian: create `.obsidian/app.json` in the knowledge
+base with `"useMarkdownLinks": true` and `"newLinkFormat": "relative"`. Do not
+commit it.
 ```
 
 The agent does two things:
@@ -103,7 +109,8 @@ The agent does two things:
    This file is read at the start of every session, in every project. Without
    this step, the skill does not start by itself.
 
-The agent must have access to the knowledge base repository. Each team member
+The Obsidian step is optional. See [Obsidian](#obsidian). The agent must have
+access to the knowledge base repository. Each team member
 runs the team prompt once on their own machine.
 
 Prefer to do it yourself? See [Install](#install).
