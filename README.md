@@ -16,10 +16,10 @@
 Skills that teach an AI agent to use a knowledge base of Markdown documents in
 a Git repository, safely and with little context.
 
-A knowledge base is a Git repository of Markdown documents. Without rules, an agent may read too much, overwrite a
-newer document, or save something it should not. A skill is one text file with
-the rules. You give your agent the file, and it follows the rules. There is no app,
-no command line tool, and no server.
+A knowledge base is a Git repository of Markdown documents. Without rules, an
+agent may read too much, overwrite a newer document, or save something it should
+not. A skill is one text file with the rules. You give your agent the file, and
+it follows the rules. There is no app, no command line tool, and no server.
 
 The trail is the line of marks that agents leave for the next agent.
 
