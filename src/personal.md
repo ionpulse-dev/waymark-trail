@@ -18,3 +18,7 @@ knowledge base and the path of its root.
 > Want a different setting? Just tell me.
 
 The dot shows the active setting of each row. Both rows start at Manual.
+
+Before you show the message, run `git pull --rebase` once, so that you start
+with the newest state. If it stops on a conflict, run `git rebase --abort` and
+tell the person. With no remote, skip the pull and say so.

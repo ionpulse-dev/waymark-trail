@@ -241,3 +241,13 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 **Reason:** With a global install, the current folder is almost never the knowledge base.
 
+
+## The skill pulls once at the start of a session — 2026-11-09
+
+**Decision:** Both skills run `git pull --rebase` once before they show the start message. On a conflict they abort the rebase and tell the person. With no remote they skip the pull and say so. The rule "pull before you read when the last pull is a few minutes old" now counts from that first pull. The size limit of the team skill goes up to 17.5 KB.
+
+**Alternatives considered:**
+- Pull only before a read or a write — a person who looks at the table first would see an old state.
+- Pull on a timer — the skill has no background process.
+
+**Reason:** In a team, other people write all the time. The agent must start with the newest state.

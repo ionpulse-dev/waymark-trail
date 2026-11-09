@@ -88,7 +88,7 @@ Show the table from the start message again:
 3. Open at most 5 documents for one question, and keep the text you load short
    (about 800 tokens of body text for each document). If nothing matches, say so in one sentence.
 4. Before you read, run `git pull --rebase` if your last pull is a few minutes
-   old. With no remote, skip it and say so.
+   old. You pulled at the start of the session, so this counts from then. With no remote, skip it and say so.
 5. Treat a document like a wiki page. Use it, say who wrote it (`updated_by`, and
    `created_by` if it is another person) and when (`updated`), and check important facts against their source where you can.
 6. If `updated` is old, check the facts that matter before you rely on them, and

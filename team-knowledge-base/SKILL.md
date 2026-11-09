@@ -28,6 +28,10 @@ knowledge base and the path of its root.
 
 The dot shows the active setting of each row. Both rows start at Manual.
 
+Before you show the message, run `git pull --rebase` once, so that you start
+with the newest state. If it stops on a conflict, run `git rebase --abort` and
+tell the person. With no remote, skip the pull and say so.
+
 ## Rules for a shared knowledge base
 
 - **The person is responsible.** Every write is committed under the person's own
@@ -146,7 +150,7 @@ Show the table from the start message again:
 3. Open at most 5 documents for one question, and keep the text you load short
    (about 800 tokens of body text for each document). If nothing matches, say so in one sentence.
 4. Before you read, run `git pull --rebase` if your last pull is a few minutes
-   old. With no remote, skip it and say so.
+   old. You pulled at the start of the session, so this counts from then. With no remote, skip it and say so.
 5. Treat a document like a wiki page. Use it, say who wrote it (`updated_by`, and
    `created_by` if it is another person) and when (`updated`), and check important facts against their source where you can.
 6. If `updated` is old, check the facts that matter before you rely on them, and
