@@ -103,8 +103,7 @@ The agent does two things:
    This file is read at the start of every session, in every project. Without
    this step, the skill does not start by itself.
 
-Use Obsidian? Then run the [Obsidian prompt](#obsidian) once as well. The agent
-must have access to the knowledge base repository. Each team member
+The agent must have access to the knowledge base repository. Each team member
 runs the team prompt once on their own machine.
 
 Prefer to do it yourself? See [Install](#install).
