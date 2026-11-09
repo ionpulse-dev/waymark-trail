@@ -30,7 +30,7 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 - [x] [auto] A7: The skill lists every document field, the file name rules, the link rules, and the title and description limits (`tests/skills.test.sh`).
 - [x] [auto] A8: The skill has no include, and no line of the body repeats a line of the frontmatter (`tests/build.test.sh`).
 - [x] [auto] A9: The skill has a rule against secrets and a rule to ask when unsure (`tests/skills.test.sh`).
-- [x] [auto] A10: The skill does not mention other tools, a settings file, or a config file (the link to waymark-trail in the README template is allowed), and stays below 15.5 KB (`tests/skills.test.sh`).
+- [x] [auto] A10: The skill does not mention other tools, a settings file, or a config file (the link to waymark-trail in the README template is allowed), and stays below 16 KB (`tests/skills.test.sh`).
 - [x] [auto] A11: The skill has the rule for the `README.md` of the knowledge base: create it with the marker folder, list it in `.mkbase/exclude`, offer it when missing, never overwrite (`tests/skills.test.sh`).
 - [x] [auto] A12: The skill looks at the path from the instructions first, searches the current folder only without a path, runs `git -C <root>`, and has no "in this repository" (`tests/skills.test.sh`).
 - [ ] [manual] M1: The start message.

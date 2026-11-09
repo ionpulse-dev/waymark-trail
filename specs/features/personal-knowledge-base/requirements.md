@@ -40,10 +40,12 @@ At first use in a session, the agent shows this and nothing more:
 
 > **Knowledge base active:** `<name of the knowledge base>` at `<path of the root>`
 >
-> | | Manual (only when you ask) | Automatic (I decide) |
-> |---|---|---|
-> | **Reading** | ● | |
-> | **Writing** | ● | |
+> | | Manual | Automatic |
+> |---|:---:|:---:|
+> | **Reading** | ● | ○ |
+> | **Writing** | ● | ○ |
+>
+> Manual: only when you ask. Automatic: I decide.
 >
 > Want a different setting? Just tell me.
 

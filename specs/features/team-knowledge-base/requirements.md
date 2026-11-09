@@ -31,10 +31,12 @@ Like the personal skill, with one more line under the table:
 
 > **Knowledge base active:** `<name of the knowledge base>` at `<path of the root>` (shared with your team)
 >
-> | | Manual (only when you ask) | Automatic (I decide) |
-> |---|---|---|
-> | **Reading** | ● | |
-> | **Writing** | ● | |
+> | | Manual | Automatic |
+> |---|:---:|:---:|
+> | **Reading** | ● | ○ |
+> | **Writing** | ● | ○ |
+>
+> Manual: only when you ask. Automatic: I decide.
 >
 > Every change is committed under your name. Everyone with access sees every document.
 >

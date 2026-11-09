@@ -259,3 +259,11 @@ read the repository has it.
 - Do not carry content from one knowledge base into another.
 - Do not claim that something is checked when you did not check it. Say what you
   did and what you did not do.
+
+### Update of this skill
+
+Do this only when the person asks you to update the skill. Never fetch it on
+your own. The source is https://github.com/ionpulse-dev/waymark-trail, in the
+folder that has the `name` of this skill, file `SKILL.md`, on the branch `main`.
+Compare its `version` with yours. If it is newer, replace this file at its
+location and tell the person what changed. Change nothing else.

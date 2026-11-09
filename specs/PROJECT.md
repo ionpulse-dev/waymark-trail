@@ -64,8 +64,8 @@ the start of every session. The skill then tells the person that it is active.
 ### Autonomy table
 
 At first use in a session, the skill shows a small table: rows Reading and
-Writing, columns Manual (only when you ask) and Automatic (I decide), a dot in
-the active cell. Both rows start at Manual. The person changes a row in plain
+Writing, columns Manual and Automatic (a line below explains them), a filled dot in
+the active cell and an empty dot in the other. Both rows start at Manual. The person changes a row in plain
 words.
 
 ## Design Principles

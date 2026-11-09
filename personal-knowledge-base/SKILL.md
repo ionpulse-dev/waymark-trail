@@ -16,14 +16,17 @@ knowledge base and the path of its root.
 
 > **Knowledge base active:** `<name of the knowledge base>` at `<path of the root>`
 >
-> | | Manual (only when you ask) | Automatic (I decide) |
-> |---|---|---|
-> | **Reading** | ● | |
-> | **Writing** | ● | |
+> | | Manual | Automatic |
+> |---|:---:|:---:|
+> | **Reading** | ● | ○ |
+> | **Writing** | ● | ○ |
+>
+> Manual: only when you ask. Automatic: I decide.
 >
 > Want a different setting? Just tell me.
 
-The dot shows the active setting of each row. Both rows start at Manual.
+The dot ● marks the active setting of each row, and ○ marks the other one.
+Both rows start at Manual.
 
 Before you show the message, run `git pull --rebase` once, so that you start
 with the newest state. If it stops on a conflict, run `git rebase --abort` and
@@ -290,3 +293,11 @@ read the repository has it.
 - Do not carry content from one knowledge base into another.
 - Do not claim that something is checked when you did not check it. Say what you
   did and what you did not do.
+
+### Update of this skill
+
+Do this only when the person asks you to update the skill. Never fetch it on
+your own. The source is https://github.com/ionpulse-dev/waymark-trail, in the
+folder that has the `name` of this skill, file `SKILL.md`, on the branch `main`.
+Compare its `version` with yours. If it is newer, replace this file at its
+location and tell the person what changed. Change nothing else.

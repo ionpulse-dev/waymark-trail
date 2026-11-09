@@ -261,3 +261,13 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - Keep the Obsidian step inside both quick start prompts — it is the same text twice.
 
 **Reason:** Obsidian writes personal files such as `workspace.json` into the folder. A blanket `git add` would commit them.
+
+## The skill names its own source for updates — 2026-11-09
+
+**Decision:** Both skills end with a short section "Update of this skill". It gives the source (the waymark-trail repository, the folder with the skill's `name`, file `SKILL.md`, branch `main`). The agent acts only when the person asks for an update, and never fetches on its own. It compares `version`, replaces the skill file at its location, and tells the person what changed. It changes nothing else. The size limits go up to 16 KB (personal) and 18 KB (team).
+
+**Alternatives considered:**
+- A `source` field in the front matter — tools may reject or ignore unknown fields.
+- Updates only through a README prompt — the agent then has to find the right file itself.
+
+**Reason:** "Update the skill" must work without the person naming the URL.

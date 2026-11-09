@@ -14,7 +14,7 @@ T="$ROOT/team-knowledge-base/SKILL.md"
 # summary. Run it with:  sh tests/skills.test.sh 2>&1 | pbcopy   (macOS)
 echo "== skills.test.sh =="
 echo "commit: $(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null) ($(git -C "$ROOT" status --short 2>/dev/null | wc -l | tr -d ' ') changed files)"
-echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 15500), team $(wc -c < "$T" | tr -d ' ') bytes (limit 17500)"
+echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 16000), team $(wc -c < "$T" | tr -d ' ') bytes (limit 18000)"
 if "$ROOT/build.sh" --check >/dev/null 2>&1; then echo "build: finished files match the parts"; else echo "build: MISMATCH, run ./build.sh"; fi
 echo
 
@@ -53,6 +53,8 @@ for f in "$P" "$T"; do
   check "$s: write steps" "$f" \
     "git pull --rebase" \
     "Stage only the files of this write, by path" \
+    "Do this only when the person asks you to update the skill" \
+    "https://github.com/ionpulse-dev/waymark-trail, in the" \
     "run \`git pull --rebase\` once, so that you start" \
     "Compare its last commit with the one you remembered" \
     "Commit under the name and email of the person" \
@@ -115,21 +117,25 @@ for f in "$P" "$T"; do
 done
 
 # ---------- sizes ----------
-[ "$(wc -c < "$P")" -le 15500 ] && pass "personal: stays short (15.5 KB)" || fail "personal: stays short (15.5 KB)"
-[ "$(wc -c < "$T")" -le 17500 ] && pass "team: stays short (17.5 KB)" || fail "team: stays short (17.5 KB)"
+[ "$(wc -c < "$P")" -le 16000 ] && pass "personal: stays short (16 KB)" || fail "personal: stays short (16 KB)"
+[ "$(wc -c < "$T")" -le 18000 ] && pass "team: stays short (18 KB)" || fail "team: stays short (18 KB)"
 
 # ---------- personal ----------
 check "personal: start message" "$P" \
   "**Knowledge base active:** \`<name of the knowledge base>\` at \`<path of the root>\`" \
-  "| **Reading** | ● | |" \
-  "| **Writing** | ● | |" \
+  "|---|:---:|:---:|" \
+  "| **Reading** | ● | ○ |" \
+  "| **Writing** | ● | ○ |" \
+  "Manual: only when you ask. Automatic: I decide." \
   "Want a different setting? Just tell me."
 
 # ---------- team ----------
 check "team: start message" "$T" \
   "(shared with your team)" \
-  "| **Reading** | ● | |" \
-  "| **Writing** | ● | |" \
+  "|---|:---:|:---:|" \
+  "| **Reading** | ● | ○ |" \
+  "| **Writing** | ● | ○ |" \
+  "Manual: only when you ask. Automatic: I decide." \
   "Every change is committed under your name. Everyone with access sees every document."
 check "team: author and email" "$T" \
   "committed under the person's own" "The email must be reachable" "There is no separate author for the agent"

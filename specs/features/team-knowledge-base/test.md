@@ -22,7 +22,7 @@ _`[auto]` items are verified by running `sh tests/skills.test.sh` and `sh tests/
 - [x] [auto] B4: The skill says to set `disputed: true` with a reason, to not rewrite another team's document on its own, and that a deprecated document stays (`tests/skills.test.sh`).
 - [x] [auto] B5: The skill has the secret rule with the instruction to stop and ask (`tests/skills.test.sh`).
 - [x] [auto] B6: The skill has the collision rule with the `-conflict.md` file and the rule to never leave a conflict state (`tests/skills.test.sh`).
-- [x] [auto] B7: The skill has no mention of other tools or a settings file, and stays below 17.5 KB (`tests/skills.test.sh`).
+- [x] [auto] B7: The skill has no mention of other tools or a settings file, and stays below 18 KB (`tests/skills.test.sh`).
 - [x] [auto] B8: The skill has the rule for the `README.md` of the knowledge base (`tests/skills.test.sh`).
 - [x] [auto] B9: The skill has the same path rules as the personal skill (`tests/skills.test.sh`).
 - [ ] [manual] N1: The start message.
