@@ -7,7 +7,10 @@ add to the shared rules below. The shared rules also apply.
 ## Start of a session
 
 At the first use in a session, show this and nothing more. Use the name of the
-knowledge base and the path of its root.
+knowledge base and the path of its root. Put a line with `---` above and below
+the message, with an empty line on each side of it.
+
+---
 
 > **Knowledge base active:** `<name of the knowledge base>` at `<path of the root>` (shared with your team)
 >
@@ -21,6 +24,8 @@ knowledge base and the path of its root.
 > Every change is committed under your name. Everyone with access sees every document.
 >
 > Want a different setting? Just tell me.
+
+---
 
 The dot ● marks the active setting of each row, and ○ marks the other one.
 Both rows start at Manual.

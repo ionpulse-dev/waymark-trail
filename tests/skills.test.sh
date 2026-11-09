@@ -122,6 +122,7 @@ done
 
 # ---------- personal ----------
 check "personal: start message" "$P" \
+  "Put a line with \`---\` above and below" \
   "**Knowledge base active:** \`<name of the knowledge base>\` at \`<path of the root>\`" \
   "|---|:---:|:---:|" \
   "| **Reading** | ● | ○ |" \
@@ -131,6 +132,7 @@ check "personal: start message" "$P" \
 
 # ---------- team ----------
 check "team: start message" "$T" \
+  "Put a line with \`---\` above and below" \
   "(shared with your team)" \
   "|---|:---:|:---:|" \
   "| **Reading** | ● | ○ |" \
