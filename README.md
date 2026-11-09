@@ -72,16 +72,17 @@ Both skills are:
 
 ## Quick start
 
-In a session in your knowledge base repository, tell your agent:
+In a session of your agent tool, tell your agent:
 
 ```text
-Read https://github.com/ionpulse-dev/waymark-trail and add the
-personal-knowledge-base skill. Ask me whether it goes into this repository or
-into my global skills, then do it and tell me what you added.
+Read https://github.com/ionpulse-dev/waymark-trail and install the
+personal-knowledge-base skill in my global skill folder. Ask me for the local
+path of my knowledge base clone. Then add the start block to my global
+instructions file and tell me what you added.
 ```
 
-For a team, say `team-knowledge-base`. The repository must be public, or the
-agent must have access to it.
+For a team, say `team-knowledge-base`. The agent must have access to the
+knowledge base repository.
 
 Prefer to do it yourself? See [Install](#install).
 
@@ -89,10 +90,28 @@ Prefer to do it yourself? See [Install](#install).
 
 ## Install
 
-You need a Git repository and an agent that reads `AGENTS.md`.
+The skill lives in the global skill folder of your agent tool, not in the
+knowledge base repository. Your global instructions file starts it in every
+session. The knowledge base repository holds only the `.mkbase` folder and your
+documents.
 
-**1. Mark the knowledge base.** Create a `.mkbase` folder with a `version` file
-in the folder that holds your documents:
+You need a Git repository and one of these agent tools:
+
+| Agent tool | Global skill folder | Global instructions file |
+|:-----------|:--------------------|:-------------------------|
+| Claude Code | `~/.claude/skills/` | `~/.claude/CLAUDE.md` |
+| GitHub Copilot CLI | `~/.copilot/skills/` | `~/.copilot/copilot-instructions.md` |
+| Codex | `~/.agents/skills/` | `~/.codex/AGENTS.md` |
+
+**1. Get the knowledge base.** Clone the knowledge base repository to your
+computer:
+
+```bash
+git clone <repository-url> ~/knowledge-base
+```
+
+If you start a new knowledge base, create the repository and mark it with a
+`.mkbase` folder that holds a `version` file:
 
 ```bash
 mkdir .mkbase && echo 1.0 > .mkbase/version
@@ -101,37 +120,50 @@ mkdir .mkbase && echo 1.0 > .mkbase/version
 **2. Add the skill.** Tell your agent:
 
 ```text
-Add the skill from this URL to this repository as
-.agents/skills/personal-knowledge-base/SKILL.md, then tell me what you added:
+Add the skill from this URL to my global skill folder as
+personal-knowledge-base/SKILL.md, then tell me what you added:
 https://raw.githubusercontent.com/ionpulse-dev/waymark-trail/main/personal-knowledge-base/SKILL.md
 ```
 
 For a team, use `team-knowledge-base` in both places.
 
-**3. Load it in every session.** Add this to the `AGENTS.md` of your repository:
+**3. Start it in every session.** Add this block to your global instructions
+file. Replace `~/knowledge-base` with the path of your clone, and use the skill
+path of your agent tool from the table above:
 
 ```markdown
 ## Knowledge base
 
-At the start of every session, read and follow
-`.agents/skills/personal-knowledge-base/SKILL.md`.
+My knowledge base is the Git repository at `~/knowledge-base`.
+
+- Use this path as the knowledge base in every session, in every folder.
+- Run Git commands for it with `git -C ~/knowledge-base`.
+- At the start of every session, read and follow
+  `~/.claude/skills/personal-knowledge-base/SKILL.md`.
 ```
 
-**4. Check.** Start a new session. The agent tells you that the skill is active.
+The block must name the path. Without it, the skill looks for `.mkbase` only in
+the current folder and the folders above it, and asks you when it finds none.
+
+**4. Check.** Start a new session in any folder. The agent shows the start
+table.
+
+### A personal and a team knowledge base
+
+If you use both, add one block per knowledge base. Each block names the path of
+its clone and its skill, `personal-knowledge-base` or `team-knowledge-base`.
 
 ### Pin a version
 
 The URL above uses `main`, so it gives the newest version. To pin a version,
 replace `main` with the tag `<skill-name>-v<version>`, for example
 `personal-knowledge-base-v1.1.2`. Tags exist only after a release is
-tagged; until then, use `main`.
+tagged. Until then, use `main`.
 
-### Install globally
+### Limits
 
-You can also put a skill in the global skill folder of your agent tool, for
-example `~/.claude/skills/personal-knowledge-base/SKILL.md` for Claude Code.
-Then it works in every project. Be aware that people who share the knowledge
-base do not get it, so for a team, keep the skill in the repository.
+Claude Code on the web and on iPhone has no global files. A session there does
+not get the skill or the block, so the agent does not follow the rules.
 
 <br/>
 
