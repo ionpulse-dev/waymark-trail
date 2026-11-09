@@ -1,4 +1,17 @@
-# waymark-trail
+<p align="center">
+  <img src="banner.svg" alt="waymark-trail" width="800"/>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"/></a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/plain-Markdown-brightgreen" alt="Plain Markdown"/>
+  &nbsp;
+  <img src="https://img.shields.io/badge/works%20with-any%20AI%20agent-blueviolet" alt="Works with any AI agent"/>
+</p>
+
+<br/>
+
 
 Skills that teach an AI agent to use a knowledge base of Markdown documents in
 a Git repository, safely and with little context.
