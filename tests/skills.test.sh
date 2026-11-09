@@ -54,7 +54,9 @@ for f in "$P" "$T"; do
     "git pull --rebase" \
     "Stage only the files of this write, by path" \
     "Check for an update once at the start of a session" \
-    "A newer version of this skill is available" \
+    "at the end of the start" \
+    "message, inside the two separators" \
+    "A newer version of the skill \`<name>\` is available" \
     "Replace this file at its location only after a yes" \
     "run \`git pull --rebase\` once, so that you start" \
     "Compare its last commit with the one you remembered" \

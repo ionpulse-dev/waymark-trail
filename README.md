@@ -179,7 +179,7 @@ its clone and its skill, `personal-knowledge-base` or `team-knowledge-base`.
 
 The URL above uses `main`, so it gives the newest version. To pin a version,
 replace `main` with the tag `<skill-name>-v<version>`, for example
-`personal-knowledge-base-v1.5.0`. Tags exist only after a release is
+`personal-knowledge-base-v1.5.1`. Tags exist only after a release is
 tagged. Until then, use `main`.
 
 ### Limits

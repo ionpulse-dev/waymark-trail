@@ -1,7 +1,7 @@
 ---
 name: team-knowledge-base
 description: Rules for reading and writing a shared team knowledge base. Load at the start of every session.
-version: 1.5.0
+version: 1.5.1
 ---
 
 # Team knowledge base
@@ -341,8 +341,9 @@ has the `name` of this skill, file `SKILL.md`, on the branch `main`.
 Check for an update once at the start of a session, after the pull, and when the
 person asks for one. Read only the front matter of the source file. Compare its
 `version` with yours. If it is not newer, or you cannot reach it, say nothing,
-unless the person asked. If it is newer, add one line below the start message:
-"A newer version of this skill is available (<yours> to <new>). Update it?"
+unless the person asked. If it is newer, add one more line at the end of the start
+message, inside the two separators:
+"A newer version of the skill `<name>` is available (<yours> to <new>). Update it?"
 Ask once in a session. Replace this file at its location only after a yes, or
 when the person asked for the update. Then tell the person what changed, and
 that the new version applies from the next session. Change nothing else.
