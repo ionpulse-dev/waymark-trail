@@ -1,7 +1,7 @@
 ---
 name: team-knowledge-base
 description: Rules for reading and writing a shared team knowledge base. Load at the start of every session.
-version: 1.4.0
+version: 1.5.0
 ---
 
 # Team knowledge base
@@ -39,6 +39,9 @@ Both rows start at Manual.
 Before you show the message, run `git pull --rebase` once, so that you start
 with the newest state. If it stops on a conflict, run `git rebase --abort` and
 tell the person. With no remote, skip the pull and say so.
+
+Then check for an update of this skill, as the section "Update of this skill"
+says.
 
 ## Rules for a shared knowledge base
 
@@ -332,8 +335,14 @@ read the repository has it.
 
 ### Update of this skill
 
-Do this only when the person asks you to update the skill. Never fetch it on
-your own. The source is https://github.com/ionpulse-dev/waymark-trail, in the
-folder that has the `name` of this skill, file `SKILL.md`, on the branch `main`.
-Compare its `version` with yours. If it is newer, replace this file at its
-location and tell the person what changed. Change nothing else.
+The source is https://github.com/ionpulse-dev/waymark-trail, in the folder that
+has the `name` of this skill, file `SKILL.md`, on the branch `main`.
+
+Check for an update once at the start of a session, after the pull, and when the
+person asks for one. Read only the front matter of the source file. Compare its
+`version` with yours. If it is not newer, or you cannot reach it, say nothing,
+unless the person asked. If it is newer, add one line below the start message:
+"A newer version of this skill is available (<yours> to <new>). Update it?"
+Ask once in a session. Replace this file at its location only after a yes, or
+when the person asked for the update. Then tell the person what changed, and
+that the new version applies from the next session. Change nothing else.

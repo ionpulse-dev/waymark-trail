@@ -110,3 +110,23 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - Keep the skills in the content repository — the only way that works on the web and on iPhone, but it mixes the skill with the documents and confused people.
 
 **Reason:** The person decided it. The start block names the path of the clone, so no settings file is needed. The cost: Claude Code on the web and on iPhone has no global files, so the skills do not work there.
+
+## Every skill change raises both versions by one minor step — 2026-11-09
+
+**Decision:** Every commit that changes `src/common.md`, `src/personal.md`, `src/team.md`, or a finished `SKILL.md` raises the version of both skills in the same commit. Only the minor part goes up. The major part changes only for a break that needs a manual step. The hook `.githooks/pre-commit` refuses a commit that changes a skill without a new version in both front matter files.
+
+**Alternatives considered:**
+- Bump only the skill that changed — a person would not see that the shared rules changed in the other skill.
+- A CI check only — the error shows up after the push, and the person gets a mail.
+
+**Reason:** The skill checks for updates by comparing the `version` field. A change without a new version stays invisible to every installed copy. A missed bump caused this once (1.3.0 stayed in place through five changes).
+
+## The skill checks for an update at session start — 2026-11-09
+
+**Decision:** At the start of a session, after the pull, the skill reads the front matter of its source file and compares `version`. If the source is newer, it adds one line below the start message and asks the person. It replaces the file only after a yes. With no network or no newer version it stays silent. The check runs once per session.
+
+**Alternatives considered:**
+- Update only on request — updates would reach people only when they think of it.
+- Update without asking — an agent must not replace its own rules without consent.
+
+**Reason:** This is an automatic way to deliver updates, and the person keeps control.

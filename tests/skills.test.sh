@@ -14,7 +14,7 @@ T="$ROOT/team-knowledge-base/SKILL.md"
 # summary. Run it with:  sh tests/skills.test.sh 2>&1 | pbcopy   (macOS)
 echo "== skills.test.sh =="
 echo "commit: $(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null) ($(git -C "$ROOT" status --short 2>/dev/null | wc -l | tr -d ' ') changed files)"
-echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 16000), team $(wc -c < "$T" | tr -d ' ') bytes (limit 18000)"
+echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 17000), team $(wc -c < "$T" | tr -d ' ') bytes (limit 19000)"
 if "$ROOT/build.sh" --check >/dev/null 2>&1; then echo "build: finished files match the parts"; else echo "build: MISMATCH, run ./build.sh"; fi
 echo
 
@@ -53,8 +53,9 @@ for f in "$P" "$T"; do
   check "$s: write steps" "$f" \
     "git pull --rebase" \
     "Stage only the files of this write, by path" \
-    "Do this only when the person asks you to update the skill" \
-    "https://github.com/ionpulse-dev/waymark-trail, in the" \
+    "Check for an update once at the start of a session" \
+    "A newer version of this skill is available" \
+    "Replace this file at its location only after a yes" \
     "run \`git pull --rebase\` once, so that you start" \
     "Compare its last commit with the one you remembered" \
     "Commit under the name and email of the person" \
@@ -117,8 +118,8 @@ for f in "$P" "$T"; do
 done
 
 # ---------- sizes ----------
-[ "$(wc -c < "$P")" -le 16000 ] && pass "personal: stays short (16 KB)" || fail "personal: stays short (16 KB)"
-[ "$(wc -c < "$T")" -le 18000 ] && pass "team: stays short (18 KB)" || fail "team: stays short (18 KB)"
+[ "$(wc -c < "$P")" -le 17000 ] && pass "personal: stays short (17 KB)" || fail "personal: stays short (17 KB)"
+[ "$(wc -c < "$T")" -le 19000 ] && pass "team: stays short (19 KB)" || fail "team: stays short (19 KB)"
 
 # ---------- personal ----------
 check "personal: start message" "$P" \

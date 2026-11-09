@@ -179,7 +179,7 @@ its clone and its skill, `personal-knowledge-base` or `team-knowledge-base`.
 
 The URL above uses `main`, so it gives the newest version. To pin a version,
 replace `main` with the tag `<skill-name>-v<version>`, for example
-`personal-knowledge-base-v1.4.0`. Tags exist only after a release is
+`personal-knowledge-base-v1.5.0`. Tags exist only after a release is
 tagged. Until then, use `main`.
 
 ### Limits
@@ -250,8 +250,9 @@ run the build:
 ./build.sh
 ```
 
-Turn on the pre-push check once. It runs the fast tests before every push, so a
-failing push never reaches CI:
+Turn on the hooks once. The pre-commit hook asks for a new minor version in both
+skills whenever a commit changes a skill. The pre-push hook runs the fast tests
+before every push, so a failing push never reaches CI:
 
 ```bash
 git config core.hooksPath .githooks

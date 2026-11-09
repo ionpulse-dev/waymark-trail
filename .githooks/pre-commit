@@ -1,0 +1,12 @@
+#!/bin/sh
+# A commit that changes a skill must raise the version of both skills.
+# Raise only the minor part, for example 1.4.0 to 1.5.0.
+staged=$(git diff --cached --name-only)
+echo "$staged" | grep -Eq '^(src/(common|personal|team)\.md|(personal|team)-knowledge-base/SKILL\.md)$' || exit 0
+for role in personal team; do
+  git diff --cached -U0 -- "src/frontmatter/$role.yaml" | grep -q '^+version:' || {
+    echo "pre-commit: this commit changes a skill, but src/frontmatter/$role.yaml has no new version." >&2
+    echo "Raise the minor part of both versions (for example 1.4.0 to 1.5.0), run ./build.sh, and stage the files." >&2
+    exit 1
+  }
+done
