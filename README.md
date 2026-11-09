@@ -250,8 +250,9 @@ run the build:
 ./build.sh
 ```
 
-Turn on the hooks once. The pre-commit hook asks for a new minor version in both
-skills whenever a commit changes a skill. The pre-push hook runs the fast tests
+Turn on the hooks once. The pre-commit hook asks for a new version in both
+skills whenever a commit changes a skill (patch for a normal change, minor for a
+substantial one). The pre-push hook runs the fast tests
 before every push, so a failing push never reaches CI:
 
 ```bash

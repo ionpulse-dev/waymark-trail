@@ -44,7 +44,7 @@ URL of one file.
 - The finished files have no includes and no tool-specific syntax.
 - The build needs only a shell, with no runtime to install.
 - Nobody edits a finished file by hand.
-- Every commit that changes a skill raises the version of both skills in the same commit. Only the minor part goes up (for example 1.4.0 to 1.5.0). The major part changes only for a break that needs a manual step. The build does not change versions by itself. The hook `.githooks/pre-commit` refuses a commit without the bump.
+- Every commit that changes a skill raises the version of both skills in the same commit. A normal change raises the patch part (for example 1.5.0 to 1.5.1). Only a substantial change raises the minor part (for example 1.5.3 to 1.6.0). The major part changes only for a break that needs a manual step. The build does not change versions by itself. The hook `.githooks/pre-commit` refuses a commit without a new version.
 - Each skill has its own version and its own Git tag, named `<skill-name>-v<version>`. A pinned URL uses that tag.
 
 ## Acceptance Criteria

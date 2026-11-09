@@ -130,3 +130,12 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - Update without asking — an agent must not replace its own rules without consent.
 
 **Reason:** This is an automatic way to deliver updates, and the person keeps control.
+
+## Normal changes raise the patch part — 2026-11-09
+
+**Decision:** A normal change to a skill raises the patch part of both versions (1.5.0 to 1.5.1). Only a substantial change, such as a new feature or a changed rule that people notice, raises the minor part (1.5.3 to 1.6.0). This replaces "only the minor part goes up" in the entry above. The hook only checks that both versions changed. The agent chooses patch or minor.
+
+**Alternatives considered:**
+- A minor step for every change — the minor number would grow fast (1.3.0 to 1.5.0 in one day) and say nothing about how large a change is.
+
+**Reason:** The version number should show how big a change is. The update check works the same for patch and minor steps.

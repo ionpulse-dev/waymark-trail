@@ -34,7 +34,9 @@ plans. Maintainers keep non-public notes outside this repository.
 - Say "document", not "note", for the unit of a knowledge base.
 - Ask the user one question at a time.
 - Write all code, comments, documentation, and commit messages in English.
-- Every commit that changes a skill raises the minor version of both skills. Run
+- Every commit that changes a skill raises the version of both skills: the patch
+  part for a normal change (1.5.0 to 1.5.1), the minor part only for a
+  substantial one (1.5.3 to 1.6.0). Run
   `git config core.hooksPath .githooks` once. The pre-commit hook enforces it.
 
 ## License
