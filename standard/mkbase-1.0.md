@@ -1,8 +1,8 @@
-# Markdown Knowledge Base Document Standard (MKBDS)
+# MKBase Document Standard
 
 **Version:** 1.0
 **Date:** 2026-11-08
-**Short name:** MKBDS 1.0
+**Short name:** MKBase 1.0
 
 ---
 
@@ -39,7 +39,7 @@ described in RFC 2119.
   an existing document without fixing every link that the change breaks. It MUST keep the parts of a document that it does not
   understand, such as callouts and comments written by people.
 
-A claim of conformance MUST name the version, for example "conforms to MKBDS
+A claim of conformance MUST name the version, for example "conforms to MKBase
 1.0".
 
 ## 3 Normative references
@@ -53,8 +53,8 @@ A claim of conformance MUST name the version, for example "conforms to MKBDS
 
 - **document.** One Markdown file of a knowledge base. It holds one topic.
 - **knowledge base.** The set of documents below one root.
-- **root.** The folder that contains the marker folder `.mkbds`.
-- **marker folder.** The folder `.mkbds` in the root. It defines the root and holds the metadata and the configuration of the knowledge base.
+- **root.** The folder that contains the marker folder `.mkbase`.
+- **marker folder.** The folder `.mkbase` in the root. It defines the root and holds the metadata and the configuration of the knowledge base.
 - **frontmatter.** The YAML header at the start of a document.
 - **property.** One key and its value in the frontmatter.
 - **ID.** The path of a document below the root, without `.md`.
@@ -63,7 +63,7 @@ A claim of conformance MUST name the version, for example "conforms to MKBDS
 
 ## 5 Knowledge base root and marker folder
 
-1. A knowledge base has a root: a folder that contains a folder named `.mkbds`.
+1. A knowledge base has a root: a folder that contains a folder named `.mkbase`.
    This folder is the marker folder.
 2. The marker folder holds the metadata and the configuration of the knowledge
    base. Its content is open. This version of the standard defines only the
@@ -78,7 +78,7 @@ A claim of conformance MUST name the version, for example "conforms to MKBDS
    base.
 5. A tool SHOULD keep its own files in the marker folder in a subfolder or with
    a name that carries the name of the tool, for example
-   `.mkbds/example-tool/settings.toml`. A consumer MUST ignore files in the
+   `.mkbase/example-tool/settings.toml`. A consumer MUST ignore files in the
    marker folder that it does not know. A producer MUST keep them.
 6. A file or a folder whose name starts with `.` is not part of the knowledge
    base. This includes the marker folder.
@@ -191,7 +191,7 @@ field names, the field types, the file name rules, or the link forms.
 
 Obsidian is a product. It has no formal specification, and it can change. This
 standard does not use it as a normative reference. Obsidian finds a vault by
-its `.obsidian` folder. MKBDS finds a knowledge base by its `.mkbds` folder.
+its `.obsidian` folder. MKBase finds a knowledge base by its `.mkbase` folder.
 
 1. A conforming document SHOULD open in Obsidian without errors. Its properties,
    links, tags, and graph SHOULD work.
@@ -242,7 +242,7 @@ is named for the rule that it breaks.
 The folder `standard/conformance/` holds:
 
 - `vault/`: a sample vault with 18 documents, from a few lines to about 50 KB.
-  The marker folder is `vault/.mkbds`. It holds `version`, an `exclude` file
+  The marker folder is `vault/.mkbase`. It holds `version`, an `exclude` file
   that excludes `README.md`, and a file of an example tool. The vault has
   a deprecated, a disputed, and a superseding document, links between folders,
   callouts, and non-ASCII text.

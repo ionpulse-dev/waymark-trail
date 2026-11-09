@@ -13,7 +13,7 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 | **Given** the context was compacted, **When** the next message arrives, **Then** the agent shows the table again. | A4, M5 |
 | **Given** a write request, **When** the agent writes, **Then** it pulls first, checks that the document did not change since it read it, commits under the person's name, and writes no secrets. | A5, A9, M6 |
 | **Given** a document would exceed the size cap, **When** the agent writes it, **Then** it splits the document or moves details into a linked source. | A6, M7 |
-| **Given** a document the agent wrote, **When** it is checked against MKBDS 1.0, **Then** it conforms. | A7, M6 |
+| **Given** a document the agent wrote, **When** it is checked against MKBase 1.0, **Then** it conforms. | A7, M6 |
 | **Given** the skill file is opened on its own, **When** it is read, **Then** it contains everything needed, with no include and no mention of a settings file. | A8, A10 |
 
 ## Test Cases
@@ -29,7 +29,7 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 - [x] [auto] A9: The skill has a rule against secrets and a rule to ask when unsure (`tests/skills.test.sh`).
 - [x] [auto] A10: The skill does not mention other tools, a settings file, or a config file, and stays below 12 KB (`tests/skills.test.sh`).
 - [ ] [manual] M1: The start message.
-  1. Create a test repository with a `.mkbds` folder (with the file `version` that says `1.0`) and one valid document. Add the start block from the README to its `AGENTS.md`, with the path `.agents/skills/personal-knowledge-base/SKILL.md`, and copy the skill file there.
+  1. Create a test repository with a `.mkbase` folder (with the file `version` that says `1.0`) and one valid document. Add the start block from the README to its `AGENTS.md`, with the path `.agents/skills/personal-knowledge-base/SKILL.md`, and copy the skill file there.
   2. Start a new agent session in the repository and send "hello".
   3. Expected: the agent shows the start message with the repository name and the table, with the dot in the Manual cell of both rows, and nothing more.
   4. Cleanup: delete the test repository.
@@ -47,7 +47,7 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
   2. Expected: the agent shows the table again before it answers.
 - [ ] [manual] M6: A valid write.
   1. Say "write a document about why we chose Postgres. Reason: it supports our JSON queries."
-  2. Expected: one new file below the folder that holds the `.mkbds` folder with a lowercase file name and all required fields, correct dates, and your Git name and email in `created_by` and `updated_by`. One commit under your name with a message that starts with `kb:`. The agent pulled before it wrote and pushed after.
+  2. Expected: one new file below the folder that holds the `.mkbase` folder with a lowercase file name and all required fields, correct dates, and your Git name and email in `created_by` and `updated_by`. One commit under your name with a message that starts with `kb:`. The agent pulled before it wrote and pushed after.
   3. Cleanup: delete the test repository and its remote.
 - [ ] [manual] M7: Size cap.
   1. Ask the agent to write one document from a text of more than 100 KB.

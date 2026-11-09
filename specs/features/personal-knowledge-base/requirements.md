@@ -51,7 +51,7 @@ unclear, the agent asks which row the person means.
 Both rules are part of the shared rules (`src/common.md`) and are specified in
 the foundation item `skill-build`. The skill covers:
 
-- Document format: MKBDS 1.0 (see "Document format" below). The agent sets the dates and the authors itself, from today's
+- Document format: MKBase 1.0 (see "Document format" below). The agent sets the dates and the authors itself, from today's
   date and the person's Git name and email.
 - Reading: look at the path, title, and description first. Open the body only
   when it is worth it.
@@ -63,8 +63,8 @@ the foundation item `skill-build`. The skill covers:
 
 ### Document format
 
-The document format is the Markdown Knowledge Base Document Standard (MKBDS)
-1.0, in `standard/mkbds-1.0.md`. The skill carries the rules in short form, in
+The document format is the MKBase Document Standard
+1.0, in `standard/mkbase-1.0.md`. The skill carries the rules in short form, in
 `src/common.md`. The field table in the skill is identical to the table in the
 standard, and a test checks this. A change to the standard changes `src/common.md`
 too, and raises both skill versions.
@@ -94,7 +94,7 @@ file. The same body can be pasted into an `AGENTS.md`.
 - **Given** the context was compacted, **When** the next message arrives, **Then** the agent shows the table again.
 - **Given** a write request, **When** the agent writes, **Then** it pulls first, checks that the document did not change since it read it, commits under the person's name, and writes no secrets.
 - **Given** a document would exceed the size cap, **When** the agent writes it, **Then** it splits the document or moves details into a linked source.
-- **Given** a document the agent wrote, **When** it is checked against MKBDS 1.0, **Then** it conforms: fields, names, links, and sizes.
+- **Given** a document the agent wrote, **When** it is checked against MKBase 1.0, **Then** it conforms: fields, names, links, and sizes.
 - **Given** the skill file is opened on its own, **When** it is read, **Then** it contains everything needed, with no include and no mention of a settings file.
 
 ## Constraints & Edge Cases

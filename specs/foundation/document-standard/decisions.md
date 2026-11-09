@@ -4,7 +4,7 @@
 
 ## The format is a versioned written standard — 2026-11-08
 
-**Decision:** The document format is defined once, in `standard/mkbds-1.0.md`. The skills follow it and carry the rules in short form.
+**Decision:** The document format is defined once, in `standard/mkbase-1.0.md`. The skills follow it and carry the rules in short form.
 
 **Alternatives considered:**
 - Copy the rules into each project and keep them in step by hand — they drift.
@@ -12,9 +12,9 @@
 
 **Reason:** One source of truth. Other projects can adopt the same format.
 
-## Name: Markdown Knowledge Base Document Standard — 2026-11-08
+## Name: MKBase Document Standard — 2026-11-08
 
-**Decision:** The full name is Markdown Knowledge Base Document Standard. The short form is MKBDS, used in file names and version references (`mkbds-1.0.md`, "conforms to MKBDS 1.0"). The version is part of the file name, so old versions stay readable.
+**Decision:** The full name is MKBase Document Standard. The short form is MKBase, used in file names and version references (`mkbase-1.0.md`, "conforms to MKBase 1.0"). The version is part of the file name, so old versions stay readable.
 
 **Alternatives considered:**
 - Knowledge Base Document Format (KBDF) — shorter, less descriptive.
@@ -71,7 +71,7 @@
 
 **Superseded by:** The marker is a folder
 
-**Decision:** A knowledge base has a root: the folder that contains a file named `.mkbds`. The ID of a document is its path below the root. The marker file may be empty. It may list files and folders that are not documents. The standard names no folder, so the earlier requirement for a `knowledge/` folder is gone. The idea of "the folder is the owner" is also gone, because the team decides how it uses folders.
+**Decision:** A knowledge base has a root: the folder that contains a file named `.mkbase`. The ID of a document is its path below the root. The marker file may be empty. It may list files and folders that are not documents. The standard names no folder, so the earlier requirement for a `knowledge/` folder is gone. The idea of "the folder is the owner" is also gone, because the team decides how it uses folders.
 
 **Alternatives considered:**
 - A fixed folder `knowledge/` — too opinionated.
@@ -84,7 +84,7 @@
 
 **Supersedes:** The root is defined by a marker file, not by a folder name
 
-**Decision:** The marker is a folder `.mkbds`, not a file. The folder holds every kind of metadata and configuration of the knowledge base, and its content is open. This version defines two files: `version` (required) with the version of the standard, and `exclude` (optional) with the paths that are not documents. A tool keeps its own files in the folder, preferably in a subfolder with its name, and other tools ignore them. Files and folders whose names start with `.` are not part of the knowledge base. The earlier idea of a TOML marker file with settings is dropped.
+**Decision:** The marker is a folder `.mkbase`, not a file. The folder holds every kind of metadata and configuration of the knowledge base, and its content is open. This version defines two files: `version` (required) with the version of the standard, and `exclude` (optional) with the paths that are not documents. A tool keeps its own files in the folder, preferably in a subfolder with its name, and other tools ignore them. Files and folders whose names start with `.` are not part of the knowledge base. The earlier idea of a TOML marker file with settings is dropped.
 
 **Alternatives considered:**
 - A marker file in TOML with a fixed set of keys — the standard would have to define the settings of every tool.

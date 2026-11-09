@@ -23,7 +23,7 @@ _`[auto]` items are verified by running `sh tests/skills.test.sh` and `sh tests/
 - [x] [auto] B6: The skill has the collision rule with the `-conflict.md` file and the rule to never leave a conflict state (`tests/skills.test.sh`).
 - [x] [auto] B7: The skill has no mention of other tools or a settings file, and stays below 16 KB (`tests/skills.test.sh`).
 - [ ] [manual] N1: The start message.
-  1. Create a test repository with a `.mkbds` folder (with the file `version` that says `1.0`) and one valid document. Add the start block from the README to its `AGENTS.md` with the path `.agents/skills/team-knowledge-base/SKILL.md`, and copy the skill file there.
+  1. Create a test repository with a `.mkbase` folder (with the file `version` that says `1.0`) and one valid document. Add the start block from the README to its `AGENTS.md` with the path `.agents/skills/team-knowledge-base/SKILL.md`, and copy the skill file there.
   2. Start a new session and send "hello".
   3. Expected: the start message with "(shared with your team)", the table with both rows at Manual, and the line about commits and visibility.
   4. Cleanup: delete the test repository.

@@ -23,7 +23,7 @@
 ## What it is
 
 - **An open document standard.** The
-  [Markdown Knowledge Base Document Standard](standard/mkbds-1.0.md) (MKBDS)
+  [MKBase Document Standard](standard/mkbase-1.0.md) (MKBase)
   defines one document: small files, a short header, no fixed folders. Any tool
   can use it.
 - **Two skills.** A skill is one text file with rules. Give it to your agent,
@@ -88,11 +88,11 @@ Prefer to do it yourself? See [Install](#install).
 
 You need a Git repository and an agent that reads `AGENTS.md`.
 
-**1. Mark the knowledge base.** Create a `.mkbds` folder with a `version` file
+**1. Mark the knowledge base.** Create a `.mkbase` folder with a `version` file
 in the folder that holds your documents:
 
 ```bash
-mkdir .mkbds && echo 1.0 > .mkbds/version
+mkdir .mkbase && echo 1.0 > .mkbase/version
 ```
 
 **2. Add the skill.** Tell your agent:
@@ -120,7 +120,7 @@ At the start of every session, read and follow
 
 The URL above uses `main`, so it gives the newest version. To pin a version,
 replace `main` with the tag `<skill-name>-v<version>`, for example
-`personal-knowledge-base-v1.0.1`.
+`personal-knowledge-base-v1.1.0`.
 
 ### Install globally
 
@@ -133,20 +133,20 @@ base do not get it, so for a team, keep the skill in the repository.
 
 ## The document standard
 
-MKBDS has numbered sections, conformance rules, and valid and invalid examples
+MKBase has numbered sections, conformance rules, and valid and invalid examples
 in [standard/conformance/](standard/conformance/). The skills follow it, and any
 other tool can too.
 
 - One topic per Markdown file, at most 100 KB.
 - A short YAML header: title, description, status, dates, and authors.
-- No fixed folder. A `.mkbds` folder marks the knowledge base.
+- No fixed folder. A `.mkbase` folder marks the knowledge base.
 
 <br/>
 
 ## Obsidian
 
 A knowledge base is also a valid [Obsidian](https://obsidian.md) vault. The
-`.mkbds` folder works like Obsidian's `.obsidian` folder, which marks a vault.
+`.mkbase` folder works like Obsidian's `.obsidian` folder, which marks a vault.
 
 To make Obsidian write relative Markdown links instead of `[[wikilinks]]`, put
 this in `.obsidian/app.json`:

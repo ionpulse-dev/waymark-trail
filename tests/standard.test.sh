@@ -5,7 +5,7 @@
 set -u
 
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
-STD="$ROOT/standard/mkbds-1.0.md"
+STD="$ROOT/standard/mkbase-1.0.md"
 CHECK="$ROOT/tests/check-document.sh"
 WORK=$(mktemp -d)
 trap 'rm -rf "$WORK"' EXIT
@@ -65,7 +65,7 @@ out=$("$CHECK" "$WORK/too-large.md" 2>&1) && fail "S3 too-large passes but must 
 
 # a wikilink in a property must name an existing document
 mkdir -p "$WORK/kb"
-mkdir -p "$WORK/kb/.mkbds"; printf '1.0\n' > "$WORK/kb/.mkbds/version"
+mkdir -p "$WORK/kb/.mkbase"; printf '1.0\n' > "$WORK/kb/.mkbase/version"
 make_doc() { # make_doc <file> [extra frontmatter line]
   {
     echo "---"
@@ -111,10 +111,10 @@ grep -rqP '[^\x00-\x7F]' "$V" 2>/dev/null || grep -rq 'Größe' "$V"
 grep -rq '\[!' "$V" && pass "S6 vault has a callout" || fail "S6 vault has a callout"
 
 # ---- S7: the marker folder defines the root
-[ -f "$V/.mkbds/version" ] && [ "$(cat "$V/.mkbds/version")" = "1.0" ] && pass "S7 the sample vault has a marker folder with a version file" || fail "S7 the sample vault has a marker folder with a version file"
-[ -f "$V/.mkbds/exclude" ] && [ -f "$V/.mkbds/example-tool/settings.toml" ] && pass "S7 the marker folder holds an exclude file and a file of a tool" || fail "S7 the marker folder holds an exclude file and a file of a tool"
+[ -f "$V/.mkbase/version" ] && [ "$(cat "$V/.mkbase/version")" = "1.0" ] && pass "S7 the sample vault has a marker folder with a version file" || fail "S7 the sample vault has a marker folder with a version file"
+[ -f "$V/.mkbase/exclude" ] && [ -f "$V/.mkbase/example-tool/settings.toml" ] && pass "S7 the marker folder holds an exclude file and a file of a tool" || fail "S7 the marker folder holds an exclude file and a file of a tool"
 out=$("$CHECK" "$V/README.md" 2>&1) && case "$out" in SKIP*) pass "S7 an excluded file is skipped" ;; *) fail "S7 an excluded file is skipped" ;; esac
-mkroot() { mkdir -p "$1/.mkbds"; printf '1.0\n' > "$1/.mkbds/version"; }
+mkroot() { mkdir -p "$1/.mkbase"; printf '1.0\n' > "$1/.mkbase/version"; }
 # the same file in a root without the exclusion is not a document
 mkroot "$WORK/kb2"
 cp "$V/README.md" "$WORK/kb2/README.md"
@@ -123,12 +123,12 @@ out=$("$CHECK" "$WORK/kb2/README.md" 2>&1) && fail "S7 a README that is not excl
 # a folder can be excluded as a whole
 mkroot "$WORK/kb3"
 mkdir -p "$WORK/kb3/drafts"
-printf '# comment\ndrafts\n' > "$WORK/kb3/.mkbds/exclude"
+printf '# comment\ndrafts\n' > "$WORK/kb3/.mkbase/exclude"
 echo "no header here" > "$WORK/kb3/drafts/Bad_File.md"
 out=$("$CHECK" "$WORK/kb3/drafts/Bad_File.md" 2>&1) && case "$out" in SKIP*) pass "S7 an excluded folder is skipped" ;; *) fail "S7 an excluded folder is skipped" ;; esac
 # hidden files and folders are not part of the knowledge base
-echo "no header here" > "$WORK/kb3/.mkbds/Notes.md"
-out=$("$CHECK" "$WORK/kb3/.mkbds/Notes.md" 2>&1) && case "$out" in SKIP*) pass "S7 a file in the marker folder is not a document" ;; *) fail "S7 a file in the marker folder is not a document" ;; esac
+echo "no header here" > "$WORK/kb3/.mkbase/Notes.md"
+out=$("$CHECK" "$WORK/kb3/.mkbase/Notes.md" 2>&1) && case "$out" in SKIP*) pass "S7 a file in the marker folder is not a document" ;; *) fail "S7 a file in the marker folder is not a document" ;; esac
 
 # ---- S4: the standard and the skills agree
 table() { awk '/^\| Field \| Required \| Meaning \|$/ {on=1} on && /^\|/ {print; next} on {exit}' "$1"; }

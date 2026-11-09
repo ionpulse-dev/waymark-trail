@@ -72,12 +72,12 @@ for f in "$P" "$T"; do
     "at most 15 words" "At most 50 words"
   check "$s: finds the root with the marker file" "$f" \
     "The root is the folder that contains a folder named" \
-    '`.mkbds`' \
-    '`.mkbds/version`' \
-    '`.mkbds/exclude`' \
+    '`.mkbase`' \
+    '`.mkbase/version`' \
+    '`.mkbase/exclude`' \
     "If you find none, do not guess" \
     "The ID of a document is its path below the root"
-  check "$s: names the standard" "$f" "MKBDS) 1.0"
+  check "$s: names the standard" "$f" "MKBase) 1.0"
   check "$s: move rules" "$f" \
     "Use \`git mv\`" "git log --follow"
   check "$s: secrets" "$f" \

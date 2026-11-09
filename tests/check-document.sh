@@ -1,5 +1,5 @@
 #!/bin/sh
-# Reference checker for MKBDS 1.0 (standard/mkbds-1.0.md).
+# Reference checker for MKBase 1.0 (standard/mkbase-1.0.md).
 # It checks the rules that a shell can check, for the conformance test set.
 # It reads the flat subset of YAML that the standard allows. It is not a full
 # YAML parser, and the standard (not this tool) decides what is conforming.
@@ -21,11 +21,11 @@ fail() { # fail <file> <rule> <message>
   status=1
 }
 
-# find_root <file>: print the first folder above the file that holds a .mkbds folder
+# find_root <file>: print the first folder above the file that holds a .mkbase folder
 find_root() {
   d=$(cd "$(dirname "$1")" 2>/dev/null && pwd) || return 1
   while [ -n "$d" ]; do
-    if [ -d "$d/.mkbds" ]; then echo "$d"; return 0; fi
+    if [ -d "$d/.mkbase" ]; then echo "$d"; return 0; fi
     [ "$d" = "/" ] && return 1
     d=$(dirname "$d")
   done
@@ -33,13 +33,13 @@ find_root() {
 }
 
 # is_excluded <file> <root>: true if the file is hidden (a path part starts with
-# a dot) or if .mkbds/exclude of the root names it or a folder above it
+# a dot) or if .mkbase/exclude of the root names it or a folder above it
 is_excluded() {
   rel=$(cd "$(dirname "$1")" && pwd)/$(basename "$1")
   rel=${rel#"$2"/}
   case "/$rel" in */.*) return 0 ;; esac
-  [ -f "$2/.mkbds/exclude" ] || return 1
-  grep -v '^[[:space:]]*#' "$2/.mkbds/exclude" | grep -v '^[[:space:]]*$' | while IFS= read -r line; do
+  [ -f "$2/.mkbase/exclude" ] || return 1
+  grep -v '^[[:space:]]*#' "$2/.mkbase/exclude" | grep -v '^[[:space:]]*$' | while IFS= read -r line; do
     line=${line%/}
     case "$rel" in "$line"|"$line"/*) echo yes; break ;; esac
   done | grep -q yes
@@ -130,19 +130,19 @@ check_file() {
     while IFS= read -r target; do
       case "$target" in http://*|https://*) continue ;; esac
       [ -f "$dir/$target" ] || echo "$target"
-    done > "${TMPDIR:-/tmp}/mkbds-links.$$"
+    done > "${TMPDIR:-/tmp}/mkbase-links.$$"
   while IFS= read -r target; do
     fail "$file" broken-link "no file for the link $target"
-  done < "${TMPDIR:-/tmp}/mkbds-links.$$"
-  rm -f "${TMPDIR:-/tmp}/mkbds-links.$$"
+  done < "${TMPDIR:-/tmp}/mkbase-links.$$"
+  rm -f "${TMPDIR:-/tmp}/mkbase-links.$$"
 
   # Wikilinks in properties name a document by its ID, a path below the root.
   if [ -n "$root" ]; then
-    printf '%s\n' "$fm" | grep -Eo '\[\[[^]]+\]\]' | sed 's/^\[\[//; s/\]\]$//' > "${TMPDIR:-/tmp}/mkbds-wiki.$$"
+    printf '%s\n' "$fm" | grep -Eo '\[\[[^]]+\]\]' | sed 's/^\[\[//; s/\]\]$//' > "${TMPDIR:-/tmp}/mkbase-wiki.$$"
     while IFS= read -r id; do
       [ -f "$root/$id.md" ] || fail "$file" broken-wikilink "no document for the ID $id"
-    done < "${TMPDIR:-/tmp}/mkbds-wiki.$$"
-    rm -f "${TMPDIR:-/tmp}/mkbds-wiki.$$"
+    done < "${TMPDIR:-/tmp}/mkbase-wiki.$$"
+    rm -f "${TMPDIR:-/tmp}/mkbase-wiki.$$"
   fi
 }
 

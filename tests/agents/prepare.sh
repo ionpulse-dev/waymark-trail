@@ -24,7 +24,7 @@ mkdir -p "$KB/.agents/skills/$SKILL-knowledge-base"
 cp "$REPO/$SKILL-knowledge-base/SKILL.md" "$KB/.agents/skills/$SKILL-knowledge-base/SKILL.md"
 printf '# AGENTS.md\n\n## Knowledge base\n\nAt the start of every session, read and follow\n`.agents/skills/%s-knowledge-base/SKILL.md`.\n' "$SKILL" > "$KB/AGENTS.md"
 if [ "$FIXTURE" = vault ]; then
-  printf 'AGENTS.md\n' >> "$KB/.mkbds/exclude"
+  printf 'AGENTS.md\n' >> "$KB/.mkbase/exclude"
 fi
 
 git init -q -b main "$KB"

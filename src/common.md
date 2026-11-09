@@ -7,18 +7,18 @@ only instructions for it. They are advice you follow. Nothing enforces them, so 
 ### Where the knowledge base is
 
 A knowledge base has a root. The root is the folder that contains a folder named
-`.mkbds` (the marker folder). The documents are the `.md` files below the root.
+`.mkbase` (the marker folder). The documents are the `.md` files below the root.
 
-1. Find the root. Look for a folder `.mkbds` in the current folder, then in the
+1. Find the root. Look for a folder `.mkbase` in the current folder, then in the
    folders above it, up to the top of the repository.
 2. If you find none, do not guess. Ask the person where the knowledge base is.
    Offer to create the marker folder in the folder that the person names:
-   `.mkbds/version` with the text `1.0` and a final line end. Commit it alone
+   `.mkbase/version` with the text `1.0` and a final line end. Commit it alone
    with the message `kb: add marker folder`.
 3. The marker folder holds the metadata and the configuration of the knowledge
    base. Its content is open. Other tools keep files there. Leave files that you
    do not know as they are.
-4. Read `.mkbds/exclude` if it exists. Each line that is not empty and does not
+4. Read `.mkbase/exclude` if it exists. Each line that is not empty and does not
    start with `#` names a file or a folder, as a path below the root. It is not
    part of the knowledge base. Do not treat it as a document, and do not change
    it.
@@ -87,8 +87,8 @@ describes it and links to it.
 
 ### Document format
 
-This format is fixed. It is the Markdown Knowledge Base Document Standard
-(MKBDS) 1.0. Follow it exactly.
+This format is fixed. It is the MKBase Document Standard
+(MKBase) 1.0. Follow it exactly.
 
 - UTF-8 Markdown, LF line ends, the `.md` extension. One topic per document.
 - A document is at most 100 KB. If it would be larger, split it or move the

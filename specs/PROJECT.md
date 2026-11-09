@@ -4,7 +4,7 @@
 
 waymark-trail is long-term memory and a knowledge base for AI agents, as plain
 Markdown in a Git repository. It has two parts: an open document standard
-(MKBDS) and a pair of skills. A skill tells the agent how to read and write a
+(MKBase) and a pair of skills. A skill tells the agent how to read and write a
 knowledge base of Markdown documents safely and with little context. It needs no
 app, no CLI, and no server. A person gives the agent the URL of one skill file.
 The skills are standalone.
@@ -44,8 +44,8 @@ includes, so one URL is enough to install it.
 ### Document standard
 
 The format of one document is defined once, in the Markdown Knowledge Base
-Document Standard (MKBDS), `standard/mkbds-1.0.md`. The skills follow it. A
-conformance set and a reference checker make the rules testable. A knowledge base is the folder that holds a marker folder `.mkbds`. The marker folder holds the metadata and the configuration, and its content is open. The standard names no folder for the documents.
+Document Standard (MKBase), `standard/mkbase-1.0.md`. The skills follow it. A
+conformance set and a reference checker make the rules testable. A knowledge base is the folder that holds a marker folder `.mkbase`. The marker folder holds the metadata and the configuration, and its content is open. The standard names no folder for the documents.
 
 ### Parts and build
 
@@ -79,7 +79,7 @@ words.
 
 **In scope:**
 - The two skills and their shared rules.
-- The document standard (MKBDS), its conformance set, and its checker.
+- The document standard (MKBase), its conformance set, and its checker.
 - The build script and the install-by-URL instructions.
 - The examples for the start block in `AGENTS.md`.
 

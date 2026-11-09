@@ -59,7 +59,7 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 ## The document format is fixed and complete — 2026-11-08
 
-**Superseded by:** The format follows MKBDS
+**Superseded by:** The format follows MKBase
 
 **Decision:** The skill carries the complete document format: all fields, file names, IDs, links, and size limits. The section "Document format" in `requirements.md` is the specification. A change to it needs the same change in `src/common.md` and a version bump.
 
@@ -112,11 +112,11 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 **Reason:** The import line works without a claim about each tool.
 
-## The format follows MKBDS — 2026-11-08
+## The format follows MKBase — 2026-11-08
 
 **Supersedes:** The document format is fixed and complete
 
-**Decision:** The document format is defined in the Markdown Knowledge Base Document Standard (`standard/mkbds-1.0.md`). The requirements no longer repeat the rules. The skill carries them in short form, and a test compares the field tables.
+**Decision:** The document format is defined in the MKBase Document Standard (`standard/mkbase-1.0.md`). The requirements no longer repeat the rules. The skill carries them in short form, and a test compares the field tables.
 
 **Reason:** One source of truth for the format (see `document-standard`).
 
@@ -130,7 +130,7 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 **Superseded by:** The skill looks for the marker folder
 
-**Decision:** The skill looks for the file `.mkbds` to find the root of the knowledge base. If it finds none, it asks the person where the knowledge base is and offers to create an empty marker file. It does not assume a folder name.
+**Decision:** The skill looks for the file `.mkbase` to find the root of the knowledge base. If it finds none, it asks the person where the knowledge base is and offers to create an empty marker file. It does not assume a folder name.
 
 **Alternatives considered:**
 - Assume a folder `knowledge/` — too opinionated.
@@ -141,7 +141,7 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 **Supersedes:** The skill finds the root with the marker file
 
-**Decision:** The marker is the folder `.mkbds`. The skill looks for it, reads `.mkbds/exclude`, leaves unknown files in the folder alone, and offers to create `.mkbds/version` (with `1.0`) when it finds none.
+**Decision:** The marker is the folder `.mkbase`. The skill looks for it, reads `.mkbase/exclude`, leaves unknown files in the folder alone, and offers to create `.mkbase/version` (with `1.0`) when it finds none.
 
 **Reason:** See `document-standard`.
 

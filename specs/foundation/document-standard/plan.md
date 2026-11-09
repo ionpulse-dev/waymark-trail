@@ -15,10 +15,10 @@ A small shell checker and a conformance set make the rules testable.
 
 ## New Files
 
-- `standard/mkbds-1.0.md` — the standard.
-- `standard/conformance/vault/.mkbds/version` — the version file of the marker folder (`1.0`).
-- `standard/conformance/vault/.mkbds/exclude` — excludes `README.md`.
-- `standard/conformance/vault/.mkbds/example-tool/settings.toml` — a file of an imaginary tool, to show that the marker folder is open.
+- `standard/mkbase-1.0.md` — the standard.
+- `standard/conformance/vault/.mkbase/version` — the version file of the marker folder (`1.0`).
+- `standard/conformance/vault/.mkbase/exclude` — excludes `README.md`.
+- `standard/conformance/vault/.mkbase/example-tool/settings.toml` — a file of an imaginary tool, to show that the marker folder is open.
 - `standard/conformance/vault/README.md` — explains the vault. It is excluded, so it has no header.
 - `standard/conformance/vault/.obsidian/app.json` — Obsidian settings of the sample vault (Markdown links, relative paths).
 - `standard/conformance/vault/backend/auth/legacy-session-length.md` — disputed document with a reason.
@@ -49,7 +49,7 @@ A small shell checker and a conformance set make the rules testable.
 
 - The standard's structure follows ISO and RFC style: numbered sections, defined terms, normative and informative parts.
 - The field table text is identical in the standard and in `src/common.md`. `tests/standard.test.sh` extracts both and compares them.
-- The checker finds the root (the first folder above the file with a `.mkbds` folder), skips excluded files, reads a document, splits the frontmatter, and checks: file name, size, delimiters, flat properties, required fields, values, dates, author format, word limits, and relative links.
+- The checker finds the root (the first folder above the file with a `.mkbase` folder), skips excluded files, reads a document, splits the frontmatter, and checks: file name, size, delimiters, flat properties, required fields, values, dates, author format, word limits, and relative links.
 - Invalid documents are named `<rule>.md`. The test expects the checker to fail on each and to print the rule name.
 - The limits are listed in one section, with their defaults.
 - The Obsidian check is manual. No Obsidian version has been tested yet; the standard says so.
