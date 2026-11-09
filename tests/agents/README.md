@@ -18,9 +18,10 @@ For each scenario and run:
 sh tests/agents/prepare.sh 03-move /tmp/round/03-move-haiku-1
 ```
 
-The command builds the repository and prints the prompt. Start one agent with
-that prompt (a new session or a subagent, with the model you want to test). When
-it ends:
+The command builds the knowledge base, a global skill folder, a global
+instructions file, and an empty session folder (`work`), and prints the prompt.
+Start one agent in the `work` folder with that prompt (a new session or a
+subagent, with the model you want to test). When it ends:
 
 ```bash
 RESULTS_FILE=/tmp/round/results.tsv LABEL=haiku-1 \

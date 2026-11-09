@@ -25,7 +25,7 @@ a skill made agents better or worse.
 ## Deliverables
 
 - `tests/agents/scenarios/<name>/`: 16 scenarios. Each has `meta`, `task.txt`, `grade.sh`, and (if needed) `setup.sh`.
-- `tests/agents/prepare.sh`: builds the start state of a scenario (repository, bare `origin`, skill, `AGENTS.md`) and prints the prompt for the agent.
+- `tests/agents/prepare.sh`: builds the start state of a scenario (knowledge base, bare `origin`, global skill folder, global instructions file, empty session folder) and prints the prompt for the agent.
 - `tests/agents/grade.sh`: checks the end state and prints PASS or FAIL.
 - `tests/agents/summarize.sh`: prints a table of results by scenario and model.
 - `tests/agents/lib.sh`: helpers for fixtures and checks.
@@ -37,7 +37,7 @@ a skill made agents better or worse.
 
 - A scenario never relies on what an agent says about itself. The grader reads the repository, the remote, and the saved final reply.
 - A scenario starts from a fresh repository with a bare `origin`, so pull, push, concurrent changes, and force pushes are real.
-- The skill is installed like in real use: the skill file in `.agents/skills/`, and an `AGENTS.md` with the loader block. There is no `CLAUDE.md`, because Claude Code reads `AGENTS.md` then.
+- The skill is installed like in real use, at the global user level: a skill file in a `home/skills/` folder and a `home/instructions.md` file with the start block. The block names the path of the knowledge base. The agent starts in an empty session folder, not in the knowledge base. The knowledge base holds only documents.
 - Agent runs are not part of CI. They cost money and are not deterministic.
 - A run that does nothing must fail the grader. A scenario that allows "do nothing" (for example a refusal) must still need a final reply.
 

@@ -3,11 +3,11 @@
 ## Approach
 
 A scenario is a folder. `prepare.sh` copies the sample vault (or an empty
-repository) into a run folder, installs the skill like a real user does, makes a
+repository) into a run folder, installs the skill and the start block at a global level, like a real user does, makes a
 bare `origin`, and tags the start state. `setup.sh` adds scenario state in two
 phases: `base` (part of the start commit, for example a planted document) and
 `remote` (only on `origin`, for example a colleague who pushed first). The
-prompt tells the agent to read `AGENTS.md`, to stay in the folder, to save its
+prompt tells the agent to read its global instructions, to stay in its session folder and the knowledge base, to save its
 final reply to `answer.txt`, and to stop and write its question when its rules
 say to ask.
 

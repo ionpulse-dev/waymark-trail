@@ -1,4 +1,5 @@
-The root of the knowledge base is the root of this repository. Please create the
+The root of the knowledge base is the root of the folder that your global
+instructions name. Please create the
 marker folder as your rules say. Then write two documents in a folder called
 operations. First: how we rotate our TLS certificates every 90 days. Second: the
 alert that fires 14 days before a certificate expires, linked to the first
