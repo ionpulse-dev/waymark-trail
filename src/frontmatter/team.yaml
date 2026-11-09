@@ -1,3 +1,3 @@
 name: team-knowledge-base
-description: Rules for reading and writing the shared team knowledge base in this repository. Load at the start of every session.
-version: 1.2.0
+description: Rules for reading and writing a shared team knowledge base. Load at the start of every session.
+version: 1.3.0

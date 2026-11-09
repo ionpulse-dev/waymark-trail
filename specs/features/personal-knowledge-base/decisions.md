@@ -231,3 +231,13 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 **Reason:** The skill is installed globally, so an agent that opens the knowledge base repository without the skill finds no rules there. The `README.md` is the place where such an agent and a person look first.
 
+## The skill finds the knowledge base by a path from the global instructions — 2026-11-09
+
+**Decision:** The skill does not assume that the session runs inside the knowledge base. It first uses the path that the instructions of the person name. It looks for `.mkbase` there and below. Only without a path does it look in the current folder and above. It asks the person only if both fail. It runs Git as `git -C <root>` when the session runs elsewhere. The start message shows the name and the path of the knowledge base. The `description` of both skills no longer says "in this repository".
+
+**Alternatives considered:**
+- Store the path in the skill or in a settings file — the skill stays stateless, so the path lives in the global instructions.
+- Search the current folder first — it finds a wrong knowledge base in a project that has its own `.mkbase`.
+
+**Reason:** With a global install, the current folder is almost never the knowledge base.
+

@@ -22,14 +22,23 @@ requires:
 ## Behaviour
 
 The skill is one file, `personal-knowledge-base/SKILL.md`. It needs no app, no
-CLI, and no server. It works in a session started in the knowledge base
-repository, also in Claude Code on the web and on iPhone.
+CLI, and no server. It is installed in the global skill folder of the agent
+tool and works in a session in any folder. It does not work where there are no
+global files, such as Claude Code on the web and on iPhone.
+
+### Where the knowledge base is
+
+The instructions of the person name the path of the knowledge base. The skill
+looks for the `.mkbase` folder in that path first, then below it. Only if no path
+is given does it look in the current folder and above. If both fail, it asks the
+person. The skill holds no path and saves none. When the session runs in another
+folder, the skill runs Git as `git -C <root>`.
 
 ### Start message
 
 At first use in a session, the agent shows this and nothing more:
 
-> **Knowledge base active:** `<name of the repository>`
+> **Knowledge base active:** `<name of the knowledge base>` at `<path of the root>`
 >
 > | | Manual (only when you ask) | Automatic (I decide) |
 > |---|---|---|
@@ -99,6 +108,7 @@ file. The same body can be pasted into an `AGENTS.md`.
 ## Acceptance Criteria
 
 - **Given** a new session in any folder, with the skill installed globally and the start block in the global instructions file, **When** the agent first uses the skill, **Then** it shows the start message with both rows at Manual.
+- **Given** a session in a folder that is not the knowledge base, with a path in the instructions of the person, **When** the agent uses the knowledge base, **Then** it finds the root from the path and runs Git as `git -C <root>`.
 - **Given** reading is Manual, **When** the person does not ask about the knowledge base, **Then** the agent does not search or open documents.
 - **Given** writing is Manual, **When** the person does not ask for a write, **Then** the agent does not create, change, or move documents.
 - **Given** the person says "read automatically", **When** the agent answers, **Then** it shows the table with the dot in the Automatic cell of the Reading row and the Writing row unchanged.

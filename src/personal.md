@@ -6,9 +6,9 @@ repository and decides what you may do.
 ## Start of a session
 
 At the first use in a session, show this and nothing more. Use the name of the
-repository.
+knowledge base and the path of its root.
 
-> **Knowledge base active:** `<name of the repository>`
+> **Knowledge base active:** `<name of the knowledge base>` at `<path of the root>`
 >
 > | | Manual (only when you ask) | Automatic (I decide) |
 > |---|---|---|

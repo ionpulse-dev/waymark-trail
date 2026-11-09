@@ -29,7 +29,7 @@ rules for a knowledge base that several people write to.
 
 Like the personal skill, with one more line under the table:
 
-> **Knowledge base active:** `<name of the repository>` (shared with your team)
+> **Knowledge base active:** `<name of the knowledge base>` at `<path of the root>` (shared with your team)
 >
 > | | Manual (only when you ask) | Automatic (I decide) |
 > |---|---|---|

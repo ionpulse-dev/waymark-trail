@@ -99,13 +99,26 @@ for f in "$P" "$T"; do
     'Do not use it without the skill'
 done
 
+# ---------- location of the knowledge base ----------
+for f in "$P" "$T"; do
+  s=$(basename "$(dirname "$f")")
+  check "$s: path from the instructions first, then the current folder" "$f" \
+    "name a path for the knowledge base" "Otherwise look in the current folder" \
+    'as `git -C <root>`'
+  if grep -qiE 'this repository|in the repository' "$f"; then
+    fail "$s: no 'this repository' assumption"
+  else
+    pass "$s: no 'this repository' assumption"
+  fi
+done
+
 # ---------- sizes ----------
 [ "$(wc -c < "$P")" -le 15000 ] && pass "personal: stays short (15 KB)" || fail "personal: stays short (15 KB)"
 [ "$(wc -c < "$T")" -le 17000 ] && pass "team: stays short (17 KB)" || fail "team: stays short (17 KB)"
 
 # ---------- personal ----------
 check "personal: start message" "$P" \
-  "**Knowledge base active:** \`<name of the repository>\`" \
+  "**Knowledge base active:** \`<name of the knowledge base>\` at \`<path of the root>\`" \
   "| **Reading** | ● | |" \
   "| **Writing** | ● | |" \
   "Want a different setting? Just tell me."

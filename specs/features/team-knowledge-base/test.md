@@ -24,6 +24,7 @@ _`[auto]` items are verified by running `sh tests/skills.test.sh` and `sh tests/
 - [x] [auto] B6: The skill has the collision rule with the `-conflict.md` file and the rule to never leave a conflict state (`tests/skills.test.sh`).
 - [x] [auto] B7: The skill has no mention of other tools or a settings file, and stays below 17 KB (`tests/skills.test.sh`).
 - [x] [auto] B8: The skill has the rule for the `README.md` of the knowledge base (`tests/skills.test.sh`).
+- [x] [auto] B9: The skill has the same path rules as the personal skill (`tests/skills.test.sh`).
 - [ ] [manual] N1: The start message.
   1. Create a test repository with a `.mkbase` folder (with the file `version` that says `1.0`) and one valid document. Install the skill in the global skill folder of the agent tool, as the README says. Add the start block from the README to the global instructions file, with the path of the test repository.
   2. Start a new session in another folder and send "hello".
@@ -51,3 +52,4 @@ _`[auto]` items are verified by running `sh tests/skills.test.sh` and `sh tests/
 
 - Run N1 to N6 again after every change to `src/common.md` or `src/team.md`.
 - [ ] [manual] N7: README of the knowledge base. Repeat M8 and M9 of `personal-knowledge-base/test.md` with the team skill. Expected: the same results.
+- [ ] [manual] N8: A session in another folder. Repeat M10 of `personal-knowledge-base/test.md` with the team skill. Expected: the same result.

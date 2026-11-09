@@ -1,7 +1,7 @@
 ---
 name: personal-knowledge-base
-description: Rules for reading and writing the Markdown knowledge base in this repository. Load at the start of every session.
-version: 1.2.0
+description: Rules for reading and writing a Markdown knowledge base. Load at the start of every session.
+version: 1.3.0
 ---
 
 # Personal knowledge base
@@ -12,9 +12,9 @@ repository and decides what you may do.
 ## Start of a session
 
 At the first use in a session, show this and nothing more. Use the name of the
-repository.
+knowledge base and the path of its root.
 
-> **Knowledge base active:** `<name of the repository>`
+> **Knowledge base active:** `<name of the knowledge base>` at `<path of the root>`
 >
 > | | Manual (only when you ask) | Automatic (I decide) |
 > |---|---|---|
@@ -41,8 +41,11 @@ to.
 A knowledge base has a root. The root is the folder that contains a folder named
 `.mkbase` (the marker folder). The documents are the `.md` files below the root.
 
-1. Find the root. Look for a folder `.mkbase` in the current folder, then in the
-   folders above it, up to the top of the repository.
+1. Find the root. If the instructions of the person name a path for the
+   knowledge base, look for a folder `.mkbase` in that path, then in the folders
+   below it. Otherwise look in the current folder, then in the folders above it,
+   up to the top of the repository. The path is not part of these rules. Do not
+   save it anywhere.
 2. If you find none, do not guess. Ask the person where the knowledge base is.
    Offer to create the marker folder in the folder that the person names:
    `.mkbase/version` with the text `1.0` and a final line end, `.mkbase/exclude`
@@ -73,6 +76,10 @@ A knowledge base has a root. The root is the folder that contains a folder named
    it.
 6. A file or a folder whose name starts with `.` is not part of the knowledge
    base.
+
+The session may run in another folder. Then run every Git command for the
+knowledge base as `git -C <root>`, and read and write files by their path from
+the root. The steps below write `git` for short.
 
 ### Reading and writing levels
 

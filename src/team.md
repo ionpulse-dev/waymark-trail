@@ -7,9 +7,9 @@ add to the shared rules below. The shared rules also apply.
 ## Start of a session
 
 At the first use in a session, show this and nothing more. Use the name of the
-repository.
+knowledge base and the path of its root.
 
-> **Knowledge base active:** `<name of the repository>` (shared with your team)
+> **Knowledge base active:** `<name of the knowledge base>` at `<path of the root>` (shared with your team)
 >
 > | | Manual (only when you ask) | Automatic (I decide) |
 > |---|---|---|
@@ -40,7 +40,7 @@ The dot shows the active setting of each row. Both rows start at Manual.
   with a `dispute_reason`. Do not rewrite another team's document on your own.
   Anyone may dispute a document. Deprecate, replace, or delete a document of another
   team only when the person says so clearly. Prefer deprecate to delete. A
-  deprecated document stays in the repository.
+  deprecated document stays in the knowledge base.
 - **Confidentiality.** Everyone with read access sees every document. Never write
   secrets or credentials. If you are unsure, ask the person before you write.
 - **Concurrent writes.** Pull before you write. If two versions of the same
