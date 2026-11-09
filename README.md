@@ -250,6 +250,13 @@ run the build:
 ./build.sh
 ```
 
+Turn on the pre-push check once. It runs the fast tests before every push, so a
+failing push never reaches CI:
+
+```bash
+git config core.hooksPath .githooks
+```
+
 Read [AGENTS.md](AGENTS.md) and [specs/WORKFLOW.md](specs/WORKFLOW.md) before you
 change anything.
 

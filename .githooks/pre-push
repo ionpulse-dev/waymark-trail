@@ -1,0 +1,9 @@
+#!/bin/sh
+# Run the fast checks of the CI workflow before every push.
+# The slow agent scenario tests (tests/agents.test.sh) run only in CI.
+set -e
+cd "$(git rev-parse --show-toplevel)"
+./build.sh --check
+sh tests/build.test.sh
+sh tests/skills.test.sh
+sh tests/standard.test.sh
