@@ -142,12 +142,22 @@ path.
 ### Pin a version
 
 Each skill has its own version and its own tag, named
-`<skill-name>-v<version>`. To pin a version, put the tag in the URL instead of
-`main`:
+`<skill-name>-v<version>`. The URL in step 2 uses `main`, so it always gives the
+newest version:
 
 ```text
-https://raw.githubusercontent.com/ionpulse-dev/waymark-trail/personal-knowledge-base-v0.1.0/personal-knowledge-base/SKILL.md
+https://raw.githubusercontent.com/ionpulse-dev/waymark-trail/main/personal-knowledge-base/SKILL.md
 ```
+
+To pin a version, put the tag in the URL instead of `main`. The pattern is
+`.../waymark-trail/<tag>/<skill-name>/SKILL.md`:
+
+```text
+https://raw.githubusercontent.com/ionpulse-dev/waymark-trail/personal-knowledge-base-v1.0.1/personal-knowledge-base/SKILL.md
+```
+
+Then use that URL in the prompt of step 2. The tags exist only after a release
+is tagged; until then, use `main`.
 
 ### Use it without a file
 
