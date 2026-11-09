@@ -13,19 +13,25 @@
 <br/>
 
 
-Skills that teach an AI agent to use a knowledge base of Markdown documents in
-a Git repository, safely and with little context.
+Long-term memory and a knowledge base for AI agents, as plain Markdown in a Git
+repository you own. It has two parts:
 
-A knowledge base is a Git repository of Markdown documents. Without rules, an
-agent may read too much, overwrite a newer document, or save something it should
-not. A skill is one text file with the rules. You give your agent the file, and
-it follows the rules. There is no app, no command line tool, and no server.
+- **An open document standard.** The
+  [Markdown Knowledge Base Document Standard](standard/mkbds-1.0.md) (MKBDS)
+  defines the format of one document, with a conformance set and a reference
+  checker. Any tool can use it.
+- **Two skills.** A skill is one text file with the rules. You give your agent
+  the file, and it follows the rules: it reads and writes the knowledge base
+  safely and with little context.
+
+Without rules, an agent may read too much, overwrite a newer document, or save
+something it should not. There is no app, no command line tool, and no server.
 
 The trail is the line of marks that agents leave for the next agent.
 
-**Contents:** [Skills](#the-skills) · [Quick start](#quick-start) ·
-[Install](#install) · [Global install](#add-the-skill-globally) ·
-[Document standard](#the-document-standard) · [Obsidian](#obsidian) ·
+**Contents:** [Document standard](#the-document-standard) ·
+[Skills](#the-skills) · [Quick start](#quick-start) · [Install](#install) ·
+[Global install](#add-the-skill-globally) · [Obsidian](#obsidian) ·
 [Contributors](#for-contributors) · [License](#license) · [Warning](#warning)
 
 ## The skills

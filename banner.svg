@@ -2,5 +2,5 @@
   <rect width="800" height="120" rx="6" fill="#0d1117"/>
   <rect x="0" y="0" width="5" height="120" rx="3" fill="#3fb950"/>
   <text x="415" y="56" font-family="'Courier New', Courier, monospace" font-size="38" font-weight="bold" fill="#e6edf3" text-anchor="middle">waymark-trail</text>
-  <text x="415" y="84" font-family="'Courier New', Courier, monospace" font-size="14" fill="#8b949e" text-anchor="middle">knowledge base skills  ·  for AI agents</text>
+  <text x="415" y="84" font-family="'Courier New', Courier, monospace" font-size="14" fill="#8b949e" text-anchor="middle">AI memory  ·  knowledge base  ·  open standard</text>
 </svg>

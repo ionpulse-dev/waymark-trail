@@ -2,10 +2,12 @@
 
 ## Vision
 
-waymark-trail is a pair of skills for AI agents. A skill tells the agent how to
-read and write a knowledge base of Markdown documents in a Git repository,
-safely and with little context. It needs no app, no CLI, and no server. A
-person gives the agent the URL of one skill file. The skills are standalone.
+waymark-trail is long-term memory and a knowledge base for AI agents, as plain
+Markdown in a Git repository. It has two parts: an open document standard
+(MKBDS) and a pair of skills. A skill tells the agent how to read and write a
+knowledge base of Markdown documents safely and with little context. It needs no
+app, no CLI, and no server. A person gives the agent the URL of one skill file.
+The skills are standalone.
 
 The trail is the line of marks that agents leave for the next agent.
 
