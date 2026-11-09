@@ -1,7 +1,7 @@
 ---
 name: team-knowledge-base
 description: Rules for reading and writing the shared team knowledge base in this repository. Load at the start of every session.
-version: 1.1.1
+version: 1.1.2
 ---
 
 # Team knowledge base
@@ -52,8 +52,8 @@ The dot shows the active setting of each row. Both rows start at Manual.
 - **Concurrent writes.** Pull before you write. If two versions of the same
   document collide, keep both. After you abort the rebase, restore the
   remote version of the original file (`git checkout origin/<branch> -- <path>`).
-  Save the person's version as `<file-name>-conflict.md` in the same folder, set
-  `disputed: true` and `dispute_reason: "Collides with <file-name>.md. Merge by
+  Save the person's version as `<file-name>-conflict.md` in the same folder. Add
+  ` (conflict)` to its title, so the title stays unique. Set `disputed: true` and `dispute_reason: "Collides with <file-name>.md. Merge by
   hand."`, and tell the person. Never leave the repository in a conflict state.
 
 ## How you work
