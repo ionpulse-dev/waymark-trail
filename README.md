@@ -16,8 +16,7 @@
 Skills that teach an AI agent to use a knowledge base of Markdown documents in
 a Git repository, safely and with little context.
 
-A knowledge base is a Git repository of Markdown documents (an Obsidian vault
-works too). Without rules, an agent may read too much, overwrite a newer
+A knowledge base is a Git repository of Markdown documents. Without rules, an agent may read too much, overwrite a newer
 document, or save something it should not. A skill is one text file with the
 rules. You give your agent the file, and it follows the rules. There is no app,
 no command line tool, and no server.
@@ -211,8 +210,7 @@ In short:
 - A short YAML header: title, description, status, dates, authors, and optional
   fields such as tags and links. The agent fills in the dates and authors itself.
 - No fixed folder. A knowledge base is the folder that holds a marker folder
-  named `.mkbds`, like Obsidian's `.obsidian` marks a vault. The root can be a
-  whole repository or any folder in it.
+  named `.mkbds`. The root can be a whole repository or any folder in it.
 
 ## Obsidian
 
@@ -223,6 +221,9 @@ what Obsidian accepts, and the extra Obsidian features that people write in the
 body (callouts, embeds, highlights, comments) are allowed and kept. The sample
 vault in [standard/conformance/vault](standard/conformance/vault) is set up for
 this.
+
+The `.mkbds` marker folder works like Obsidian's `.obsidian` folder, which
+marks a vault.
 
 ### Settings
 
