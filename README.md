@@ -24,10 +24,6 @@ no command line tool, and no server.
 
 The trail is the line of marks that agents leave for the next agent.
 
-> **Status: version 1.0.0, not yet tested with real agents.** Both skills are
-> written and the automatic tests pass. The checks with a real agent session are
-> still open. The specification is in [specs/](specs/).
-
 **Contents:** [Skills](#the-skills) · [Quick start](#quick-start) ·
 [Install](#install) · [Global install](#add-the-skill-globally) ·
 [Document standard](#the-document-standard) · [Obsidian](#obsidian) ·
