@@ -3,7 +3,7 @@
 _Records why technical choices were made. Never delete entries — add new ones as decisions are made. This file helps future AI sessions and developers understand settled choices without re-debating them._
 
 The decisions about the start message, the autonomy table, the hardcoded
-Manual defaults, and the start block in `AGENTS.md` are the same as in
+Manual defaults, and the start block in the global instructions file are the same as in
 [the personal skill](../personal-knowledge-base/decisions.md).
 
 ---

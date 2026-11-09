@@ -91,9 +91,22 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 ## The skills live in the content repository — 2026-11-08
 
+**Superseded by:** The skills live at the global user level
+
 **Decision:** The skills are part of the knowledge base repository. A session started there is the simplest use, and the only one that works on the web and on iPhone.
 
 **Alternatives considered:**
 - Skills installed at user level with a stored path and settings — needs a personal file that differs per tool and does not exist on web and iPhone.
 
 **Reason:** Clear split between the full project and the standalone skills, and nothing to configure.
+
+## The skills live at the global user level — 2026-11-09
+
+**Supersedes:** The skills live in the content repository
+
+**Decision:** Each person installs a skill in the global skill folder of their agent tool and starts it from their global instructions file. The content repository holds only `.mkbase` and the documents. The README does not mention a skill inside the repository.
+
+**Alternatives considered:**
+- Keep the skills in the content repository — the only way that works on the web and on iPhone, but it mixes the skill with the documents and confused people.
+
+**Reason:** The person decided it. The start block names the path of the clone, so no settings file is needed. The cost: Claude Code on the web and on iPhone has no global files, so the skills do not work there.

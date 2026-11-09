@@ -1,7 +1,7 @@
 ---
 name: personal-knowledge-base
 description: Rules for reading and writing the Markdown knowledge base in this repository. Load at the start of every session.
-version: 1.1.2
+version: 1.2.0
 ---
 
 # Personal knowledge base
@@ -45,16 +45,33 @@ A knowledge base has a root. The root is the folder that contains a folder named
    folders above it, up to the top of the repository.
 2. If you find none, do not guess. Ask the person where the knowledge base is.
    Offer to create the marker folder in the folder that the person names:
-   `.mkbase/version` with the text `1.0` and a final line end. Commit it alone
-   with the message `kb: add marker folder`.
-3. The marker folder holds the metadata and the configuration of the knowledge
+   `.mkbase/version` with the text `1.0` and a final line end, `.mkbase/exclude`
+   with the line `README.md`, and a `README.md` (see step 3). Commit them
+   together with the message `kb: add marker folder`.
+3. The `README.md` in the root is for people and agents that do not have this
+   skill. Write it like this, with the name of the knowledge base. Put no rules
+   of this skill in it.
+
+   ```markdown
+   # <name of the knowledge base>
+
+   This is a knowledge base in the [MKBase](https://github.com/ionpulse-dev/waymark-trail)
+   format: Markdown documents for people and AI agents.
+
+   Do not use it without the skill. Install the skill as the page above says.
+   ```
+
+   If the root has no `README.md`, offer once in a session to add it. Add the
+   file and the line `README.md` to `.mkbase/exclude`. Commit with
+   `kb: add "README"`. Never overwrite an existing `README.md`.
+4. The marker folder holds the metadata and the configuration of the knowledge
    base. Its content is open. Other tools keep files there. Leave files that you
    do not know as they are.
-4. Read `.mkbase/exclude` if it exists. Each line that is not empty and does not
+5. Read `.mkbase/exclude` if it exists. Each line that is not empty and does not
    start with `#` names a file or a folder, as a path below the root. It is not
    part of the knowledge base. Do not treat it as a document, and do not change
    it.
-5. A file or a folder whose name starts with `.` is not part of the knowledge
+6. A file or a folder whose name starts with `.` is not part of the knowledge
    base.
 
 ### Reading and writing levels

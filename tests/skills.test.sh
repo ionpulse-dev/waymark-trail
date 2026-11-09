@@ -14,7 +14,7 @@ T="$ROOT/team-knowledge-base/SKILL.md"
 # summary. Run it with:  sh tests/skills.test.sh 2>&1 | pbcopy   (macOS)
 echo "== skills.test.sh =="
 echo "commit: $(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null) ($(git -C "$ROOT" status --short 2>/dev/null | wc -l | tr -d ' ') changed files)"
-echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 14000), team $(wc -c < "$T" | tr -d ' ') bytes (limit 16000)"
+echo "size: personal $(wc -c < "$P" | tr -d ' ') bytes (limit 15000), team $(wc -c < "$T" | tr -d ' ') bytes (limit 17000)"
 if "$ROOT/build.sh" --check >/dev/null 2>&1; then echo "build: finished files match the parts"; else echo "build: MISMATCH, run ./build.sh"; fi
 echo
 
@@ -22,8 +22,8 @@ failures=0
 total=0
 pass() { total=$((total + 1)); echo "PASS $1"; }
 fail() { total=$((total + 1)); echo "FAIL $1"; failures=$((failures + 1)); }
-has() { # has <file> <fixed text>
-  grep -qF -- "$2" "$1"
+has() { # has <file> <fixed text>; line breaks and runs of spaces count as one space
+  tr '\n' ' ' < "$1" | tr -s ' ' | grep -qF -- "$2"
 }
 check() { # check <name> <file> <fixed text>...
   name=$1; file=$2; shift 2
@@ -65,7 +65,7 @@ for f in "$P" "$T"; do
     '`trust`, `verified_by`, `verified`'
   check "$s: file name and link rules" "$f" \
     'lowercase letters, digits, and `-` only' \
-    'also when the title changes' \
+    'only because its title changed' \
     'relative Markdown links with `.md`' \
     '"[[backend/payments/retry-policy]]"'
   check "$s: title and description limits" "$f" \
@@ -83,16 +83,25 @@ for f in "$P" "$T"; do
   check "$s: secrets" "$f" \
     "Never write these into a document" "stop and ask the person"
 
-  if grep -qiE 'waymark|settings file|config file' "$f"; then
+  if sed 's#https://github.com/ionpulse-dev/waymark-trail##g' "$f" | grep -qiE 'waymark|settings file|config file'; then
     fail "$s: no mention of other tools or a settings file"
   else
     pass "$s: no mention of other tools or a settings file"
   fi
 done
 
+# ---------- README of the knowledge base ----------
+for f in "$P" "$T"; do
+  s=$(basename "$(dirname "$f")")
+  check "$s: README.md for the knowledge base" "$f" \
+    "\`.mkbase/exclude\`" 'with the line `README.md`' \
+    "Never overwrite an existing \`README.md\`" \
+    'Do not use it without the skill'
+done
+
 # ---------- sizes ----------
-[ "$(wc -c < "$P")" -le 14000 ] && pass "personal: stays short (14 KB)" || fail "personal: stays short (14 KB)"
-[ "$(wc -c < "$T")" -le 16000 ] && pass "team: stays short (16 KB)" || fail "team: stays short (16 KB)"
+[ "$(wc -c < "$P")" -le 15000 ] && pass "personal: stays short (15 KB)" || fail "personal: stays short (15 KB)"
+[ "$(wc -c < "$T")" -le 17000 ] && pass "team: stays short (17 KB)" || fail "team: stays short (17 KB)"
 
 # ---------- personal ----------
 check "personal: start message" "$P" \
@@ -123,8 +132,8 @@ for f in "$P" "$T"; do
   check "$s: the worth test applies only to automatic writes" "$f" \
     "When you decide alone what to write (Writing is Automatic)"
   check "$s: delete only on request, with link repair" "$f" \
-    "Delete a document only when the person asks for it, never on your own" \
-    "search for links to it" \
+    "only when the person asks for it, never on your own" \
+    "search for links to the document" \
     "kb: delete"
 done
 check "team: delete only when the person says so clearly" "$T" \

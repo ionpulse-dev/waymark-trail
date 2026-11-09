@@ -6,7 +6,7 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 
 | Criterion | Test Case |
 |:----------|:----------|
-| **Given** a new session in a repository whose `AGENTS.md` loads the skill, **When** the agent first uses the skill, **Then** it shows the start message with both rows at Manual. | A1, M1 |
+| **Given** a new session in any folder, with the skill installed globally and the start block in the global instructions file, **When** the agent first uses the skill, **Then** it shows the start message with both rows at Manual. | A1, M1 |
 | **Given** reading is Manual, **When** the person does not ask about the knowledge base, **Then** the agent does not search or open documents. | A2, M2 |
 | **Given** writing is Manual, **When** the person does not ask for a write, **Then** the agent does not create, change, or move documents. | A3, M3 |
 | **Given** the person says "read automatically", **When** the agent answers, **Then** it shows the table with the dot in the Automatic cell of the Reading row and the Writing row unchanged. | A4, M4 |
@@ -14,6 +14,8 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 | **Given** a write request, **When** the agent writes, **Then** it pulls first, checks that the document did not change since it read it, commits under the person's name, and writes no secrets. | A5, A9, M6 |
 | **Given** a document would exceed the size cap, **When** the agent writes it, **Then** it splits the document or moves details into a linked source. | A6, M7 |
 | **Given** a document the agent wrote, **When** it is checked against MKBase 1.0, **Then** it conforms. | A7, M6 |
+| **Given** the agent creates the marker folder, **When** it commits, **Then** the commit holds `.mkbase/version`, `.mkbase/exclude` with the line `README.md`, and a `README.md` that points to waymark-trail and holds no skill rules. | A11, M8 |
+| **Given** a knowledge base with no `README.md`, **When** the agent uses it, **Then** it offers to add one and never overwrites an existing `README.md`. | A11, M9 |
 | **Given** the skill file is opened on its own, **When** it is read, **Then** it contains everything needed, with no include and no mention of a settings file. | A8, A10 |
 
 ## Test Cases
@@ -27,12 +29,13 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 - [x] [auto] A7: The skill lists every document field, the file name rules, the link rules, and the title and description limits (`tests/skills.test.sh`).
 - [x] [auto] A8: The skill has no include, and no line of the body repeats a line of the frontmatter (`tests/build.test.sh`).
 - [x] [auto] A9: The skill has a rule against secrets and a rule to ask when unsure (`tests/skills.test.sh`).
-- [x] [auto] A10: The skill does not mention other tools, a settings file, or a config file, and stays below 12 KB (`tests/skills.test.sh`).
+- [x] [auto] A10: The skill does not mention other tools, a settings file, or a config file (the link to waymark-trail in the README template is allowed), and stays below 15 KB (`tests/skills.test.sh`).
+- [x] [auto] A11: The skill has the rule for the `README.md` of the knowledge base: create it with the marker folder, list it in `.mkbase/exclude`, offer it when missing, never overwrite (`tests/skills.test.sh`).
 - [ ] [manual] M1: The start message.
-  1. Create a test repository with a `.mkbase` folder (with the file `version` that says `1.0`) and one valid document. Add the start block from the README to its `AGENTS.md`, with the path `.agents/skills/personal-knowledge-base/SKILL.md`, and copy the skill file there.
-  2. Start a new agent session in the repository and send "hello".
+  1. Create a test repository with a `.mkbase` folder (with the file `version` that says `1.0`) and one valid document. Install the skill in the global skill folder of the agent tool, as the README says. Add the start block from the README to the global instructions file, with the path of the test repository.
+  2. Start a new agent session in another folder and send "hello".
   3. Expected: the agent shows the start message with the repository name and the table, with the dot in the Manual cell of both rows, and nothing more.
-  4. Cleanup: delete the test repository.
+  4. Cleanup: delete the test repository, the global skill file, and the start block.
 - [ ] [manual] M2: Reading Manual.
   1. In the session from M1, ask a question that is not about the knowledge base, for example "what is 12 times 12?".
   2. Expected: the agent answers and does not search or open any document.
@@ -57,3 +60,11 @@ _`[auto]` items are verified by running the automated test suite (`sh tests/skil
 
 - The manual checks need a real agent and a test repository with a remote you can delete.
 - Run M1 to M7 again after every change to `src/common.md` or `src/personal.md`.
+- [ ] [manual] M8: README with the marker folder.
+  1. In an empty folder, start a session and ask the agent to create a knowledge base there.
+  2. Expected: one commit `kb: add marker folder` with `.mkbase/version`, `.mkbase/exclude` (line `README.md`), and `README.md`. The `README.md` links to waymark-trail and holds no rules.
+  3. Cleanup: delete the test folder.
+- [ ] [manual] M9: README offered, never overwritten.
+  1. Use a knowledge base with no `README.md`. Ask a question about it.
+  2. Expected: the agent answers and offers once to add a `README.md`. After "yes", one commit `kb: add "README"` and the line `README.md` in `.mkbase/exclude`.
+  3. Change the `README.md` by hand, start a new session, and ask again. Expected: the agent does not overwrite it.

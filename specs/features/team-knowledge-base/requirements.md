@@ -16,7 +16,7 @@ requires:
 ## Personas
 
 - **Team member** — uses the shared knowledge base with their own agent and is responsible for what the agent writes under their name.
-- **Maintainer of a knowledge base** — wrote the shared `AGENTS.md` that loads the skill.
+- **Maintainer of a knowledge base** — created the repository and its `.mkbase` folder, and may write a shared `AGENTS.md` with team conventions.
 
 ## Behaviour
 
@@ -57,7 +57,8 @@ includes.
 
 ## Acceptance Criteria
 
-- **Given** a new session in a repository whose `AGENTS.md` loads the skill, **When** the agent first uses the skill, **Then** it shows the start message with both rows at Manual and the line about commits and visibility.
+- **Given** a new session in any folder, with the skill installed globally and the start block in the global instructions file, **When** the agent first uses the skill, **Then** it shows the start message with both rows at Manual and the line about commits and visibility.
+- **Given** the agent creates the marker folder or finds a knowledge base with no `README.md`, **When** it writes, **Then** it follows the README rules of the personal skill: `README.md` in the root, listed in `.mkbase/exclude`, never overwritten.
 - **Given** the behaviour shared with the personal skill, **When** the same situation occurs, **Then** the team skill behaves the same way.
 - **Given** the agent writes a document, **When** it commits, **Then** the commit author is the person's own name and a reachable email.
 - **Given** the agent finds a document that contradicts its source, **When** the person agrees to act, **Then** the agent sets `disputed` with a reason and does not delete the document.

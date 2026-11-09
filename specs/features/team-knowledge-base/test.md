@@ -6,7 +6,8 @@ _`[auto]` items are verified by running `sh tests/skills.test.sh` and `sh tests/
 
 | Criterion | Test Case |
 |:----------|:----------|
-| **Given** a new session in a repository whose `AGENTS.md` loads the skill, **When** the agent first uses the skill, **Then** it shows the start message with both rows at Manual and the line about commits and visibility. | B1, N1 |
+| **Given** a new session in any folder, with the skill installed globally and the start block in the global instructions file, **When** the agent first uses the skill, **Then** it shows the start message with both rows at Manual and the line about commits and visibility. | B1, N1 |
+| **Given** the agent creates the marker folder or finds a knowledge base with no `README.md`, **When** it writes, **Then** it follows the README rules of the personal skill: `README.md` in the root, listed in `.mkbase/exclude`, never overwritten. | B8, N7 |
 | **Given** the behaviour shared with the personal skill, **When** the same situation occurs, **Then** the team skill behaves the same way. | B2, N2 |
 | **Given** the agent writes a document, **When** it commits, **Then** the commit author is the person's own name and a reachable email. | B3, N3 |
 | **Given** the agent finds a document that contradicts its source, **When** the person agrees to act, **Then** the agent sets `disputed` with a reason and does not delete the document. | B4, N4 |
@@ -21,12 +22,13 @@ _`[auto]` items are verified by running `sh tests/skills.test.sh` and `sh tests/
 - [x] [auto] B4: The skill says to set `disputed: true` with a reason, to not rewrite another team's document on its own, and that a deprecated document stays (`tests/skills.test.sh`).
 - [x] [auto] B5: The skill has the secret rule with the instruction to stop and ask (`tests/skills.test.sh`).
 - [x] [auto] B6: The skill has the collision rule with the `-conflict.md` file and the rule to never leave a conflict state (`tests/skills.test.sh`).
-- [x] [auto] B7: The skill has no mention of other tools or a settings file, and stays below 16 KB (`tests/skills.test.sh`).
+- [x] [auto] B7: The skill has no mention of other tools or a settings file, and stays below 17 KB (`tests/skills.test.sh`).
+- [x] [auto] B8: The skill has the rule for the `README.md` of the knowledge base (`tests/skills.test.sh`).
 - [ ] [manual] N1: The start message.
-  1. Create a test repository with a `.mkbase` folder (with the file `version` that says `1.0`) and one valid document. Add the start block from the README to its `AGENTS.md` with the path `.agents/skills/team-knowledge-base/SKILL.md`, and copy the skill file there.
-  2. Start a new session and send "hello".
+  1. Create a test repository with a `.mkbase` folder (with the file `version` that says `1.0`) and one valid document. Install the skill in the global skill folder of the agent tool, as the README says. Add the start block from the README to the global instructions file, with the path of the test repository.
+  2. Start a new session in another folder and send "hello".
   3. Expected: the start message with "(shared with your team)", the table with both rows at Manual, and the line about commits and visibility.
-  4. Cleanup: delete the test repository.
+  4. Cleanup: delete the test repository, the global skill file, and the start block.
 - [ ] [manual] N2: Same behaviour as the personal skill. Repeat M2 to M5 of `personal-knowledge-base/test.md` with the team skill. Expected: the same results.
 - [ ] [manual] N3: Commit author.
   1. Set `git config user.name "Test Person"` and `git config user.email "test.person@corp.example.org"` in the test repository.
@@ -48,3 +50,4 @@ _`[auto]` items are verified by running `sh tests/skills.test.sh` and `sh tests/
 ## Notes
 
 - Run N1 to N6 again after every change to `src/common.md` or `src/team.md`.
+- [ ] [manual] N7: README of the knowledge base. Repeat M8 and M9 of `personal-knowledge-base/test.md` with the team skill. Expected: the same results.

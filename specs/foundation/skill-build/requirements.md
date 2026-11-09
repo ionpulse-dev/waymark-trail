@@ -26,7 +26,7 @@ URL of one file.
 - `personal-knowledge-base/SKILL.md` and `team-knowledge-base/SKILL.md`: the finished files, committed.
 - A check that fails when a finished file differs from what the build produces.
 - `.github/workflows/check.yml`: a GitHub Actions workflow that runs the check on every push and pull request.
-- A README with copy-paste install prompts and the examples for the start block in `AGENTS.md`.
+- A README with copy-paste install prompts and the example for the start block in the global instructions file.
 
 ## Scope
 

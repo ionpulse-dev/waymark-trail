@@ -17,7 +17,7 @@ requires:
 ## Personas
 
 - **Private person** — owns the repository and decides what the agent may do.
-- **Maintainer of a knowledge base** — wrote the `AGENTS.md` that loads the skill.
+- **Maintainer of a knowledge base** — created the repository and its `.mkbase` folder.
 
 ## Behaviour
 
@@ -61,6 +61,17 @@ the foundation item `skill-build`. The skill covers:
 - What is worth a document: true in three months, useful to someone else,
   no status updates, no chat summaries.
 
+### README of the knowledge base
+
+An agent without the skill finds no rules in the knowledge base repository. The
+skill fixes this. When it creates the marker folder, it also creates a
+`README.md` in the root and lists it in `.mkbase/exclude`. The `README.md` says
+in a few lines that the repository is a knowledge base in the MKBase format,
+links to waymark-trail, says that use without the skill is not recommended, and
+says how to install the skill. It holds no rules of the skill. If a knowledge
+base has no `README.md`, the skill offers once per session to add it. It never
+overwrites an existing `README.md`.
+
 ### Document format
 
 The document format is the MKBase Document Standard
@@ -87,7 +98,7 @@ file. The same body can be pasted into an `AGENTS.md`.
 
 ## Acceptance Criteria
 
-- **Given** a new session in a repository whose `AGENTS.md` loads the skill, **When** the agent first uses the skill, **Then** it shows the start message with both rows at Manual.
+- **Given** a new session in any folder, with the skill installed globally and the start block in the global instructions file, **When** the agent first uses the skill, **Then** it shows the start message with both rows at Manual.
 - **Given** reading is Manual, **When** the person does not ask about the knowledge base, **Then** the agent does not search or open documents.
 - **Given** writing is Manual, **When** the person does not ask for a write, **Then** the agent does not create, change, or move documents.
 - **Given** the person says "read automatically", **When** the agent answers, **Then** it shows the table with the dot in the Automatic cell of the Reading row and the Writing row unchanged.
@@ -95,6 +106,8 @@ file. The same body can be pasted into an `AGENTS.md`.
 - **Given** a write request, **When** the agent writes, **Then** it pulls first, checks that the document did not change since it read it, commits under the person's name, and writes no secrets.
 - **Given** a document would exceed the size cap, **When** the agent writes it, **Then** it splits the document or moves details into a linked source.
 - **Given** a document the agent wrote, **When** it is checked against MKBase 1.0, **Then** it conforms: fields, names, links, and sizes.
+- **Given** the agent creates the marker folder, **When** it commits, **Then** the commit holds `.mkbase/version`, `.mkbase/exclude` with the line `README.md`, and a `README.md` that points to waymark-trail and holds no skill rules.
+- **Given** a knowledge base with no `README.md`, **When** the agent uses it, **Then** it offers to add one and never overwrites an existing `README.md`.
 - **Given** the skill file is opened on its own, **When** it is read, **Then** it contains everything needed, with no include and no mention of a settings file.
 
 ## Constraints & Edge Cases

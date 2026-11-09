@@ -27,8 +27,9 @@ mistake does not break the others' documents.
 
 ### Maintainer of a knowledge base
 
-Creates the repository and its `AGENTS.md`. Success: an agent that opens the
-repository by chance finds clear rules.
+Creates the repository and its `.mkbase` folder. May add a shared `AGENTS.md`
+with team conventions. Success: every agent that uses the knowledge base finds
+clear rules.
 
 _A single user may play more than one persona._
 
@@ -55,9 +56,10 @@ finished files. The finished files are committed.
 
 ### Start of a skill
 
-The person adds a short block to an `AGENTS.md` that tells the agent to load the
-skill at the start of every session. The skill then tells the person that it is
-active.
+The person installs the skill in the global skill folder of their agent tool
+and adds a short block to their global instructions file. The block names the
+local path of the knowledge base clone and tells the agent to load the skill at
+the start of every session. The skill then tells the person that it is active.
 
 ### Autonomy table
 
@@ -81,17 +83,19 @@ words.
 - The two skills and their shared rules.
 - The document standard (MKBase), its conformance set, and its checker.
 - The build script and the install-by-URL instructions.
-- The examples for the start block in `AGENTS.md`.
+- The example for the start block in the global instructions file.
 
 **Out of scope:**
 - A CLI, an app, or a server.
 - A settings file or a config store (see Post-MVP).
 - Enforcement of any rule.
 
-**Where the skills work:** the skills live inside the content repository. The
-simplest use is a session started in that repository. This is also the only way
-that works in Claude Code on the web and on iPhone. A session in another
-folder can use them if its `AGENTS.md` points to the repository.
+**Where the skills work:** the skills live only at the global user level of each
+person's agent tool, never in the content repository. The content repository
+holds only `.mkbase` and the documents. The start block in the global
+instructions file names the path of the clone, so the skills work in a session
+in any folder. Claude Code on the web and on iPhone has no global files, so the
+skills do not work there.
 
 ## Post-MVP
 

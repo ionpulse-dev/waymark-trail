@@ -38,6 +38,8 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 ## The person starts the skill with a block in AGENTS.md — 2026-11-08
 
+**Superseded by:** The skill is installed globally and started from the global instructions file
+
 **Decision:** The skill does not start itself. The person adds a short block to an `AGENTS.md` that says to load the skill at the start of every session. The README shows two examples: one for the knowledge base repository itself and one for a code project or a personal instruction file that points to the repository path. The block does not ask for an announcement, because the skill announces itself.
 
 **Alternatives considered:**
@@ -195,6 +197,8 @@ _Records why technical choices were made. Never delete entries — add new ones 
 
 ## The skill is installed in `.agents/skills/` — 2026-11-08
 
+**Superseded by:** The skill is installed globally and started from the global instructions file
+
 **Decision:** The README tells people to install the skill as `.agents/skills/<skill-name>/SKILL.md` and to point the `AGENTS.md` block to it. No `CLAUDE.md` is needed, because Claude Code reads `AGENTS.md` when there is no `CLAUDE.md`. If a `CLAUDE.md` exists, it gets the line `@AGENTS.md`. This replaces the earlier decision about `CLAUDE.md`.
 
 **Alternatives considered:**
@@ -202,3 +206,28 @@ _Records why technical choices were made. Never delete entries — add new ones 
 - `.claude/skills/` — only Claude Code reads it.
 
 **Reason:** Copilot, Codex, and Gemini CLI read `.agents/skills/` according to their documentation. A folder that starts with `.` is not part of the knowledge base, so it needs no `exclude` entry.
+
+## The skill is installed globally and started from the global instructions file — 2026-11-09
+
+**Supersedes:** The person starts the skill with a block in AGENTS.md
+**Supersedes:** The skill is installed in `.agents/skills/`
+
+**Decision:** The skill lives only in the global skill folder of each person's agent tool, never in the knowledge base repository. The person adds a block to their global instructions file. The block names the local path of the knowledge base clone, says to use it in every session in every folder, says to run Git with `git -C <path>`, and says to load the skill at the start of every session. The README names the global skill folder and the global instructions file per agent tool. It does not mention a skill inside the repository.
+
+**Alternatives considered:**
+- Keep the skill in `.agents/skills/` of the repository and load it from the repository `AGENTS.md` — it mixes the skill with the documents, works only in a session started in the repository, and confused people.
+- Offer both places — two ways to install confused people more than one.
+- One global `AGENTS.md` — no such file exists for every tool, so the README names the file per tool.
+
+**Reason:** The person decided that the skill belongs to the person, not to the knowledge base. A path in the block lets the skill work in a session in any folder. The repository holds only `.mkbase` and the documents. The cost: Claude Code on the web and on iPhone has no global files, so the skill does not work there.
+
+## The skill writes a README.md into the knowledge base — 2026-11-09
+
+**Decision:** When the skill creates the marker folder, it also creates a `README.md` in the root and lists it in `.mkbase/exclude`. If a knowledge base has no `README.md`, the skill offers once per session to add it. It never overwrites an existing one. The text links to waymark-trail, says that use without the skill is not recommended, and holds no rules of the skill. The rule is in `src/common.md`, so both skills have it. The size limits of the skills go up to 15 KB (personal) and 17 KB (team) for the new text. The test for "no mention of other tools" allows the waymark-trail link.
+
+**Alternatives considered:**
+- A manual step in the README of the project — an agent without the skill never sees it.
+- Put the rules of the skill into the `README.md` — they would drift from the skill and cost context in every session.
+
+**Reason:** The skill is installed globally, so an agent that opens the knowledge base repository without the skill finds no rules there. The `README.md` is the place where such an agent and a person look first.
+
