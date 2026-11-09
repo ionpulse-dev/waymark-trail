@@ -3,7 +3,6 @@
 **Version:** 1.0 (draft)
 **Date:** 2026-11-08
 **Short name:** MKBDS 1.0
-**Status:** Draft. Compatibility with Obsidian is not yet tested (see section 11).
 
 ---
 
@@ -208,10 +207,6 @@ its `.obsidian` folder. MKBDS finds a knowledge base by its `.mkbds` folder.
    requires. Without them, Obsidian writes wikilinks with short paths in the body.
    Other files of the `.obsidian` folder are personal settings. This standard does
    not say whether to keep them in Git.
-5. Each release of this standard names the Obsidian version in which the sample
-   vault of Annex B was checked.
-
-**Tested version for MKBDS 1.0:** not yet tested.
 
 ## Annex A (informative) Examples
 
