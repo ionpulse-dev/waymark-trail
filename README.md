@@ -34,6 +34,21 @@ The trail is the line of marks that agents leave for the next agent.
 
 <br/>
 
+## What you can use it for
+
+- **Long-term memory for your agents.** The agent saves a decision, a pitfall,
+  or a fact. The next session, on any device, finds it again.
+- **A personal knowledge base.** Notes, research, how-tos, and things you
+  learned, all in files you own and can read.
+- **A shared team handbook.** Architecture decisions, runbooks, and onboarding
+  guides that every teammate and every agent can use.
+- **Project notes for a codebase.** Why it works this way, which API quirks to
+  expect, and what you tried that failed.
+- **A common format for other tools.** Build on the standard, and your tool
+  reads and writes the same documents.
+
+<br/>
+
 ## The skills
 
 | Skill | For |
